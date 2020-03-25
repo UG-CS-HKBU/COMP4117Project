@@ -137,7 +137,7 @@ module.exports = {
                 return res.badRequest("Form-data not received.");
 
             var models = await Game.update(req.params.id).set({
-                gamename: req.body.Game.bookname,
+                gamename: req.body.Game.gamename,
                 category: req.body.Game.category,
                 location: req.body.Game.location,
                 photo: req.body.Game.photo,

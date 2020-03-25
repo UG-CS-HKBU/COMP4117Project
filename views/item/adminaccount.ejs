@@ -6,8 +6,8 @@
 
         <br>
         <br>
-        <h2 class="center">用戶資料</h2>
-        <div style="position: relative;" class="form-group col-12 col-xl-12">
+        <h2 style="color: wheat; background-color: darkred;">用戶資料</h2>
+        <div style="position: relative;" class="mycard col-12 col-xl-12">
             <label style="position: relative;bottom: -5px;">用戶名稱: <%=model.username%></label>
             <br>
             <label style="position: relative;bottom: -5px;">電郵: <%=model.email%></label>
@@ -16,65 +16,86 @@
             <br>
             <label style="position: relative;bottom: -5px;">職位: <%=model.position%></label>
         </div>
+        <br>
+        <br>
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class=" col-6 col-sm-3">
+                    <form action="/user/logout" method="POST">
+                        <button type="submit" class="btn btn-primary center">登出</a>
+                    </form>
+                </div>
 
-        <div>
-            <form action="/user/logout" method="POST">
-                <button type="submit" class="btn btn-primary center">登出</a>
-            </form>
+                <br>
+                <div class=" col-6 col-sm-3">
+
+                    <form action="/item/adminaddaccount">
+                        <button type="submit" class="btn btn-success center">增加用戶</button>
+                    </form>
+                </div>
+
+
+            </div>
+
+            <br>
+
+            <div class="row">
+                <div class=" col-6 col-sm-3">
+
+                    <form action="/item/adminpasswordupdate">
+                        <button type="submit" class="btn btn-secondary center">更改密碼</button>
+                    </form>
+                </div>
+                <br>
+
+                <div class=" col-6 col-sm-3">
+
+                    <form action="/item/adminuseredit">
+                        <button type="submit" class="btn btn-danger center">修改用戶資料/刪除用戶</button>
+                    </form>
+                </div>
+                <br>
+
+
+                <br>
+                <div class=" col-6 col-sm-3">
+
+                    <form action="/item/adminaccountupdate">
+                        <button type="submit" class="btn btn-secondary center">更改資料</button>
+                    </form>
+                </div>
+            </div>
+
+            <nav class="bottomnav fixed-bottom">
+                <a href="/item/adminindex" class="nav__link">
+                    <i class="material-icons">
+                        home
+                    </i>
+                    <span class="nav__text">主頁</span>
+                </a>
+                <a href="/item/adminsearch" class="nav__link nav__link--active">
+                    <i class="material-icons">
+                        search
+                    </i>
+                    <span class="nav__text">搜尋</span>
+                </a>
+                <a href="/item/adminnoti" class="nav__link">
+                    <i class="material-icons">
+                        email
+                    </i>
+                    <span class="nav__text">通知</span>
+                </a>
+                <a href="/item/adminaccount" class="nav__link">
+                    <i class="material-icons">
+                        account_circle
+                    </i>
+                    <span class="nav__text">帳戶</span>
+                </a>
+            </nav>
         </div>
-
-        <br>
-
-        <form action="/item/adminaddaccount">
-            <button type="submit" class="btn btn-dark center">增加用戶</button>
-        </form>
-
-
-        <br>
-
-        <form action="/item/adminuseredit">
-            <button type="submit" class="btn btn-danger center">修改用戶資料/刪除用戶</button>
-        </form>
-
-        <br>
-
-
-        <form action="/item/adminpasswordupdate">
-            <button type="submit" class="btn btn-secondary center">更改密碼</button>
-        </form>
-        <br>
-
-        <form action="/item/adminaccountupdate">
-            <button type="submit" class="btn btn-secondary center">更改資料</button>
-        </form>
-
-        <nav class="bottomnav fixed-bottom">
-            <a href="/item/adminindex" class="nav__link">
-                <i class="material-icons">
-                    home
-                </i>
-                <span class="nav__text">主頁</span>
-            </a>
-            <a href="/item/adminsearch" class="nav__link nav__link--active">
-                <i class="material-icons">
-                    search
-                </i>
-                <span class="nav__text">搜尋</span>
-            </a>
-            <a href="/item/adminnoti" class="nav__link">
-                <i class="material-icons">
-                    email
-                </i>
-                <span class="nav__text">通知</span>
-            </a>
-            <a href="/item/adminaccount" class="nav__link">
-                <i class="material-icons">
-                    account_circle
-                </i>
-                <span class="nav__text">帳戶</span>
-            </a>
-        </nav>
     </div>
+
 
     </div>
 </body>

@@ -1,7 +1,7 @@
 <body onload="pageLoaded()">
     <div class="container">
 
-        <form action="/material/adminmaterialupdate/<%=material.id%>"" method="POST">
+        <form action="/material/adminmaterialupdate/<%=material.id%>" method="POST">
             <div class="form-group row">
                 <div class="col-xl-6 col-form-label">
                     <label>物資種類:</label>
@@ -12,23 +12,23 @@
                 </div>
                 <div class="col-xl-6 col-form-label">
                     <label>物資名稱:</label>
-                    <input type="text" class="form-control" name="Material[materialname]" value="<%= material.materialname %>"required>
+                    <input type="text" class="form-control" name="Material[materialname]" value="<%= material.materialname %>" required>
                 </div>
 
                 <div class="col-xl-6 col-form-label">
                     <label>數量:</label>
-                    <input type="number" class="form-control" name="Material[amount]]" value="<%= material.amount %>"required>
+                    <input type="number" class="form-control" name="Material[amount]]" value="<%= material.amount %>" required>
                 </div>
 
-                
+
                 <div class="col-xl-6 col-form-label">
                     <label>位置:</label>
-                    <input type="text" class="form-control" name="Material[location]]" value="<%= material.location %>"required>
+                    <input type="text" class="form-control" name="Material[location]]" value="<%= material.location %>" required>
                 </div>
 
                 <div class="col-xl-6 col-form-label">
                     <label>相片:</label>
-                    <input type="url" class="form-control" name="Material[photo]" value="<%= material.photo %>"required>
+                    <input type="url" class="form-control" name="Material[photo]" value="<%= material.photo %>" required>
                 </div>
 
                 <button type="submit" class="btn btn-primary center">修改</button>

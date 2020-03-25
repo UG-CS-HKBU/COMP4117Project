@@ -1,5 +1,5 @@
 <body onload="pageLoaded()">
-    
+
 
     <div class="container">
         <div class="row">
@@ -9,25 +9,39 @@
             <div class="card col-xl-6">
                 <table class="table">
                     <tr>
-                        <th id="detail" scope="row">位置: <%= book.location%></th>
+                        <th id="detail" scope="row">位置:
+                            <%= book.location%>
+                        </th>
                     </tr>
                     <tr>
-                        <th id="detail" scope="row">書名: <%= book.bookname %></th>
+                        <th id="detail" scope="row">書名:
+                            <%= book.bookname %>
+                        </th>
                     </tr>
                     <tr>
-                        <th id="detail" scope="row">類型: <%=book.category %></th>
+                        <th id="detail" scope="row">類型:
+                            <%=book.category %>
+                        </th>
                     </tr>
                     <tr>
-                        <th id="detail" scope="row">作者: <%= book.author %></th>
+                        <th id="detail" scope="row">作者:
+                            <%= book.author %>
+                        </th>
                     </tr>
                     <tr>
-                        <th id="detail" scope="row">出版社: <%=book.publisher %></th>
+                        <th id="detail" scope="row">出版社:
+                            <%=book.publisher %>
+                        </th>
                     </tr>
                     <tr>
-                        <th id="detail" scope="row">出版年份: <%=book.year %></th>
+                        <th id="detail" scope="row">出版年份:
+                            <%=book.year %>
+                        </th>
                     </tr>
                     <tr>
-                        <th id="detail" scope="row">ISBN: <%=book.ISBN %></th>
+                        <th id="detail" scope="row">ISBN:
+                            <%=book.ISBN %>
+                        </th>
                     </tr>
 
                 </table>
@@ -36,34 +50,53 @@
         </div>
     </div>
 
-    
-    <button type="submit" class="btn btn-primary center">即時借取</button>
     <br>
-    <button type="submit" class="btn btn-primary center">預訂</button>
+
+    <div class="container">
+        <div class="row">
+            <div class=" col-6 col-sm-6">
+                <a href="http://localhost:1337/book/adminbookupdate/<%=book.id%>">
+                    <button type="submit" class="changebutton">修改</button>
+                </a>
+            </div>
+
+            <div class=" col-6 col-sm-6">
+                <form action="http://localhost:1337/book/adminbookdelete/<%=book.id%>" method="POST">
+                    <button type="submit" class="deletebutton">
+                        刪除
+                    </button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
 
     <nav class="bottomnav fixed-bottom">
         <a href="/item/adminindex" class="nav__link">
             <i class="material-icons">
-                home
-            </i>
+                    home
+                </i>
             <span class="nav__text">主頁</span>
         </a>
         <a href="/item/adminsearch" class="nav__link nav__link--active">
             <i class="material-icons">
-                search
-            </i>
+                    search
+                </i>
             <span class="nav__text">搜尋</span>
         </a>
         <a href="/item/adminnoti" class="nav__link">
             <i class="material-icons">
-                email
-            </i>
+                    email
+                </i>
             <span class="nav__text">通知</span>
         </a>
         <a href="/item/adminaccount" class="nav__link">
             <i class="material-icons">
-                account_circle
-            </i>
+                    account_circle
+                </i>
             <span class="nav__text">帳戶</span>
         </a>
     </nav>

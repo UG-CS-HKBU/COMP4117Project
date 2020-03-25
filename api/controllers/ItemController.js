@@ -194,15 +194,15 @@ module.exports = {
         } else {
 
             
-            const salt = await sails.bcrypt.genSalt(10);
+            // const salt = await sails.bcrypt.genSalt(10);
 
-            const password = await req.body.password;
+            // const password = await req.body.password;
 
-            const hash = await sails.bcrypt.hash(password, salt);
+            // const hash = await sails.bcrypt.hash(password, salt);
 
             var models = await User.update(req.params.id).set({
                 username: req.body.username,
-                password: hash,
+                //password: hash,
                 email: req.body.email,
                 department: req.body.department,
                 position: req.body.position,

@@ -1,5 +1,5 @@
 <body onload="pageLoaded()">
-    
+
 
     <div class="container">
         <div class="row">
@@ -9,22 +9,34 @@
             <div class="card col-xl-6">
                 <table class="table">
                     <tr>
-                        <th id="detail" scope="row">位置: <%= gift.location%></th>
+                        <th id="detail" scope="row">位置:
+                            <%= gift.location%>
+                        </th>
                     </tr>
                     <tr>
-                        <th id="detail" scope="row">名稱: <%= gift.giftname %></th>
+                        <th id="detail" scope="row">名稱:
+                            <%= gift.giftname %>
+                        </th>
                     </tr>
                     <tr>
-                        <th id="detail" scope="row">類型: <%=gift.category %></th>
+                        <th id="detail" scope="row">類型:
+                            <%=gift.category %>
+                        </th>
                     </tr>
                     <tr>
-                        <th id="detail" scope="row">數量: <%= gift.amount%></th>
+                        <th id="detail" scope="row">數量:
+                            <%= gift.amount%>
+                        </th>
                     </tr>
                     <tr>
-                        <th id="detail" scope="row">單價價值(HKD): $<%= gift.value%></th>
+                        <th id="detail" scope="row">單價價值(HKD): $
+                            <%= gift.value%>
+                        </th>
                     </tr>
                     <tr>
-                        <th id="detail" scope="row">捐贈者: <%=gift.donator%></th>
+                        <th id="detail" scope="row">捐贈者:
+                            <%=gift.donator%>
+                        </th>
                     </tr>
                 </table>
 
@@ -33,9 +45,30 @@
     </div>
 
 
-    <button type="submit" class="btn btn-primary center">即時借取</button>
     <br>
-    <button type="submit" class="btn btn-primary center">預訂</button>
+    <div class="container">
+        <div class="row">
+            <div class=" col-6 col-sm-6">
+                <a href="http://localhost:1337/gift/admingiftupdate/<%=gift.id%>">
+                    <button type="submit" class="changebutton">修改</button>
+                </a>
+            </div>
+
+            <div class=" col-6 col-sm-6">
+                <form action="http://localhost:1337/gift/admingiftdelete/<%=gift.id%>" method="POST">
+                    <button type="submit" class="deletebutton">
+                        刪除
+                    </button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <!-- <button type="submit" class="btn btn-primary center">即時借取</button>
+    <br>
+    <button type="submit" class="btn btn-primary center">預訂</button> -->
 
     <nav class="bottomnav fixed-bottom">
         <a href="/item/adminindex" class="nav__link">

@@ -1,6 +1,6 @@
 <body onload="pageLoaded()">
     <div class="container">
-        
+
 
         <h2 class="center">物資搜尋</h2>
         <label>類型:</label>
@@ -27,37 +27,40 @@
 
         <div class="row">
             <% material.forEach(function(model) { %>
-            <div class="card col-xl-6 col-sm-12">
-                <div id="title">
-                    <a href="/material/adminmaterialdetail/<%=model.id%>">詳細資料頁面 </a>
-                </div>
-                <p></p>
-                <div id="info">
-                    <img src=<%=model.photo %> id="photo" width="150" height="150">
-                    <ul class="list-group">
-                        <li class="list-group-item" id="info">
-                            <span id="briefinfo">物資名稱:</span>
-                            <%= model.materialname%>
-                        </li>
-                        <li class="list-group-item" id="info">
-                            <span id="briefinfo">物資類別:</span>
-                            <%= model.category %>
-                        </li>
-                        <li class="list-group-item" id="info">
-                            <span id="briefinfo">數量:</span>
-                            <%= model.amount %>
-                        </li>
-                        <!-- 
+                <div class="card col-xl-6 col-sm-12">
+                    <!-- <div id="title">
+                        <a href="/material/adminmaterialdetail/<%=model.id%>" style="color:darkslategrey">詳細資料頁面 </a>
+                    </div> -->
+                    <a href="/material/adminmaterialdetail/<%=model.id%>" style="color:darkslategrey">
+
+                        <p></p>
+                        <div id="info">
+                            <img src=<%=model.photo %> id="photo" width="150" height="150">
+                            <ul class="list-group">
+                                <li class="list-group-item" id="info">
+                                    <span id="briefinfo">物資名稱:</span>
+                                    <%= model.materialname%>
+                                </li>
+                                <li class="list-group-item" id="info">
+                                    <span id="briefinfo">物資類別:</span>
+                                    <%= model.category %>
+                                </li>
+                                <li class="list-group-item" id="info">
+                                    <span id="briefinfo">數量:</span>
+                                    <%= model.amount %>
+                                </li>
+                                <!-- 
                         <li class="list-group-item" id="info">
                             <span id="briefinfo">存放位置</span>
                             <%= model.publisher %>
                         </li> -->
 
-                    </ul>
+                            </ul>
+                        </div>
+                    </a>
+                    <p></p>
                 </div>
-                <p></p>
-            </div>
-            <% }); %>
+                <% }); %>
 
         </div>
 

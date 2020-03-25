@@ -5,26 +5,27 @@
             <div class="form-group row">
                 <div class="col-xl-6 col-form-label">
                     <label>禮物種類:</label>
-                    <select name="Gift[category]" class="form-control">
+                    <!-- <select name="Gift[category]" class="form-control">
                         <option value="">選擇禮物種類</option>
                         <option value="小型禮物">小型禮物</option>
                         <option value="中型禮物">中型禮物</option>
                         <option value="大型禮物">大型禮物</option>
-                    </select>
+                    </select> -->
+                    <input type="text" class="form-control" name="Gift[category]" value="<%= gift.category %>" required>
                 </div>
                 <div class="col-xl-6 col-form-label">
                     <label>禮物名稱:</label>
-                    <input type="text" class="form-control" name="Gift[giftname]" value="<%= gift.giftname %>"required>
+                    <input type="text" class="form-control" name="Gift[giftname]" value="<%= gift.giftname %>" required>
                 </div>
 
                 <div class="col-xl-6 col-form-label">
                     <label>數量:</label>
-                    <input type="number" class="form-control" name="Gift[amount]]" value="<%= gift.amount %>"required>
+                    <input type="number" class="form-control" name="Gift[amount]]" value="<%= gift.amount %>" required>
                 </div>
 
                 <div class="col-xl-6 col-form-label">
                     <label>單價價值(HKD):</label>
-                    <input type="number" class="form-control" name="Gift[value]" value="<%= gift.value %>"required>
+                    <input type="number" class="form-control" name="Gift[value]" value="<%= gift.value %>" required>
                 </div>
 
                 <div class="col-xl-6 col-form-label">
@@ -34,12 +35,12 @@
 
                 <div class="col-xl-6 col-form-label">
                     <label>位置:</label>
-                    <input type="text" class="form-control" name="Gift[location]]" value="<%= gift.location %>"required>
+                    <input type="text" class="form-control" name="Gift[location]]" value="<%= gift.location %>" required>
                 </div>
 
                 <div class="col-xl-6 col-form-label">
                     <label>相片:</label>
-                    <input type="url" class="form-control" name="Gift[photo]" value="<%= gift.photo %>"required>
+                    <input type="url" class="form-control" name="Gift[photo]" value="<%= gift.photo %>" required>
                 </div>
 
                 <button type="submit" class="btn btn-primary center">修改</button>

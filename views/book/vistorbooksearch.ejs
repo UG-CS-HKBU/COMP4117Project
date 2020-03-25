@@ -1,69 +1,70 @@
 <body onload="pageLoaded()">
     <div class="container">
         <h2 class="center">書本搜尋</h2>
-                <label>種類:</label>
-                <form action="/book/vistorbookresult" method="GET">
-                    <div class="form-group">
-                        <select name="category" class="form-control" required>
-                            <option value="">選擇書本種類</option>
-                            <option value="小說">小說</option>
-                            <option value="自傳">自傳</option>
-                            <option value="心理勵志">心理勵志</option>
-                            <option value="圖書">圖書</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>書名:</label>
-                        <input type="string" class="form-control" name="bookname">
-                    </div>
-                    <div class="form-group">
-                        <label>作者:</label>
-                        <input type="string" class="form-control" name="author">
-                    </div>
-                    <div class="form-group">
-                        <label>出版社:</label>
-                        <input type="string" class="form-control" name="publisher">
-                    </div>
-                    <div class="form-group">
-                        <label>ISBN:</label>
-                        <input type="string" class="form-control" name="ISBN">
-                    </div>    
-                    <button type="sumbit" class="btn btn-primary center">確認搜尋</button>
-                    <br>
-                </form>
+        <label>種類:</label>
+        <form action="/book/vistorbookresult" method="GET">
+            <div class="form-group">
+                <select name="category" class="form-control" required>
+                    <option value="">選擇書本種類</option>
+                    <option value="小說">小說</option>
+                    <option value="自傳">自傳</option>
+                    <option value="心理勵志">心理勵志</option>
+                    <option value="圖書">圖書</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>書名:</label>
+                <input type="string" class="form-control" name="bookname">
+            </div>
+            <div class="form-group">
+                <label>作者:</label>
+                <input type="string" class="form-control" name="author">
+            </div>
+            <div class="form-group">
+                <label>出版社:</label>
+                <input type="string" class="form-control" name="publisher">
+            </div>
+            <div class="form-group">
+                <label>ISBN:</label>
+                <input type="string" class="form-control" name="ISBN">
+            </div>
+            <button type="sumbit" class="btn btn-primary center">確認搜尋</button>
+            <br>
+        </form>
 
         <div class="row">
             <% book.forEach(function(model) { %>
-            <div class="card col-xl-6 col-sm-12">
-                <div id="title">
-                    <a href="/book/vistorbookdetail/<%=model.id%>">詳細資料頁面 </a>
+                <div class="card col-xl-6 col-sm-12">
+                    <!-- <div id="title"> -->
+                    <a href="/book/vistorbookdetail/<%=model.id%>" style="color:darkslategrey">
+                        <!-- 詳細資料頁面  -->
+                        <!-- </div> -->
+                        <p></p>
+                        <div id="info">
+                            <img src=<%=model.photo %> id="photo" width="150" height="150">
+                            <ul class="list-group">
+                                <li class="list-group-item" id="info">
+                                    <span id="briefinfo">書名:</span>
+                                    <%= model.bookname %>
+                                </li>
+
+                                <li class="list-group-item" id="info">
+                                    <span id="briefinfo">作者:</span>
+                                    <%= model.author %>
+                                </li>
+
+                                <li class="list-group-item" id="info">
+                                    <span id="briefinfo">出版社:</span>
+                                    <%= model.publisher %>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </a>
+                    <p></p>
+
                 </div>
-                <p></p>
-                <div id="info">
-                    <img src=<%=model.photo %> id="photo" width="150" height="150">
-                    <ul class="list-group">
-                        <li class="list-group-item" id="info">
-                            <span id="briefinfo">書名:</span>
-                            <%= model.bookname %>
-                        </li>
-
-                        <li class="list-group-item" id="info">
-                            <span id="briefinfo">作者:</span>
-                            <%= model.author %>
-                        </li>
-
-                        <li class="list-group-item" id="info">
-                            <span id="briefinfo">出版社:</span>
-                            <%= model.publisher %>
-                        </li>
-
-                    </ul>
-                </div>
-
-                <p></p>
-
-            </div>
-            <% }); %>
+                <% }); %>
 
         </div>
         <nav class="bottomnav fixed-bottom">

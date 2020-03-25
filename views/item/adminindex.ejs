@@ -7,7 +7,7 @@
         <br>
 
         <form action="/item/adminadditem">
-            <button type="submit" class="btn btn-primary center">增加物品</button>
+            <button type="submit" class="btn btn-success center">增加物品</button>
         </form>
 
         <br>
@@ -18,14 +18,14 @@
 
         <br>
 
-        <button type="submit" class="btn btn-primary center">增加通知</button>
+        <button type="submit" class="btn btn-warning center">增加通知</button>
 
         <br>
 
         <div>
             <div class="container">
-                <h2 class="display-6 center">通知</h2>
-                <div class="square center">
+                <h2 style="color:wheat; background-color: darkred;"> &nbsp;&nbsp;待通知</h2>
+                <div class="square center" style="background-color:lightgoldenrodyellow">
                     <div class="row">
                         <div class="col center">
                             種類
@@ -34,7 +34,7 @@
                             名稱
                         </div>
                         <div class="col center ">
-                            逾期天數
+                            備注
                         </div>
                     </div>
                 </div>
@@ -47,7 +47,7 @@
                             曼巴精神
                         </div>
                         <div class="col center ">
-                            6天
+                            遺失
                         </div>
                     </div>
                 </div>
@@ -59,8 +59,8 @@
                         <div class="col center">
                             卡坦島
                         </div>
-                        <div class="col center ">
-                            7天
+                        <div class="col center " style="color: black;">
+                            已損壞
                         </div>
                     </div>
                 </div>
@@ -75,7 +75,7 @@
                             IPAD
                         </div>
                         <div class="col center ">
-                            8天
+                            數量不足
                         </div>
                     </div>
                 </div>
@@ -86,8 +86,8 @@
 
         <div>
             <div class="container">
-                <h2 class="display-6 center">借用歷史</h2>
-                <div class="square center">
+                <h2 style="color:wheat; background-color: darkred;"> &nbsp;&nbsp;已處理</h2>
+                <div class="square center" style="background-color:lightgoldenrodyellow">
                     <div class="row">
                         <div class="col center">
                             種類
@@ -96,20 +96,20 @@
                             名稱
                         </div>
                         <div class="col center ">
-                            備註
+                            處理狀況
                         </div>
                     </div>
                 </div>
                 <div class="square center">
                     <div class="row">
                         <div class="col center">
-                            書籍
+                            物資
                         </div>
                         <div class="col center">
-                            想見你(1)
+                            氣球
                         </div>
                         <div class="col center ">
-                            遺失
+                            已添加
                         </div>
                     </div>
                 </div>
@@ -119,11 +119,13 @@
                             桌遊
                         </div>
                         <div class="col center">
-                            飛行棋
+                            矮人礦坑
                         </div>
-                        <div class="col center ">
-                            損壞
+
+                        <div class="col center " style="color:red">
+                            暫時拒絕
                         </div>
+
                     </div>
                 </div>
 
@@ -137,107 +139,41 @@
                             原子筆
                         </div>
                         <div class="col center ">
-
+                            已添加
                         </div>
                     </div>
                 </div>
             </div>
 
-        </div>
-
-        <br>
-
-        <div>
-            <div class="container">
-                <h2 class="display-6 center">我的申請</h2>
-                <div class="square center">
-                    <div class="row">
-                        <div class="col center">
-                            種類
-                        </div>
-                        <div class="col center">
-                            名稱
-                        </div>
-                        <div class="col center ">
-                            申請狀況
-                        </div>
-                    </div>
-                </div>
-                <div class="square center">
-                    <div class="row">
-                        <div class="col center">
-                            書籍
-                        </div>
-                        <div class="col center">
-                            想見你(2)
-                        </div>
-                        <div class="col center ">
-                            接納
-                        </div>
-                    </div>
-                </div>
-                <div class="square center">
-                    <div class="row">
-                        <div class="col center">
-                            桌遊
-                        </div>
-                        <div class="col center">
-                            矮人礦坑
-                        </div>
-
-                        <div class="col center ">
-                            拒絕
-                        </div>
-
-                    </div>
-                </div>
-
-
-                <div class="square center">
-                    <div class="row">
-                        <div class="col center">
-                            物資
-                        </div>
-                        <div class="col center">
-                            IPAD
-                        </div>
-                        <div class="col center ">
-                            拒絕
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <br>
 
         </div>
-
-
-    </div>
-    <nav class="bottomnav fixed-bottom">
-        <a href="/item/adminindex" class="nav__link">
-            <i class="material-icons">
-                home
-            </i>
-            <span class="nav__text">主頁</span>
-        </a>
-        <a href="/item/adminsearch" class="nav__link nav__link--active">
-            <i class="material-icons">
-                search
-            </i>
-            <span class="nav__text">搜尋</span>
-        </a>
-        <a href="/item/adminnoti" class="nav__link">
-            <i class="material-icons">
-                email
-            </i>
-            <span class="nav__text">通知</span>
-        </a>
-        <a href="/item/adminaccount" class="nav__link">
-            <i class="material-icons">
-                account_circle
-            </i>
-            <span class="nav__text">帳戶</span>
-        </a>
-    </nav>
+        <nav class="bottomnav fixed-bottom">
+            <a href="/item/adminindex" class="nav__link">
+                <i class="material-icons">
+                    home
+                </i>
+                <span class="nav__text">主頁</span>
+            </a>
+            <a href="/item/adminsearch" class="nav__link nav__link--active">
+                <i class="material-icons">
+                    search
+                </i>
+                <span class="nav__text">搜尋</span>
+            </a>
+            <a href="/item/adminnoti" class="nav__link">
+                <i class="material-icons">
+                    email
+                </i>
+                <span class="nav__text">通知</span>
+            </a>
+            <a href="/item/adminaccount" class="nav__link">
+                <i class="material-icons">
+                    account_circle
+                </i>
+                <span class="nav__text">帳戶</span>
+            </a>
+        </nav>
     </div>
 
 
