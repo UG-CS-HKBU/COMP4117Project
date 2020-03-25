@@ -153,7 +153,7 @@ module.exports = {
     },
 
     adminuseredit: async function (req, res) {
-        var models = await User.find().sort([{ id: 'DESC' }]);
+        var models = await User.find({role:"user"}).sort([{ id: 'DESC' }]);
         return res.view('item/adminuseredit', { user: models });
     },
 
