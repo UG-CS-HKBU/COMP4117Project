@@ -8,7 +8,7 @@
         <br>
 
         <div class="table-responsive">
-            <table class="table " id="admintable">
+            <table class="table gameedit" id="admintable">
 
                 <% game.forEach( function(model) { %>
 
@@ -17,6 +17,8 @@
 
                     <th scope="row"></th>
                     <td><a href="/game/admingamedetail/<%=model.id%>" ><%=model.gamename%></a></td>
+                    <td></td>
+                    <td></td>
                     <td>
                         <a href="/game/admingameupdate/<%=model.id%>" class="btn btn-primary" id="edit">
                             修改
