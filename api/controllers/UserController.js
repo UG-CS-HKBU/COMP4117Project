@@ -117,7 +117,7 @@ module.exports = {
 
         date.setDate(date.getDate()+30);
 
-        var borrowdate=date.toString();
+        var borrowdate=date.toDateString();
 
         await Book.update(req.params.fk).set({expired:borrowdate}).fetch();
     
