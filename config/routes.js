@@ -25,6 +25,8 @@ module.exports.routes = {
   'GET /user/login': 'UserController.login',
   'POST /user/login': 'UserController.login',
   'POST /user/logout': 'UserController.logout',
+  'POST /user/:id/borrowbook/add/:fk': 'UserController.addborrowbook',
+  'POST /user/:id/borrowbook/remove/:fk': 'UserController.removeborrowbook',
 
   //Usermainpage
   '    /item/userindex': 'ItemController.userindex',
@@ -101,7 +103,7 @@ module.exports.routes = {
   'GET /game/admingameupdate/:id': 'GameController.admingameupdate',
   'POST /game/admingameupdate/:id': 'GameController.admingameupdate',
   'POST /game/admingamedelete/:id': 'GameController.admingamedelete',
-  
+
 
 
   //AdminGiftpage
@@ -131,11 +133,11 @@ module.exports.routes = {
   '   /game/vistorgamesearch': 'GameController.vistorgamesearch',
   'GET /game/vistorgameresult': 'GameController.vistorgameresult',
   '   /game/vistorgamedetail/:id': 'GameController.vistorgamedetail',
-  
-  
 
 
-  
+
+
+
 
 
   /***************************************************************************

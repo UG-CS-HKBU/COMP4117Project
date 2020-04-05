@@ -55,9 +55,9 @@
     <div class="container">
         <div class="row">
             <div class=" col-6 col-sm-6">
-                <a href="#">
-                    <button type="submit" class="borrowbutton">借取</button>
-                </a>
+                
+                    <button type="submit" class="borrowbutton" onclick="borrow('<%=req.session.userid%>','<%=book.id%>')">借取</button>
+                
             </div>
 
             <div class=" col-6 col-sm-6">
@@ -101,3 +101,32 @@
     </nav>
     </div>
 </body>
+
+<script>
+
+    async function borrow(userid, bookid) {
+
+        var r = confirm("確認借取?");
+
+        if (r) {
+
+            var response = await fetch("/user/" + userid + "/borrowbook/add/" + bookid, {
+                method: "POST",
+                credentials: 'same-origin',
+            });
+
+            if (response.ok) {
+                var data = await response.json();
+                alert(data.message);
+                window.location = data.url;
+            } else {
+                alert("已經借取");
+            }
+
+        } else {
+            alert("取消");
+        }
+
+    };
+
+</script>

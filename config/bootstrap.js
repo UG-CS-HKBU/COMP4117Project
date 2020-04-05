@@ -71,46 +71,58 @@ module.exports.bootstrap = async function () {
   }
 
   await Game.createEach([
-    {gamename:"飛行棋", category:"棋類遊戲", location:"C架5行", serialno:"001", publisher:"A出版社",
-     photo:"https://cdn.shopify.com/s/files/1/0051/3566/3192/products/BG1A8122_2048x.JPG?v=1562934046"
+    {
+      gamename: "飛行棋", category: "棋類遊戲", location: "C架5行", serialno: "001", publisher: "A出版社",
+      photo: "https://cdn.shopify.com/s/files/1/0051/3566/3192/products/BG1A8122_2048x.JPG?v=1562934046"
     },
 
-    {gamename:"矮人礦坑", category:"卡牌遊戲", location:"C架5行", serialno:"002", publisher:"B出版社",
-     photo:"https://dvblobcdnjp.azureedge.net//Content/Upload/ThemeImages/2014-11/78bce2fd-3fd2-474e-b75b-18b412ea01df.jpg"
+    {
+      gamename: "矮人礦坑", category: "卡牌遊戲", location: "C架5行", serialno: "002", publisher: "B出版社",
+      photo: "https://dvblobcdnjp.azureedge.net//Content/Upload/ThemeImages/2014-11/78bce2fd-3fd2-474e-b75b-18b412ea01df.jpg"
     },
 
-    {gamename:"富饒之城", category:"卡牌遊戲", location:"C架5行", serialno:"002", publisher:"C出版社",
-     photo:"https://dvblobcdnjp.azureedge.net//Content/Upload/ThemeImages/2014-11/8a4a93d6-ab21-46b5-87b5-05adb40aad6a.jpg"
+    {
+      gamename: "富饒之城", category: "卡牌遊戲", location: "C架5行", serialno: "002", publisher: "C出版社",
+      photo: "https://dvblobcdnjp.azureedge.net//Content/Upload/ThemeImages/2014-11/8a4a93d6-ab21-46b5-87b5-05adb40aad6a.jpg"
     },
 
-    {gamename:"妙語說書人", category:"卡牌遊戲", location:"C架5行", serialno:"002", publisher:"D出版社",
-     photo:"https://dvblobcdnjp.azureedge.net//Content/Upload/ThemeImages/2014-11/ec7b5d59-b7be-4cce-9af7-94588cfce80a.jpg"
+    {
+      gamename: "妙語說書人", category: "卡牌遊戲", location: "C架5行", serialno: "002", publisher: "D出版社",
+      photo: "https://dvblobcdnjp.azureedge.net//Content/Upload/ThemeImages/2014-11/ec7b5d59-b7be-4cce-9af7-94588cfce80a.jpg"
     },
 
-    {gamename:"卡坦島", category:"卡牌遊戲", location:"C架5行", serialno:"002", publisher:"E出版社",
-     photo:"https://dvblobcdnjp.azureedge.net//Content/Upload/ThemeImages/2014-11/59dc2ab4-fe77-47ff-878b-3f36d8207a44.jpg"
+    {
+      gamename: "卡坦島", category: "卡牌遊戲", location: "C架5行", serialno: "002", publisher: "E出版社",
+      photo: "https://dvblobcdnjp.azureedge.net//Content/Upload/ThemeImages/2014-11/59dc2ab4-fe77-47ff-878b-3f36d8207a44.jpg"
     },
 
 
   ])
 
-  if(Gift.count>0)
-  {
+  if (Gift.count > 0) {
     return;
   }
 
   await Gift.createEach([
-      {giftname:"原子筆", amount:"10", donator:"A先生", category:"小型禮物",location:"C架11行", value:"4",
-      photo:"https://s.yimg.com/zp/MerchandiseImages/801A1EA020-SP-7138139.jpg"},
+    {
+      giftname: "原子筆", amount: "10", donator: "A先生", category: "小型禮物", location: "C架11行", value: "4",
+      photo: "https://s.yimg.com/zp/MerchandiseImages/801A1EA020-SP-7138139.jpg"
+    },
 
-      {giftname:"卡坦島桌遊", amount:"5", donator:"B先生", category:"中型禮物",location:"C架11行", value:"150",
-      photo:"https://dvblobcdnjp.azureedge.net//Content/Upload/ThemeImages/2014-11/59dc2ab4-fe77-47ff-878b-3f36d8207a44.jpg"},
+    {
+      giftname: "卡坦島桌遊", amount: "5", donator: "B先生", category: "中型禮物", location: "C架11行", value: "150",
+      photo: "https://dvblobcdnjp.azureedge.net//Content/Upload/ThemeImages/2014-11/59dc2ab4-fe77-47ff-878b-3f36d8207a44.jpg"
+    },
 
-      {giftname:"妙語說書人桌遊", amount:"7", donator:"B先生", category:"中型禮物",location:"C架11行", value:"150",
-      photo:"https://dvblobcdnjp.azureedge.net//Content/Upload/ThemeImages/2014-11/ec7b5d59-b7be-4cce-9af7-94588cfce80a.jpg"},
+    {
+      giftname: "妙語說書人桌遊", amount: "7", donator: "B先生", category: "中型禮物", location: "C架11行", value: "150",
+      photo: "https://dvblobcdnjp.azureedge.net//Content/Upload/ThemeImages/2014-11/ec7b5d59-b7be-4cce-9af7-94588cfce80a.jpg"
+    },
 
-      {giftname:"IPAD", amount:"1", donator:"C小姐", category:"大型禮物",location:"C架11行", value:"3000",
-      photo:"https://buy4u.hk/image/catalog/product%20gallery/gadget/apple/ipad%20mini%202019/ipad_mini_2019_2.jpg"},
+    {
+      giftname: "IPAD", amount: "1", donator: "C小姐", category: "大型禮物", location: "C架11行", value: "3000",
+      photo: "https://buy4u.hk/image/catalog/product%20gallery/gadget/apple/ipad%20mini%202019/ipad_mini_2019_2.jpg"
+    },
 
 
   ])
@@ -126,12 +138,12 @@ module.exports.bootstrap = async function () {
   }
 
   await User.createEach([
-    { username: "admin", password: hash, role: "admin", email:"admin@gmail.com", department:"部門A",role:"admin", position:"職位A" },
-    { username: "oscar", password: hash, role: "user", email:"oscar@gmail.com", department:"部門B",role:"user", position:"職位B"  },
-    { username: "stella", password: hash, role: "user",email:"stella@gmail.com", department:"部門B",role:"user", position:"職位B"  },
-    { username: "jay", password: hash, role: "user",email:"jay@gmail.com", department:"部門C",role:"user", position:"職位C"  },
-    { username: "fung", password: hash, role: "user",email:"fung@gmail.com", department:"部門C", role:"user",position:"職位C"  },
-    { username: "jeremy", password: hash, role: "user",email:"jeremy@gmail.com", department:"部門C",role:"user", position:"職位C"  },
+    { username: "admin", password: hash, role: "admin", email: "admin@gmail.com", department: "部門A", role: "admin", position: "職位A" },
+    { username: "oscar", password: hash, role: "user", email: "oscar@gmail.com", department: "部門B", role: "user", position: "職位B" },
+    { username: "stella", password: hash, role: "user", email: "stella@gmail.com", department: "部門B", role: "user", position: "職位B" },
+    { username: "jay", password: hash, role: "user", email: "jay@gmail.com", department: "部門C", role: "user", position: "職位C" },
+    { username: "fung", password: hash, role: "user", email: "fung@gmail.com", department: "部門C", role: "user", position: "職位C" },
+    { username: "jeremy", password: hash, role: "user", email: "jeremy@gmail.com", department: "部門C", role: "user", position: "職位C" },
     // etc.
   ]);
 
@@ -140,13 +152,21 @@ module.exports.bootstrap = async function () {
   }
 
   await Material.createEach([
-    {materialname:"原子筆", amount:"10", category:"文具", location:"C架11行",  photo:"https://s.yimg.com/zp/MerchandiseImages/801A1EA020-SP-7138139.jpg"},
+    { materialname: "原子筆", amount: "10", category: "文具", location: "C架11行", photo: "https://s.yimg.com/zp/MerchandiseImages/801A1EA020-SP-7138139.jpg" },
 
-    {materialname:"IPAD", amount:"1", category:"電子產品",location:"C架11行",
-    photo:"https://buy4u.hk/image/catalog/product%20gallery/gadget/apple/ipad%20mini%202019/ipad_mini_2019_2.jpg"},
+    {
+      materialname: "IPAD", amount: "1", category: "電子產品", location: "C架11行",
+      photo: "https://buy4u.hk/image/catalog/product%20gallery/gadget/apple/ipad%20mini%202019/ipad_mini_2019_2.jpg"
+    },
 
 
-])
+  ])
+
+
+  
+
+
+
 
 
 }

@@ -9,9 +9,12 @@ module.exports = {
 
 
     userindex: async function (req, res) {
+        var id = req.session.userid
+        var model = await User.findOne(id).populate("bookborrow");
 
+        if (!model) return res.notFound();
 
-        return res.view('item/userindex');
+        return res.view('item/userindex', { book: model.bookborrow });
     },
 
     adminindex: async function (req, res) {

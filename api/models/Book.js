@@ -27,6 +27,11 @@ module.exports = {
       type:"string"
     },
 
+    itemtype:{
+      type:"string",
+      defaultsTo:"書籍"
+    },
+
     ISBN:
     {
       type:"string"
@@ -61,6 +66,24 @@ module.exports = {
     {
       type:"string"
     },
+
+    bookborrowBy:{
+      collection:"User",
+      via:"bookborrow"
+    },
+
+    expired:{
+      type:"string",
+      defaultsTo:"30"
+    },
+
+    status:{
+      type:"string",
+      defaultsTo:"available"
+    }
+
+
+
   },
 
 };

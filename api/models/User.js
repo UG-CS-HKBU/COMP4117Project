@@ -46,6 +46,11 @@ module.exports = {
     role:{
       type:"string",
       defaultsTo:"user",
+    },
+
+    bookborrow:{
+      collection:"Book",
+      via:"bookborrowBy"
     }
 
     
