@@ -8,30 +8,30 @@
 module.exports = {
 
     userbooksearch: async function (req, res) {
-        var models = await Book.find({where:{status:"available"}}).sort([{id:'DESC'}]);
-        return res.view('book/userbooksearch', { book: models});
+        var models = await Book.find({ where: { status: "available" } }).sort([{ id: 'DESC' }]);
+        return res.view('book/userbooksearch', { book: models });
     },
 
-    userbookresult: async function(req, res){
-        const qCatrgory=req.query.category || "";
+    userbookresult: async function (req, res) {
+        const qCatrgory = req.query.category || "";
         const qBookname = req.query.bookname;
         const qAuthor = req.query.author;
         const qPublisher = req.query.publisher;
         const qISBN = req.query.ISBN;
 
         var models = await Book.find({
-            where:{
-            
-            category:{contains:qCatrgory},
-            bookname:{contains:qBookname},
-            author:{contains:qAuthor},
-            publisher:{contains:qPublisher},
-            ISBN:{contains:qISBN},
-            }
-            
-        }).sort([{id:'DESC'}]);
+            where: {
 
-        return res.view('book/userbookresult', {book:models});
+                category: { contains: qCatrgory },
+                bookname: { contains: qBookname },
+                author: { contains: qAuthor },
+                publisher: { contains: qPublisher },
+                ISBN: { contains: qISBN },
+            }
+
+        }).sort([{ id: 'DESC' }]);
+
+        return res.view('book/userbookresult', { book: models });
 
     },
 
@@ -46,30 +46,30 @@ module.exports = {
     },
 
     vistorbooksearch: async function (req, res) {
-        var models = await Book.find().sort([{id:'DESC'}])
-        return res.view('book/vistorbooksearch', { book: models});
+        var models = await Book.find().sort([{ id: 'DESC' }])
+        return res.view('book/vistorbooksearch', { book: models });
     },
 
-    vistorbookresult: async function(req, res){
-        const qCatrgory=req.query.category || "";
+    vistorbookresult: async function (req, res) {
+        const qCatrgory = req.query.category || "";
         const qBookname = req.query.bookname;
         const qAuthor = req.query.author;
         const qPublisher = req.query.publisher;
         const qISBN = req.query.ISBN;
 
         var models = await Book.find({
-            where:{
-            
-            category:{contains:qCatrgory},
-            bookname:{contains:qBookname},
-            author:{contains:qAuthor},
-            publisher:{contains:qPublisher},
-            ISBN:{contains:qISBN},
-            }
-            
-        }).sort([{id:'DESC'}]);
+            where: {
 
-        return res.view('book/vistorbookresult', {book:models});
+                category: { contains: qCatrgory },
+                bookname: { contains: qBookname },
+                author: { contains: qAuthor },
+                publisher: { contains: qPublisher },
+                ISBN: { contains: qISBN },
+            }
+
+        }).sort([{ id: 'DESC' }]);
+
+        return res.view('book/vistorbookresult', { book: models });
 
     },
 
@@ -84,30 +84,30 @@ module.exports = {
     },
 
     adminbooksearch: async function (req, res) {
-        var models = await Book.find().sort([{id:'DESC'}]);
-        return res.view('book/adminbooksearch', { book: models});
+        var models = await Book.find().sort([{ id: 'DESC' }]);
+        return res.view('book/adminbooksearch', { book: models });
     },
 
-    adminbookresult: async function(req, res){
-        const qCatrgory=req.query.category || "";
+    adminbookresult: async function (req, res) {
+        const qCatrgory = req.query.category || "";
         const qBookname = req.query.bookname;
         const qAuthor = req.query.author;
         const qPublisher = req.query.publisher;
         const qISBN = req.query.ISBN;
 
         var models = await Book.find({
-            where:{
-            
-            category:{contains:qCatrgory},
-            bookname:{contains:qBookname},
-            author:{contains:qAuthor},
-            publisher:{contains:qPublisher},
-            ISBN:{contains:qISBN},
-            }
-            
-        }).sort([{id:'DESC'}]);
+            where: {
 
-        return res.view('book/adminbookresult', {book:models});
+                category: { contains: qCatrgory },
+                bookname: { contains: qBookname },
+                author: { contains: qAuthor },
+                publisher: { contains: qPublisher },
+                ISBN: { contains: qISBN },
+            }
+
+        }).sort([{ id: 'DESC' }]);
+
+        return res.view('book/adminbookresult', { book: models });
 
     },
 
@@ -122,12 +122,12 @@ module.exports = {
     },
 
     adminbookedit: async function (req, res) {
-        var models = await Book.find().sort([{id:'DESC'}]);
-        return res.view('book/adminbookedit', { book: models});
+        var models = await Book.find().sort([{ id: 'DESC' }]);
+        return res.view('book/adminbookedit', { book: models });
     },
 
-     // action - adminupdate
-     adminbookupdate: async function (req, res) {
+    // action - adminupdate
+    adminbookupdate: async function (req, res) {
 
         if (req.method == "GET") {
 
@@ -172,8 +172,30 @@ module.exports = {
 
     },
 
-    
-  
+    import_xlsx: async function (req, res) {
+
+        if (req.method == 'GET')
+            return res.view('book/import_xlsx');
+
+        req.file('file').upload({ maxBytes: 10000000 }, async function whenDone(err, uploadedFiles) {
+            if (err) { return res.serverError(err); }
+            if (uploadedFiles.length === 0) { return res.badRequest('No file was uploaded'); }
+
+            var XLSX = require('xlsx');
+            var workbook = XLSX.readFile(uploadedFiles[0].fd);
+            var ws = workbook.Sheets[workbook.SheetNames[0]];
+            var data = XLSX.utils.sheet_to_json(ws);
+            console.log(data);
+            var models = await Book.createEach(data).fetch();
+            if (models.length == 0) {
+                return res.badRequest("No data imported.");
+            }
+            return res.ok("Excel file imported.");
+        });
+    },
+
+
+
 
 };
 

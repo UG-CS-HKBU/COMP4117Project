@@ -136,6 +136,13 @@ module.exports.routes = {
   'GET /game/vistorgameresult': 'GameController.vistorgameresult',
   '   /game/vistorgamedetail/:id': 'GameController.vistorgamedetail',
 
+  //import
+  '/book/import_xlsx': 'BookController.import_xlsx',
+  '/game/import_xlsx': 'GameController.import_xlsx',
+  '/gift/import_xlsx': 'GiftController.import_xlsx',
+  '/material/import_xlsx': 'MaterialController.import_xlsx',
+
+
 
 
 
