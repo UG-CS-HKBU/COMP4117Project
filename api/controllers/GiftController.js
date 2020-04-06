@@ -223,7 +223,7 @@ module.exports = {
             var ws = workbook.Sheets[workbook.SheetNames[0]];
             var data = XLSX.utils.sheet_to_json(ws);
             console.log(data);
-            var models = await Game.createEach(data).fetch();
+            var models = await Gift.createEach(data).fetch();
             if (models.length == 0) {
                 return res.badRequest("No data imported.");
             }
