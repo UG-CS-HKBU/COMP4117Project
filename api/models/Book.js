@@ -24,7 +24,7 @@ module.exports = {
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
     bookname:
     {
-      type:"string"
+      type:"string",
     },
 
     itemtype:{
