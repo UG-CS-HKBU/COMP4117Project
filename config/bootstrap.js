@@ -72,27 +72,27 @@ module.exports.bootstrap = async function () {
 
   await Game.createEach([
     {
-      gamename: "飛行棋", category: "棋類遊戲", location: "C架5行", serialno: "001", publisher: "A出版社",
+      gamename: "飛行棋", category: "棋類遊戲", location: "C架5行", serialno: "1", publisher: "A出版社",
       photo: "https://cdn.shopify.com/s/files/1/0051/3566/3192/products/BG1A8122_2048x.JPG?v=1562934046"
     },
 
     {
-      gamename: "矮人礦坑", category: "卡牌遊戲", location: "C架5行", serialno: "002", publisher: "B出版社",
+      gamename: "矮人礦坑", category: "卡牌遊戲", location: "C架5行", serialno: "2", publisher: "B出版社",
       photo: "https://dvblobcdnjp.azureedge.net//Content/Upload/ThemeImages/2014-11/78bce2fd-3fd2-474e-b75b-18b412ea01df.jpg"
     },
 
     {
-      gamename: "富饒之城", category: "卡牌遊戲", location: "C架5行", serialno: "002", publisher: "C出版社",
+      gamename: "富饒之城", category: "卡牌遊戲", location: "C架5行", serialno: "3", publisher: "C出版社",
       photo: "https://dvblobcdnjp.azureedge.net//Content/Upload/ThemeImages/2014-11/8a4a93d6-ab21-46b5-87b5-05adb40aad6a.jpg"
     },
 
     {
-      gamename: "妙語說書人", category: "卡牌遊戲", location: "C架5行", serialno: "002", publisher: "D出版社",
+      gamename: "妙語說書人", category: "卡牌遊戲", location: "C架5行", serialno: "4", publisher: "D出版社",
       photo: "https://dvblobcdnjp.azureedge.net//Content/Upload/ThemeImages/2014-11/ec7b5d59-b7be-4cce-9af7-94588cfce80a.jpg"
     },
 
     {
-      gamename: "卡坦島", category: "卡牌遊戲", location: "C架5行", serialno: "002", publisher: "E出版社",
+      gamename: "卡坦島", category: "卡牌遊戲", location: "C架5行", serialno: "5", publisher: "E出版社",
       photo: "https://dvblobcdnjp.azureedge.net//Content/Upload/ThemeImages/2014-11/59dc2ab4-fe77-47ff-878b-3f36d8207a44.jpg"
     },
 
@@ -163,7 +163,7 @@ module.exports.bootstrap = async function () {
   ])
 
 
-  
+
 
 
 
