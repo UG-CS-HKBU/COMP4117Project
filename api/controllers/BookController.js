@@ -190,7 +190,7 @@ module.exports = {
             if (models.length == 0) {
                 return res.badRequest("No data imported.");
             }
-            return res.ok("Excel file imported.");
+            return res.redirect("/book/adminbookedit");
         });
     },
 
