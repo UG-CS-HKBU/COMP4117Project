@@ -80,6 +80,14 @@ module.exports = {
     status:{
       type:"string",
       defaultsTo:"available"
+    },
+
+    avatarPath: {
+      type: 'string'
+    },
+
+    label:{
+      type:'string',
     }
 
 

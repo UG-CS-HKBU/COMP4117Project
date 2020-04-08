@@ -87,9 +87,11 @@ module.exports = {
         if (!req.body.Book)
             return res.badRequest("Form-data not received.");
 
+
+
         await Book.create(req.body.Book);
 
-        return res.view('item/adminaddbook')
+        return res.view('item/adminaddbook');
     },
 
     adminaddgame: async function (req, res) {
@@ -99,6 +101,8 @@ module.exports = {
 
         if (!req.body.Game)
             return res.badRequest("Form-data not received.");
+
+
 
         await Game.create(req.body.Game);
 
@@ -374,6 +378,8 @@ module.exports = {
 
         return res.view('item/wrongpassword');
     },
+
+
 
 
 

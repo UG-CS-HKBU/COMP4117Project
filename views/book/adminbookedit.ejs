@@ -18,14 +18,14 @@
                     <th scope="row"></th>
                     <td><a href="/book/adminbookdetail/<%=model.id%>"><%=model.bookname%></a></td>
                     <td>
-                        <a href="/book/adminbookupdate/<%=model.id%>" class="btn btn-primary"  id="edit">
+                        <a href="/book/adminbookupdate/<%=model.id%>" class="btn btn-primary" id="edit">
                             修改
                         </a>
                     </td>
                     <td>
                         <span id="deleteid"><%= model.id %></span>
 
-                        <form action="/book/adminbookdelete/<%=model.id%>"  method="POST">
+                        <form action="/book/adminbookdelete/<%=model.id%>" method="POST">
                             <button type="submit" class="btn btn-danger">
                                 刪除</button>
                         </form>
@@ -39,6 +39,11 @@
 
             </table>
         </div>
+
+        <% book.forEach( function(model) { %>
+        <img src=<%=model.label%> />
+
+        <% }); %>
 
 
 
