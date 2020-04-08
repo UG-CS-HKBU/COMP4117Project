@@ -17,7 +17,7 @@
 
                     <th scope="row"></th>
                     <td><a href="/game/admingamedetail/<%=model.id%>" ><%=model.gamename%></a></td>
-                    <td></td>
+                    <td><img src="https://api.qrserver.com/v1/create-qr-code/?size=50x50&data=<%=model.id%>"></td>
                     <td></td>
                     <td>
                         <a href="/game/admingameupdate/<%=model.id%>" class="btn btn-primary" id="edit">

@@ -195,16 +195,7 @@ module.exports = {
         });
     },
 
-    generatelabel: async function (req, res) {
-        var models=await Book.find();
-        var qrcode = require('qrcode-generator');
-        models.forEach(function(book){
-            var qr = qrcode(4, 'L');
-            qr.addData(book.bookname);
-            qr.make();
-        });
-        return res.view('/book/adminbookedit', { 'qrsrc':qr.createDataURL() });
-    },
+    
 
     
 
