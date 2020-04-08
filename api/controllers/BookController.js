@@ -123,13 +123,7 @@ module.exports = {
 
     adminbookedit: async function (req, res) {
         var models = await Book.find().sort([{ id: 'DESC' }]);
-        var qrcode = require('qrcode-generator');
-        models.forEach(function(book){
-            var qr = qrcode(4, 'L');
-            qr.addData("https://api.qrserver.com/v1/create-qr-code/?data=<%=book.bookname%>");
-            qr.make();
-            book.label=qr.createDataURL();
-        });
+        
         return res.view('book/adminbookedit', { book: models });
     },
 

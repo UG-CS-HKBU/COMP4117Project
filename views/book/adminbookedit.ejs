@@ -17,6 +17,7 @@
 
                     <th scope="row"></th>
                     <td><a href="/book/adminbookdetail/<%=model.id%>"><%=model.bookname%></a></td>
+                    <td><img src="https://api.qrserver.com/v1/create-qr-code/?size=50x50&data=<%=model.bookname%>"></td>
                     <td>
                         <a href="/book/adminbookupdate/<%=model.id%>" class="btn btn-primary" id="edit">
                             修改
@@ -39,13 +40,6 @@
 
             </table>
         </div>
-
-        <% book.forEach( function(model) { %>
-        <img src=<%=model.label%> />
-
-        <% }); %>
-
-
 
         <nav class="bottomnav fixed-bottom">
             <a href="/item/adminindex" class="nav__link">
