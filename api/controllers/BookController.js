@@ -45,6 +45,18 @@ module.exports = {
 
     },
 
+    userbookreturn: async function (req, res) {
+
+        var model = await Book.findOne(req.params.id);
+
+        if (!model) return res.notFound();
+
+        return res.view('book/userbookreturn', { book: model });
+
+    },
+
+    
+
     vistorbooksearch: async function (req, res) {
         var models = await Book.find().sort([{ id: 'DESC' }])
         return res.view('book/vistorbooksearch', { book: models });
