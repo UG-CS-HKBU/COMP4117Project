@@ -100,18 +100,20 @@ module.exports = {
 
     addborrowbook: async function (req, res) {
 
-        if (!await User.findOne(req.params.id)) return res.notFound();
+        // if (!await User.findOne(req.session.userid)) return res.notFound();
+
+        const requirebook=await Book.findOne({bookname:req.body.qrcode});
         
-        const thatBook = await Book.findOne(req.params.fk).populate("bookborrowBy", {id: req.params.id});
+        const thatBook = await Book.findOne(requirebook.id).populate("bookborrowBy", {id: req.session.userid});
     
         if (!thatBook) return res.notFound();
             
         if (thatBook.bookborrowBy.length)
             return res.status(409).send("已經借取");   // conflict
         
-        await User.addToCollection(req.params.id, "bookborrow").members(req.params.fk);
+        await User.addToCollection(req.session.userid, "bookborrow").members(requirebook.id);
 
-        await Book.update(req.params.fk).set({status:"borrowed"}).fetch();
+        await Book.update(requirebook.id).set({status:"borrowed"}).fetch();
 
         var date=new Date();
 
@@ -119,7 +121,7 @@ module.exports = {
 
         var borrowdate=date.toDateString();
 
-        await Book.update(req.params.fk).set({expired:borrowdate}).fetch();
+        await Book.update(requirebook.id).set({expired:borrowdate}).fetch();
     
         //return res.ok('Operation completed.');
         if (req.wantsJSON){

@@ -25,8 +25,9 @@ module.exports.routes = {
   'GET /user/login': 'UserController.login',
   'POST /user/login': 'UserController.login',
   'POST /user/logout': 'UserController.logout',
-  'POST /user/:id/borrowbook/add/:fk': 'UserController.addborrowbook',
-  'POST /user/:id/borrowbook/remove/:fk': 'UserController.removeborrowbook',
+  // 'POST /user/:id/borrowbook/add/:fk': 'UserController.addborrowbook',
+  // 'POST /user/:id/borrowbook/remove/:fk': 'UserController.removeborrowbook',
+  'POST /user/borrowbook': 'UserController.addborrowbook',
 
   //Usermainpage
   '    /item/userindex': 'ItemController.userindex',
