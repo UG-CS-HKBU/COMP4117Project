@@ -56,7 +56,10 @@
         <div class="row">
             <div class=" col-6 col-sm-6">
                 
-                    <button type="submit" class="borrowbutton" onclick="borrow('<%=req.session.userid%>','<%=book.id%>')">借取</button>
+                    <!-- <button type="submit" class="borrowbutton" onclick="borrow('<%=req.session.userid%>','<%=book.id%>')">借取</button> -->
+                    <form action="/book/borrow" method="GET">
+                        <button type="submit" class="borrowbutton">借取</button>
+                    </form>
                 
             </div>
 

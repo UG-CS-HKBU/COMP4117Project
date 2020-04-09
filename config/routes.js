@@ -142,6 +142,8 @@ module.exports.routes = {
   '/gift/import_xlsx': 'GiftController.import_xlsx',
   '/material/import_xlsx': 'MaterialController.import_xlsx',
 
+  '/book/borrow':'BookController.borrow',
+
 
 
 

@@ -195,6 +195,10 @@ module.exports = {
         });
     },
 
+    borrow: async function(req, res) {
+        return res.view('book/borrow');
+    },
+
     
 
     

@@ -17,7 +17,7 @@
 
                     <th scope="row"></th>
                     <td><a href="/book/adminbookdetail/<%=model.id%>"><%=model.bookname%></a></td>
-                    <td><img src="https://api.qrserver.com/v1/create-qr-code/?size=50x50&data=<%=model.id%>"></td>
+                    <td><img src="https://api.qrserver.com/v1/create-qr-code/?size=50x50&data=/<%=model.id%>"></td>
                     <td>
                         <a href="/book/adminbookupdate/<%=model.id%>" class="btn btn-primary" id="edit">
                             修改
