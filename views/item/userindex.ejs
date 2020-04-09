@@ -30,7 +30,7 @@
 
                             <li class="list-group-item" id="info">
                                 <span id="briefinfo">逾期天數(日期):</span>
-                                 <%=model.expired%>     
+                                <%=model.expired%>
                             </li>
 
                         </ul>
@@ -66,19 +66,23 @@
                         </div>
                     </div>
                 </div>
+                <% book.forEach(function(model) { %>
+                <a href="/book/userbookreturn/<%=model.id%>" style="color:darkslategrey">
                 <div class="square center">
                     <div class="row">
                         <div class="col center">
-                            書籍
+                            <%=model.itemtype%>
                         </div>
                         <div class="col center">
-                            曼巴精神
+                            <%=model.bookname%>
                         </div>
                         <div class="col center " style="color:red">
-                            6天
+                            <%=model.expired%>
                         </div>
                     </div>
                 </div>
+                </a>
+                <% }); %>
                 <div class="square center">
                     <div class="row">
                         <div class="col center">
@@ -270,6 +274,3 @@
 
 
 </body>
-
-
-    
