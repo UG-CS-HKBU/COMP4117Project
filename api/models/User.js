@@ -51,7 +51,14 @@ module.exports = {
     bookborrow:{
       collection:"Book",
       via:"bookborrowBy"
-    }
+    },
+
+    gameborrow:{
+      collection:"Game",
+      via:"gameborrowBy"
+    },
+
+
 
     
 

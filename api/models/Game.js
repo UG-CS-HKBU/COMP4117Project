@@ -27,6 +27,11 @@ module.exports = {
       type:"string"
     },
 
+    itemtype:{
+      type:"string",
+      defaultsTo:"桌遊"
+    },
+
     category:
     {
       type:"string"
@@ -50,6 +55,16 @@ module.exports = {
     publisher:
     {
       type:"string"
+    },
+
+    expired:{
+      type:"string",
+      defaultsTo:"30"
+    },
+
+    gameborrowBy:{
+      collection:"User",
+      via:"gameborrow"
     },
 
 
