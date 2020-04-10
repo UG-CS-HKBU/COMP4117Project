@@ -115,9 +115,9 @@ module.exports = {
 
         await Book.update(requirebook.id).set({ status: "borrowed" }).fetch();
 
-        var date = new Date("2020/04/13");
+        var date = new Date();
 
-        // date.setDate(date.getDate() + 30);
+        date.setDate(date.getDate() + 30);
 
         var borrowdate = date.toDateString();
 
