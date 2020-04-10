@@ -160,6 +160,68 @@ module.exports = {
     
     },
 
+    addborrowgame: async function (req, res) {
+
+        // if (!await User.findOne(req.session.userid)) return res.notFound();
+
+        const requiregame=await Game.findOne({gamename:req.body.qrcode});
+        
+        const thatGame = await Game.findOne(requiregame.id).populate("gameborrowBy", {id: req.session.userid});
+    
+        if (!thatGame) return res.notFound();
+            
+        if (thatGame.gameborrowBy.length)
+            return res.status(409).send("已經借取");   // conflict
+        
+        await User.addToCollection(req.session.userid, "gameborrow").members(requiregame.id);
+
+        await Game.update(requiregame.id).set({status:"borrowed"}).fetch();
+
+        var date=new Date();
+
+        date.setDate(date.getDate()+30);
+
+        var borrowdate=date.toDateString();
+
+        await Game.update(requiregame.id).set({expired:borrowdate}).fetch();
+    
+        //return res.ok('Operation completed.');
+        if (req.wantsJSON){
+            return res.json({message: "已借取該物品", url: '/item/userindex'});    // for ajax request
+        } else {
+            return res.redirect('/item/userindex');           // for normal request
+        }
+    
+    },
+
+    removeborrowgame: async function (req, res) {
+
+        // if (!await User.findOne(req.session.userid)) return res.notFound();
+
+        const requiregame=await Game.findOne({gamename:req.body.qrcode});
+        
+        const thatGame = await Game.findOne(requiregame.id).populate("gameborrowBy", {id: req.session.userid});
+    
+        if (!thatGame) return res.notFound();
+            
+        if (!thatGame.gameborrowBy.length)
+            return res.status(409).send("該物品沒有被借取");   // conflict
+        
+        await User.removeFromCollection(req.session.userid, "gameborrow").members(requiregame.id);
+
+        await Game.update(requiregame.id).set({status:"avaliable"}).fetch();
+
+        await Game.update(requiregame.id).set({expired:"30"}).fetch();
+    
+        //return res.ok('Operation completed.');
+        if (req.wantsJSON){
+            return res.json({message: "已借取該物品", url: '/item/userindex'});    // for ajax request
+        } else {
+            return res.redirect('/item/userindex');           // for normal request
+        }
+    
+    },
+
     
 
 

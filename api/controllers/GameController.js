@@ -185,6 +185,14 @@ module.exports = {
             return res.redirect("/game/admingameedit");
         });
     },
+
+    borrow: async function(req, res) {
+        return res.view('game/borrow');
+    },
+
+    return: async function(req, res) {
+        return res.view('game/return');
+    },
   
 
 };

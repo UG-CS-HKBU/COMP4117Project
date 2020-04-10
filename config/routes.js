@@ -29,6 +29,8 @@ module.exports.routes = {
   // 'POST /user/:id/borrowbook/remove/:fk': 'UserController.removeborrowbook',
   'POST /user/borrowbook': 'UserController.addborrowbook',
   'POST /user/returnbook': 'UserController.removeborrowbook',
+  'POST /user/borrowgame': 'UserController.addborrowgame',
+  'POST /user/returngame': 'UserController.removeborrowgame',
 
   //Usermainpage
   '    /item/userindex': 'ItemController.userindex',
@@ -147,6 +149,8 @@ module.exports.routes = {
 
   '/book/borrow':'BookController.borrow',
   '/book/return':'BookController.return',
+  '/game/borrow':'GameController.borrow',
+  '/game/return':'GameController.return',
 
 
 
