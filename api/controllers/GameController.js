@@ -8,7 +8,7 @@
 module.exports = {
 
     usergamesearch: async function (req, res) {
-        var models = await Game.find({ where: { status: "avaliable" } }).sort([{ id: 'DESC' }]).sort([{id:'DESC'}]);
+        var models = await Game.find({ where: { status: "avaliable" } }).sort([{ id: 'DESC' }]);
         return res.view('game/usergamesearch', { game: models});
     },
 

@@ -66,11 +66,11 @@
             </div>
 
             <div class=" col-6 col-sm-6">
-                <a href="#">
-                    <button type="submit" class="bookbutton">
+                
+                    <button type="submit" class="bookbutton" onclick="renew('<%=book.id%>')">
                         續借
                     </button>
-                </a>
+                
             </div>
         </div>
     </div>
@@ -109,13 +109,13 @@
 
 <script>
 
-    async function borrow(userid, bookid) {
+    async function renew(bookid) {
 
-        var r = confirm("確認借取?");
+        var r = confirm("確認續借?");
 
         if (r) {
 
-            var response = await fetch("/user/" + userid + "/borrowbook/add/" + bookid, {
+            var response = await fetch("/user/renewborrowbook/" + bookid, {
                 method: "POST",
                 credentials: 'same-origin',
             });
@@ -125,7 +125,7 @@
                 alert(data.message);
                 window.location = data.url;
             } else {
-                alert("已經借取");
+                alert("已經續借");
             }
 
         } else {

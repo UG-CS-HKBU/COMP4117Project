@@ -89,7 +89,7 @@ module.exports = {
         return res.ok('Operation completed.');
     },
 
-    borrowlist:async function (req, res) {
+    borrowlist: async function (req, res) {
         var model = await User.findOne(req.params.id).populate("corent");
 
         if (!model) return res.notFound();
@@ -102,127 +102,149 @@ module.exports = {
 
         // if (!await User.findOne(req.session.userid)) return res.notFound();
 
-        const requirebook=await Book.findOne({bookname:req.body.qrcode});
-        
-        const thatBook = await Book.findOne(requirebook.id).populate("bookborrowBy", {id: req.session.userid});
-    
+        const requirebook = await Book.findOne({ bookname: req.body.qrcode });
+
+        const thatBook = await Book.findOne(requirebook.id).populate("bookborrowBy", { id: req.session.userid });
+
         if (!thatBook) return res.notFound();
-            
+
         if (thatBook.bookborrowBy.length)
             return res.status(409).send("已經借取");   // conflict
-        
+
         await User.addToCollection(req.session.userid, "bookborrow").members(requirebook.id);
 
-        await Book.update(requirebook.id).set({status:"borrowed"}).fetch();
+        await Book.update(requirebook.id).set({ status: "borrowed" }).fetch();
 
-        var date=new Date();
+        var date = new Date("2020/04/13");
 
-        date.setDate(date.getDate()+30);
+        // date.setDate(date.getDate() + 30);
 
-        var borrowdate=date.toDateString();
+        var borrowdate = date.toDateString();
 
-        await Book.update(requirebook.id).set({expired:borrowdate}).fetch();
-    
+        await Book.update(requirebook.id).set({ expired: borrowdate }).fetch();
+
         //return res.ok('Operation completed.');
-        if (req.wantsJSON){
-            return res.json({message: "已借取該物品", url: '/item/userindex'});    // for ajax request
+        if (req.wantsJSON) {
+            return res.json({ message: "已借取該物品", url: '/item/userindex' });    // for ajax request
         } else {
             return res.redirect('/item/userindex');           // for normal request
         }
-    
+
     },
 
     removeborrowbook: async function (req, res) {
 
         // if (!await User.findOne(req.session.userid)) return res.notFound();
 
-        const requirebook=await Book.findOne({bookname:req.body.qrcode});
-        
-        const thatBook = await Book.findOne(requirebook.id).populate("bookborrowBy", {id: req.session.userid});
-    
+        const requirebook = await Book.findOne({ bookname: req.body.qrcode });
+
+        const thatBook = await Book.findOne(requirebook.id).populate("bookborrowBy", { id: req.session.userid });
+
         if (!thatBook) return res.notFound();
-            
+
         if (!thatBook.bookborrowBy.length)
             return res.status(409).send("該物品沒有被借取");   // conflict
-        
+
         await User.removeFromCollection(req.session.userid, "bookborrow").members(requirebook.id);
 
-        await Book.update(requirebook.id).set({status:"avaliable"}).fetch();
+        await Book.update(requirebook.id).set({ status: "avaliable" }).fetch();
 
-        await Book.update(requirebook.id).set({expired:"30"}).fetch();
-    
+        await Book.update(requirebook.id).set({ expired: "30" }).fetch();
+
         //return res.ok('Operation completed.');
-        if (req.wantsJSON){
-            return res.json({message: "已借取該物品", url: '/item/userindex'});    // for ajax request
+        if (req.wantsJSON) {
+            return res.json({ message: "已借取該物品", url: '/item/userindex' });    // for ajax request
         } else {
             return res.redirect('/item/userindex');           // for normal request
         }
-    
+
     },
 
     addborrowgame: async function (req, res) {
 
         // if (!await User.findOne(req.session.userid)) return res.notFound();
 
-        const requiregame=await Game.findOne({gamename:req.body.qrcode});
-        
-        const thatGame = await Game.findOne(requiregame.id).populate("gameborrowBy", {id: req.session.userid});
-    
+        const requiregame = await Game.findOne({ gamename: req.body.qrcode });
+
+        const thatGame = await Game.findOne(requiregame.id).populate("gameborrowBy", { id: req.session.userid });
+
         if (!thatGame) return res.notFound();
-            
+
         if (thatGame.gameborrowBy.length)
             return res.status(409).send("已經借取");   // conflict
-        
+
         await User.addToCollection(req.session.userid, "gameborrow").members(requiregame.id);
 
-        await Game.update(requiregame.id).set({status:"borrowed"}).fetch();
+        await Game.update(requiregame.id).set({ status: "borrowed" }).fetch();
 
-        var date=new Date();
+        var date = new Date();
 
-        date.setDate(date.getDate()+30);
+        date.setDate(date.getDate() + 30);
 
-        var borrowdate=date.toDateString();
+        var borrowdate = date.toDateString();
 
-        await Game.update(requiregame.id).set({expired:borrowdate}).fetch();
-    
+        await Game.update(requiregame.id).set({ expired: borrowdate }).fetch();
+
         //return res.ok('Operation completed.');
-        if (req.wantsJSON){
-            return res.json({message: "已借取該物品", url: '/item/userindex'});    // for ajax request
+        if (req.wantsJSON) {
+            return res.json({ message: "已借取該物品", url: '/item/userindex' });    // for ajax request
         } else {
             return res.redirect('/item/userindex');           // for normal request
         }
-    
+
     },
 
     removeborrowgame: async function (req, res) {
 
         // if (!await User.findOne(req.session.userid)) return res.notFound();
 
-        const requiregame=await Game.findOne({gamename:req.body.qrcode});
-        
-        const thatGame = await Game.findOne(requiregame.id).populate("gameborrowBy", {id: req.session.userid});
-    
+        const requiregame = await Game.findOne({ gamename: req.body.qrcode });
+
+        const thatGame = await Game.findOne(requiregame.id).populate("gameborrowBy", { id: req.session.userid });
+
         if (!thatGame) return res.notFound();
-            
+
         if (!thatGame.gameborrowBy.length)
             return res.status(409).send("該物品沒有被借取");   // conflict
-        
+
         await User.removeFromCollection(req.session.userid, "gameborrow").members(requiregame.id);
 
-        await Game.update(requiregame.id).set({status:"avaliable"}).fetch();
+        await Game.update(requiregame.id).set({ status: "avaliable" }).fetch();
 
-        await Game.update(requiregame.id).set({expired:"30"}).fetch();
-    
+        await Game.update(requiregame.id).set({ expired: "30" }).fetch();
+
         //return res.ok('Operation completed.');
-        if (req.wantsJSON){
-            return res.json({message: "已借取該物品", url: '/item/userindex'});    // for ajax request
+        if (req.wantsJSON) {
+            return res.json({ message: "已借取該物品", url: '/item/userindex' });    // for ajax request
         } else {
             return res.redirect('/item/userindex');           // for normal request
         }
-    
+
     },
 
-    
+    renewborrowbook: async function (req, res) {
+
+        // const thatBook = await Book.findOne(req.params.fk).populate("bookborrowBy", { id: req.params.id });
+
+        // const thatBook=await Book.findOne(req.params.id);
+
+        var date = new Date();
+
+        date.setDate(date.getDate() + 30);
+
+        var renewdate = date.toDateString();
+
+        await Book.update(req.params.fk).set({ expired: renewdate }).fetch();
+
+        if (req.wantsJSON) {
+            return res.json({ message: "已續借該物品", url: '/item/userindex' });    // for ajax request
+        } else {
+            return res.redirect('/item/userindex');           // for normal request
+        }
+
+    },
+
+
 
 
 
