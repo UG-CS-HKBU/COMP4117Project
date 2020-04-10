@@ -8,7 +8,7 @@
 module.exports = {
 
     userbooksearch: async function (req, res) {
-        var models = await Book.find({ where: { status: "available" } }).sort([{ id: 'DESC' }]);
+        var models = await Book.find({ where: { status: "avaliable" } }).sort([{ id: 'DESC' }]);
         return res.view('book/userbooksearch', { book: models });
     },
 
@@ -209,6 +209,10 @@ module.exports = {
 
     borrow: async function(req, res) {
         return res.view('book/borrow');
+    },
+
+    return: async function(req, res) {
+        return res.view('book/return');
     },
 
     

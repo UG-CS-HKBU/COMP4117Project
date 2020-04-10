@@ -79,7 +79,7 @@ module.exports = {
 
     status:{
       type:"string",
-      defaultsTo:"available"
+      defaultsTo:"avaliable"
     },
 
     avatarPath: {

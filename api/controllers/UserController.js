@@ -132,6 +132,34 @@ module.exports = {
     
     },
 
+    removeborrowbook: async function (req, res) {
+
+        // if (!await User.findOne(req.session.userid)) return res.notFound();
+
+        const requirebook=await Book.findOne({bookname:req.body.qrcode});
+        
+        const thatBook = await Book.findOne(requirebook.id).populate("bookborrowBy", {id: req.session.userid});
+    
+        if (!thatBook) return res.notFound();
+            
+        if (!thatBook.bookborrowBy.length)
+            return res.status(409).send("該物品沒有被借取");   // conflict
+        
+        await User.removeFromCollection(req.session.userid, "bookborrow").members(requirebook.id);
+
+        await Book.update(requirebook.id).set({status:"avaliable"}).fetch();
+
+        await Book.update(requirebook.id).set({expired:"30"}).fetch();
+    
+        //return res.ok('Operation completed.');
+        if (req.wantsJSON){
+            return res.json({message: "已借取該物品", url: '/item/userindex'});    // for ajax request
+        } else {
+            return res.redirect('/item/userindex');           // for normal request
+        }
+    
+    },
+
     
 
 

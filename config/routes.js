@@ -28,6 +28,7 @@ module.exports.routes = {
   // 'POST /user/:id/borrowbook/add/:fk': 'UserController.addborrowbook',
   // 'POST /user/:id/borrowbook/remove/:fk': 'UserController.removeborrowbook',
   'POST /user/borrowbook': 'UserController.addborrowbook',
+  'POST /user/returnbook': 'UserController.removeborrowbook',
 
   //Usermainpage
   '    /item/userindex': 'ItemController.userindex',
@@ -145,6 +146,7 @@ module.exports.routes = {
   '/material/import_xlsx': 'MaterialController.import_xlsx',
 
   '/book/borrow':'BookController.borrow',
+  '/book/return':'BookController.return',
 
 
 
