@@ -82,6 +82,7 @@ module.exports.routes = {
   '   /game/usergamesearch': 'GameController.usergamesearch',
   'GET /game/usergameresult': 'GameController.usergameresult',
   '   /game/usergamedetail/:id': 'GameController.usergamedetail',
+  '   /game/usergamereturn/:id': 'GameController.usergamereturn',
 
   //UserGiftpage
   '   /gift/usergiftsearch': 'GiftController.usergiftsearch',
@@ -149,6 +150,7 @@ module.exports.routes = {
 
   '/book/borrow':'BookController.borrow',
   '/book/return':'BookController.return',
+
   '/game/borrow':'GameController.borrow',
   '/game/return':'GameController.return',
 

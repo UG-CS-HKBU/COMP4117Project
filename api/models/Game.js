@@ -67,6 +67,11 @@ module.exports = {
       via:"gameborrow"
     },
 
+    status:{
+      type:"string",
+      defaultsTo:"avaliable"
+    },
+
 
 
   },
