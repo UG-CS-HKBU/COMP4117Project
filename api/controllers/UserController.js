@@ -232,7 +232,7 @@ module.exports = {
 
         date.setDate(date.getDate() + 30);
 
-        var renewdate = date.toDateString();
+        var renewdate = date.getTime();
 
         await Book.update(req.params.fk).set({ expired: renewdate }).fetch();
 
