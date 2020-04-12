@@ -119,7 +119,7 @@ module.exports = {
 
         date.setDate(date.getDate() + 30);
 
-        var borrowdate = date.toDateString();
+        var borrowdate = date.getTime();
 
         await Book.update(requirebook.id).set({ expired: borrowdate }).fetch();
 

@@ -29,8 +29,10 @@
                             </li>
 
                             <li class="list-group-item" id="info">
-                                <span id="briefinfo">逾期天數(日期):</span>
-                                <%=model.expired%>
+                                <span id="briefinfo">逾期天數:</span>
+
+                                <% var day=((model.expired-new Date().getTime())/(1000 * 3600 * 24))%>
+                                <%=parseInt(day)%>
                             </li>
 
                         </ul>
@@ -42,38 +44,38 @@
             <% }); %>
 
             <% game.forEach(function(model) { %>
-                <div class="card col-xl-6 col-sm-12">
-                    <!-- <div id="title">
+            <div class="card col-xl-6 col-sm-12">
+                <!-- <div id="title">
                         <a href="/book/userbookdetail/<%=model.id%>">詳細資料頁面 </a>
                     </div> -->
-                    <a href="/game/usergamereturn/<%=model.id%>" style="color:darkslategrey">
-    
-                        <p></p>
-                        <div id="info">
-                            <img src=<%=model.photo %> id="photo" width="150" height="150">
-                            <ul class="list-group">
-                                <li class="list-group-item" id="info">
-                                    <span id="briefinfo">種類:</span>
-                                    <%= model.itemtype %>
-                                </li>
-    
-                                <li class="list-group-item" id="info">
-                                    <span id="briefinfo">名稱:</span>
-                                    <%= model.gamename %>
-                                </li>
-    
-                                <li class="list-group-item" id="info">
-                                    <span id="briefinfo">逾期天數(日期):</span>
-                                    <%=model.expired%>
-                                </li>
-    
-                            </ul>
-                        </div>
-                    </a>
+                <a href="/game/usergamereturn/<%=model.id%>" style="color:darkslategrey">
+
                     <p></p>
-    
-                </div>
-                <% }); %>
+                    <div id="info">
+                        <img src=<%=model.photo %> id="photo" width="150" height="150">
+                        <ul class="list-group">
+                            <li class="list-group-item" id="info">
+                                <span id="briefinfo">種類:</span>
+                                <%= model.itemtype %>
+                            </li>
+
+                            <li class="list-group-item" id="info">
+                                <span id="briefinfo">名稱:</span>
+                                <%= model.gamename %>
+                            </li>
+
+                            <li class="list-group-item" id="info">
+                                <span id="briefinfo">逾期天數(日期):</span>
+                                <%=model.expired%>
+                            </li>
+
+                        </ul>
+                    </div>
+                </a>
+                <p></p>
+
+            </div>
+            <% }); %>
 
         </div>
 
@@ -102,19 +104,19 @@
                 </div>
                 <% book.forEach(function(model) { %>
                 <a href="/book/userbookreturn/<%=model.id%>" style="color:darkslategrey">
-                <div class="square center">
-                    <div class="row">
-                        <div class="col center">
-                            <%=model.itemtype%>
-                        </div>
-                        <div class="col center">
-                            <%=model.bookname%>
-                        </div>
-                        <div class="col center " style="color:red">
-                            <%=model.expired%>
+                    <div class="square center">
+                        <div class="row">
+                            <div class="col center">
+                                <%=model.itemtype%>
+                            </div>
+                            <div class="col center">
+                                <%=model.bookname%>
+                            </div>
+                            <div class="col center " style="color:red">
+                                <%=model.expired%>
+                            </div>
                         </div>
                     </div>
-                </div>
                 </a>
                 <% }); %>
                 <div class="square center">
