@@ -151,10 +151,12 @@ module.exports.routes = {
 
   '/book/borrow':'BookController.borrow',
   '/book/return':'BookController.return',
+  '/book/print':'BookController.print',
 
   '/game/borrow':'GameController.borrow',
   '/game/return':'GameController.return',
 
+  
 
 
 

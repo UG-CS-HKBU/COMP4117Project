@@ -17,7 +17,6 @@
 
                     <th scope="row"></th>
                     <td><a href="/book/adminbookdetail/<%=model.id%>"><%=model.bookname%></a></td>
-                    <td><img src="https://api.qrserver.com/v1/create-qr-code/?size=50x50&data=<%=model.bookname%>"></td>
                     <td>
                         <a href="/book/adminbookupdate/<%=model.id%>" class="btn btn-primary" id="edit">
                             修改
@@ -40,6 +39,10 @@
 
             </table>
         </div>
+        <form action="/book/print" method="GET">
+            <button class="center" type="submit" class="btn btn-primary">
+                打印QR code</button>
+        </form>
 
         <nav class="bottomnav fixed-bottom">
             <a href="/item/adminindex" class="nav__link">
