@@ -92,6 +92,7 @@ module.exports = {
 
     remark:{
       type:'string',
+      defaultsTo:""
     }
 
 
