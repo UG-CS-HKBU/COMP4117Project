@@ -1,0 +1,56 @@
+<body onload="pageLoaded()">
+    <div class="container">
+        <br>
+
+        <img src="https://cubc.org.hk/wp-content/uploads/2016/08/logo_retina_x2.png" class="center2">
+
+        <br>
+        <br>
+        <div class="container">
+            <h4 class="center">增加通知</h4>
+
+            <form action="/item/adminaddnoti" method="POST">
+                <div class="form-group row">
+
+                    <div class="col-xl-12 col-form-label">
+                        <label>輸入信息:</label>
+                        <input type="text" class="form-control" name="Item[message]" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary center">傳送</button>
+                </div>
+
+            </form>
+
+
+
+            <nav class="bottomnav fixed-bottom">
+                <a href="/item/adminindex" class="nav__link">
+                    <i class="material-icons">
+                        home
+                    </i>
+                    <span class="nav__text">主頁</span>
+                </a>
+                <a href="/item/adminsearch" class="nav__link nav__link--active">
+                    <i class="material-icons">
+                        search
+                    </i>
+                    <span class="nav__text">搜尋</span>
+                </a>
+                <a href="/item/adminnoti" class="nav__link">
+                    <i class="material-icons">
+                        email
+                    </i>
+                    <span class="nav__text">通知</span>
+                </a>
+                <a href="/item/adminaccount" class="nav__link">
+                    <i class="material-icons">
+                        account_circle
+                    </i>
+                    <span class="nav__text">帳戶</span>
+                </a>
+            </nav>
+        </div>
+
+    </div>
+</body>

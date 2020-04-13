@@ -8,8 +8,14 @@
         <br>
 
 
+        <h2 style="color: wheat; background-color: darkred;"> &nbsp;&nbsp;已傳送的通知</h2>
 
-        <h2 style="color: wheat; background-color: darkred;"> &nbsp;&nbsp;收到的通知</h2>
+        <% noti.forEach(function(model) { %>
+            <div class="square2 center">
+                <%=new Date(model.createdAt).toLocaleDateString("zh-Hans-CN")%> <%=model.message%>
+            </div>
+            <br>
+        <% }); %>
 
         <div>
             <div class="square2 center">

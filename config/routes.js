@@ -77,6 +77,8 @@ module.exports.routes = {
   'GET /item/adminaccountupdate/:id': 'ItemController.adminaccountupdate',
   'POST /item/adminpasswordupdate/:id': 'ItemController.adminpasswordupdate',
   'GET /item/adminpasswordupdate/:id': 'ItemController.adminpasswordupdate',
+  '/item/adminpasswordupdate/:id': 'ItemController.adminpasswordupdate',
+  '    /item/adminaddnoti': 'ItemController.adminaddnoti',
 
   //UserBookpage
   '   /book/userbooksearch': 'BookController.userbooksearch',

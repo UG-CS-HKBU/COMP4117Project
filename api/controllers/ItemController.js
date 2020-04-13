@@ -19,7 +19,7 @@ module.exports = {
 
         return res.view('item/userindex', {
             book: bookmodel.bookborrow,
-            game: gamemodel.gameborrow, 
+            game: gamemodel.gameborrow,
             material: materialmodel.materialborrow,
         });
     },
@@ -49,7 +49,8 @@ module.exports = {
     },
 
     usernoti: async function (req, res) {
-        return res.view('item/usernoti');
+        var models = await Item.find().sort([{ id: 'DESC' }]);
+        return res.view('item/usernoti', { noti: models });
     },
 
     useraccount: async function (req, res) {
@@ -63,9 +64,9 @@ module.exports = {
     },
 
     adminnoti: async function (req, res) {
+        var models = await Item.find().sort([{ id: 'DESC' }]);
 
-
-        return res.view('item/adminnoti');
+        return res.view('item/adminnoti',{ noti: models });
     },
 
     adminaccount: async function (req, res) {
@@ -140,6 +141,19 @@ module.exports = {
         await Material.create(req.body.Material);
 
         return res.view('item/adminaddmaterial')
+    },
+
+    adminaddnoti: async function (req, res) {
+
+        if (req.method == "GET")
+            return res.view('item/adminaddnoti');
+
+        if (!req.body.Item)
+            return res.badRequest("Form-data not received.");
+
+        await Item.create(req.body.Item);
+
+        return res.view('item/adminaddnoti')
     },
 
     adminaddaccount: async function (req, res) {
