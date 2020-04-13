@@ -17,8 +17,7 @@
 
                     <th scope="row"></th>
                     <td><a href="/game/admingamedetail/<%=model.id%>" ><%=model.gamename%></a></td>
-                    <td><img src="https://api.qrserver.com/v1/create-qr-code/?size=50x50&data=<%=model.gamename%>"></td>
-                    <td></td>
+                    <!-- <td><img src="https://api.qrserver.com/v1/create-qr-code/?size=50x50&data=<%=model.gamename%>"></td> -->
                     <td>
                         <a href="/game/admingameupdate/<%=model.id%>" class="btn btn-primary" id="edit">
                             修改
@@ -41,6 +40,11 @@
 
             </table>
         </div>
+
+        <form action="/game/print" method="GET">
+            <button class="center" type="submit" class="btn btn-primary">
+                打印QR code</button>
+        </form>
 
 
 

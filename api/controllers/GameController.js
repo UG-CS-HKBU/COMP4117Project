@@ -203,6 +203,12 @@ module.exports = {
     return: async function(req, res) {
         return res.view('game/return');
     },
+
+    print: async function (req, res) {
+        var models = await Game.find().sort([{ id: 'DESC' }]);
+        return res.view('game/print', { game: models });
+        
+    }
   
 
 };

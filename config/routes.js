@@ -155,6 +155,7 @@ module.exports.routes = {
 
   '/game/borrow':'GameController.borrow',
   '/game/return':'GameController.return',
+  '/game/print':'GameController.print',
 
   
 
