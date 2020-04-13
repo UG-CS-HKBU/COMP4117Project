@@ -2,13 +2,13 @@
     <div class="container">
         <br>
 
-        <img src="https://cubc.org.hk/wp-content/uploads/2016/08/logo_retina_x2.png" class="center">
+        <img src="https://cubc.org.hk/wp-content/uploads/2016/08/logo_retina_x2.png" class="center2">
 
         <br>
         <br>
 
         <div class="table-responsive">
-            <table class="table giftedit" id="admintable">
+            <table class="table" id="admintable">
 
                 <% gift.forEach( function(model) { %>
 
@@ -17,7 +17,7 @@
 
                     <th scope="row"></th>
                     <td><a href="/gift/admingiftdetail/<%=model.id%>"><%=model.giftname%></a></td>
-                    <td><img src="https://api.qrserver.com/v1/create-qr-code/?size=50x50&data=<%=model.id%>"></td>
+                    <!-- <td><img src="https://api.qrserver.com/v1/create-qr-code/?size=50x50&data=<%=model.id%>"></td> -->
                     <td>
                         <a href="/gift/admingiftupdate/<%=model.id%>" class="btn btn-primary" id="edit">
                             修改
