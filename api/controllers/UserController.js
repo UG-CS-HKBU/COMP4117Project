@@ -117,7 +117,7 @@ module.exports = {
 
         var date = new Date();
 
-        date.setDate(date.getDate() + 30);
+        date.setDate(date.getDate() + 31);
 
         var borrowdate = date.getTime();
 
@@ -179,9 +179,9 @@ module.exports = {
 
         var date = new Date();
 
-        date.setDate(date.getDate() + 30);
+        date.setDate(date.getDate() + 31);
 
-        var borrowdate = date.toDateString();
+        var borrowdate = date.getTime();
 
         await Game.update(requiregame.id).set({ expired: borrowdate }).fetch();
 
@@ -230,11 +230,33 @@ module.exports = {
 
         var date = new Date();
 
-        date.setDate(date.getDate() + 30);
+        date.setDate(date.getDate() + 15);
 
         var renewdate = date.getTime();
 
         await Book.update(req.params.fk).set({ expired: renewdate }).fetch();
+
+        if (req.wantsJSON) {
+            return res.json({ message: "已續借該物品", url: '/item/userindex' });    // for ajax request
+        } else {
+            return res.redirect('/item/userindex');           // for normal request
+        }
+
+    },
+
+    renewborrowgame: async function (req, res) {
+
+        // const thatBook = await Book.findOne(req.params.fk).populate("bookborrowBy", { id: req.params.id });
+
+        // const thatBook=await Book.findOne(req.params.id);
+
+        var date = new Date();
+
+        date.setDate(date.getDate() + 15);
+
+        var renewdate = date.getTime();
+
+        await Game.update(req.params.fk).set({ expired: renewdate }).fetch();
 
         if (req.wantsJSON) {
             return res.json({ message: "已續借該物品", url: '/item/userindex' });    // for ajax request

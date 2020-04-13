@@ -5,7 +5,7 @@
         <img src="https://cubc.org.hk/wp-content/uploads/2016/08/logo_retina_x2.png" class="center">
 
         <br>
-        <h2 class="center">借用物品</h2>
+        <h2 style="color:wheat; background-color: darkred;"> &nbsp;&nbsp;借用通知</h2>
         <div class="row">
             <% book.forEach(function(model) { %>
             <div class="card col-xl-6 col-sm-12">
@@ -32,7 +32,7 @@
                                 <span id="briefinfo">逾期天數:</span>
 
                                 <% var day=((model.expired-new Date().getTime())/(1000 * 3600 * 24))%>
-                                <%=parseInt(day)%>
+                                <%=parseInt(day)%>天
                             </li>
 
                         </ul>
@@ -65,8 +65,9 @@
                             </li>
 
                             <li class="list-group-item" id="info">
-                                <span id="briefinfo">逾期天數(日期):</span>
-                                <%=model.expired%>
+                                <span id="briefinfo">逾期天數:</span>
+                                <% var day=((model.expired-new Date().getTime())/(1000 * 3600 * 24))%>
+                                <%=parseInt(day)%>天
                             </li>
 
                         </ul>
@@ -86,7 +87,7 @@
 
 
 
-        <div>
+        <!-- <div>
             <div class="container">
                 <h2 style="color:wheat; background-color: darkred;"> &nbsp;&nbsp;借用通知</h2>
                 <div class="square center" style="background-color:lightgoldenrodyellow">
@@ -150,7 +151,7 @@
             </div>
 
         </div>
-        <br>
+        <br> -->
 
         <div>
             <div class="container">

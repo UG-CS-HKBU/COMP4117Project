@@ -43,6 +43,11 @@
                             <%=book.ISBN %>
                         </th>
                     </tr>
+                    <tr>
+                        <th id="detail" scope="row">備註:
+                            <%=book.remark %>
+                        </th>
+                    </tr>
 
                 </table>
 
@@ -51,60 +56,67 @@
     </div>
 
     <br>
+
+    <form action="/book/remark/<%=book.id%>" method="GET">
+        <button type="submit" class="btn btn-danger center">申報損壞/增加備註</button>
+    </form>
+
+    <br>
     
     <div class="container">
         <div class="row">
             <div class=" col-6 col-sm-6">
                 
-                    <!-- <button type="submit" class="borrowbutton" onclick="borrow('<%=req.session.userid%>','<%=book.id%>')">借取</button> -->
-                    <a href="/book/return">
-                        <button type="submit" class="borrowbutton">
-                            歸還
-                        </button>
-                    </a>
-                    
-            </div>
+                    <!-- <button type="submit" class="borrowbutton" onclick="borrow('<%=req.session.userid%>','<%=book.id%>')">
+        借取</button> -->
+        <a href="/book/return">
+            <button type="submit" class="borrowbutton">
+                歸還
+            </button>
+        </a>
 
-            <div class=" col-6 col-sm-6">
-                
-                    <button type="submit" class="bookbutton" onclick="renew('<%=book.id%>')">
-                        續借
-                    </button>
-                
-            </div>
         </div>
-    </div>
+
+        <div class=" col-6 col-sm-6">
+
+            <button type="submit" class="bookbutton" onclick="renew('<%=book.id%>')">
+                續借
+            </button>
+
+        </div>
+        </div>
+        </div>
 
 
 
 
-    <nav class="bottomnav fixed-bottom">
-        <a href="/item/userindex" class="nav__link">
-            <i class="material-icons">
-                home
-            </i>
-            <span class="nav__text">主頁</span>
-        </a>
-        <a href="/item/usersearch" class="nav__link nav__link--active">
-            <i class="material-icons">
-                search
-            </i>
-            <span class="nav__text">搜尋</span>
-        </a>
-        <a href="/item/usernoti" class="nav__link">
-            <i class="material-icons">
-                email
-            </i>
-            <span class="nav__text">通知</span>
-        </a>
-        <a href="/item/useraccount" class="nav__link">
-            <i class="material-icons">
-                account_circle
-            </i>
-            <span class="nav__text">帳戶</span>
-        </a>
-    </nav>
-    </div>
+        <nav class="bottomnav fixed-bottom">
+            <a href="/item/userindex" class="nav__link">
+                <i class="material-icons">
+                    home
+                </i>
+                <span class="nav__text">主頁</span>
+            </a>
+            <a href="/item/usersearch" class="nav__link nav__link--active">
+                <i class="material-icons">
+                    search
+                </i>
+                <span class="nav__text">搜尋</span>
+            </a>
+            <a href="/item/usernoti" class="nav__link">
+                <i class="material-icons">
+                    email
+                </i>
+                <span class="nav__text">通知</span>
+            </a>
+            <a href="/item/useraccount" class="nav__link">
+                <i class="material-icons">
+                    account_circle
+                </i>
+                <span class="nav__text">帳戶</span>
+            </a>
+        </nav>
+        </div>
 </body>
 
 <script>

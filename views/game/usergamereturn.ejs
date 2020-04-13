@@ -33,6 +33,11 @@
                             <%=game.publisher %>
                         </th>
                     </tr>
+                    <tr>
+                        <th id="detail" scope="row">備註:
+                            <%=game.remark %>
+                        </th>
+                    </tr>
                 </table>
 
             </div>
@@ -50,7 +55,7 @@
 
             <div class=" col-6 col-sm-6">
                 <a href="#">
-                    <button type="submit" class="bookbutton">
+                    <button type="submit" class="bookbutton"  onclick="renew('<%=game.id%>')">
                         續借
                     </button>
                 </a>
@@ -88,3 +93,32 @@
     </nav>
     </div>
 </body>
+
+<script>
+
+    async function renew(gameid) {
+
+        var r = confirm("確認續借?");
+
+        if (r) {
+
+            var response = await fetch("/user/renewborrowgame/" + gameid, {
+                method: "POST",
+                credentials: 'same-origin',
+            });
+
+            if (response.ok) {
+                var data = await response.json();
+                alert(data.message);
+                window.location = data.url;
+            } else {
+                alert("已經續借");
+            }
+
+        } else {
+            alert("取消");
+        }
+
+    };
+
+</script>
