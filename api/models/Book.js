@@ -88,6 +88,10 @@ module.exports = {
 
     label:{
       type:'string',
+    },
+
+    remark:{
+      type:'string',
     }
 
 

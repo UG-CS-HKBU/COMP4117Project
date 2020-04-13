@@ -67,6 +67,10 @@ module.exports = {
       defaultsTo:"30"
     },
 
+    remark:{
+      type:'string',
+    }
+
   },
 
 };
