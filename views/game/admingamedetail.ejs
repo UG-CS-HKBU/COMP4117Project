@@ -47,13 +47,13 @@
     <div class="container">
         <div class="row">
             <div class=" col-6 col-sm-6">
-                <a href="http://localhost:1337/game/admingameupdate/<%=game.id%>">
+                <a href="/game/admingameupdate/<%=game.id%>">
                     <button type="submit" class="changebutton">修改</button>
                 </a>
             </div>
 
             <div class=" col-6 col-sm-6">
-                <form action="http://localhost:1337/game/admingamedelete/<%=game.id%>" method="POST">
+                <form action="/game/admingamedelete/<%=game.id%>" method="POST">
                     <button type="submit" class="deletebutton">
                         刪除
                     </button>

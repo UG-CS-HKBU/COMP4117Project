@@ -60,13 +60,13 @@
     <div class="container">
         <div class="row">
             <div class=" col-6 col-sm-6">
-                <a href="http://localhost:1337/book/adminbookupdate/<%=book.id%>">
+                <a href="/book/adminbookupdate/<%=book.id%>">
                     <button type="submit" class="changebutton">修改</button>
                 </a>
             </div>
 
             <div class=" col-6 col-sm-6">
-                <form action="http://localhost:1337/book/adminbookdelete/<%=book.id%>" method="POST">
+                <form action="/book/adminbookdelete/<%=book.id%>" method="POST">
                     <button type="submit" class="deletebutton">
                         刪除
                     </button>

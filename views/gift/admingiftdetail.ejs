@@ -54,13 +54,13 @@
     <div class="container">
         <div class="row">
             <div class=" col-6 col-sm-6">
-                <a href="http://localhost:1337/gift/admingiftupdate/<%=gift.id%>">
+                <a href="/gift/admingiftupdate/<%=gift.id%>">
                     <button type="submit" class="changebutton">修改</button>
                 </a>
             </div>
 
             <div class=" col-6 col-sm-6">
-                <form action="http://localhost:1337/gift/admingiftdelete/<%=gift.id%>" method="POST">
+                <form action="/gift/admingiftdelete/<%=gift.id%>" method="POST">
                     <button type="submit" class="deletebutton">
                         刪除
                     </button>
