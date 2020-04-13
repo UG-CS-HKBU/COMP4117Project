@@ -3,7 +3,7 @@
         <h2 class="center">修改用戶資料</h2>
 
         <form action="/item/adminuserupdate/<%=user.id%>" method="POST">
-            <div class="col-xl-6 col-form-label">
+            <div class="col-xl-12 col-form-label">
                 <label>用戶名稱:</label>
                 <input type="text" class="form-control" name="username" value="<%=user.username%>" required>
             </div>
@@ -13,13 +13,13 @@
                 <input type="password" class="form-control" name="password" value="<%=user.password%>" required>
             </div> -->
 
-            <div class="form-group col-12 col-xl-6">
+            <div class="form-group col-12 col-xl-12">
                 <label>電郵地址:</label>
                 <input type="email" col-xl-3 class="form-control" name="email" value="<%=user.email%>" required>
             </div>
 
 
-            <div class="form-group col-12 col-xl-6 ">
+            <div class="form-group col-12 col-xl-12 ">
                 <label>部門:</label>
                 <br>
                 <select name="department" required class=" col-12 col-xl-12" style="height: 37px;">
@@ -29,7 +29,7 @@
                 </select>
             </div>
 
-            <div class="form-group col-12 col-xl-6 ">
+            <div class="form-group col-12 col-xl-12 ">
                 <label>職位:</label>
                 <br>
                 <select name="position" required class=" col-12 col-xl-12" style="height: 37px;">

@@ -1,14 +1,19 @@
 <body onload="pageLoaded()">
     <br>
 
-    <img src="https://cubc.org.hk/wp-content/uploads/2016/08/logo_retina_x2.png" class="center">
+    <img src="https://cubc.org.hk/wp-content/uploads/2016/08/logo_retina_x2.png" class="center2">
 
     <br>
     <br>
+    <div>
+    <h2 class="center" ><b>用戶資料</b></h2>
+    <h4 class="center">用戶名稱: <%=user.username%></h4>
+    <h4 class="center">電郵: <%=user.email%></h4>
+    <h4 class="center">部門: <%=user.department%></h4>
+    <h4 class="center">職位: <%=user.position%></h4>
+    </div>
 
-    <h2 class="center">用戶資料</h2>
-
-    <div style="position: relative;" class="form-group col-12 col-xl-12">
+    <!-- <div style="position: relative;" class="form-group col-12 col-xl-12">
         <label style="position: relative;bottom: -5px;">用戶名稱: <%=user.username%></label>
         <br>
         <label style="position: relative;bottom: -5px;">電郵: <%=user.email%></label>
@@ -16,7 +21,7 @@
         <label style="position: relative;bottom: -5px;">部門: <%=user.department%></label>
         <br>
         <label style="position: relative;bottom: -5px;">職位: <%=user.position%></label>
-    </div>
+    </div> -->
 
     <nav class="bottomnav fixed-bottom">
         <a href="/item/adminindex" class="nav__link">
