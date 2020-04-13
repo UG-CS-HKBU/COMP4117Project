@@ -10,11 +10,11 @@ module.exports = {
 
     userindex: async function (req, res) {
         var id = req.session.userid
-        var bookmodel = await User.findOne(id).populate("bookborrow");
+        var bookmodel = await User.findOne(id).populate("bookborrow",{sort:'id DESC'});
         if (!bookmodel) return res.notFound();
-        var gamemodel = await User.findOne(id).populate("gameborrow");
+        var gamemodel = await User.findOne(id).populate("gameborrow",{sort:'id DESC'});
         if (!gamemodel) return res.notFound();
-        var materialmodel = await User.findOne(id).populate("materialborrow");
+        var materialmodel = await User.findOne(id).populate("materialborrow",{sort:'id DESC'});
         if (!materialmodel) return res.notFound();
 
         return res.view('item/userindex', {

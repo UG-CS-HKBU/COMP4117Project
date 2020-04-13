@@ -6,123 +6,77 @@
 
         <br>
         <h2 style="color:wheat; background-color: darkred;"> &nbsp;&nbsp;借用通知</h2>
-        <div class="row">
-            <% book.forEach(function(model) { %>
-            <div class="card col-xl-6 col-sm-12">
-                <!-- <div id="title">
-                    <a href="/book/userbookdetail/<%=model.id%>">詳細資料頁面 </a>
-                </div> -->
-                <a href="/book/userbookreturn/<%=model.id%>" style="color:darkslategrey">
 
-                    <p></p>
-                    <div id="info">
-                        <img src=<%=model.photo %> id="photo" width="150" height="150">
-                        <ul class="list-group">
-                            <li class="list-group-item" id="info">
-                                <span id="briefinfo">種類:</span>
-                                <%= model.itemtype %>
-                            </li>
-
-                            <li class="list-group-item" id="info">
-                                <span id="briefinfo">名稱:</span>
-                                <%= model.bookname %>
-                            </li>
-
-                            <li class="list-group-item" id="info">
-                                <span id="briefinfo">逾期天數:</span>
-
-                                <% var day=((model.expired-new Date().getTime())/(1000 * 3600 * 24))%>
-                                <%=parseInt(day)%>天
-                            </li>
-
-                        </ul>
-                    </div>
-                </a>
-                <p></p>
-
-            </div>
-            <% }); %>
-
-            <% game.forEach(function(model) { %>
-            <div class="card col-xl-6 col-sm-12">
-                <!-- <div id="title">
-                        <a href="/book/userbookdetail/<%=model.id%>">詳細資料頁面 </a>
-                    </div> -->
-                <a href="/game/usergamereturn/<%=model.id%>" style="color:darkslategrey">
-
-                    <p></p>
-                    <div id="info">
-                        <img src=<%=model.photo %> id="photo" width="150" height="150">
-                        <ul class="list-group">
-                            <li class="list-group-item" id="info">
-                                <span id="briefinfo">種類:</span>
-                                <%= model.itemtype %>
-                            </li>
-
-                            <li class="list-group-item" id="info">
-                                <span id="briefinfo">名稱:</span>
-                                <%= model.gamename %>
-                            </li>
-
-                            <li class="list-group-item" id="info">
-                                <span id="briefinfo">逾期天數:</span>
-                                <% var day=((model.expired-new Date().getTime())/(1000 * 3600 * 24))%>
-                                <%=parseInt(day)%>天
-                            </li>
-
-                        </ul>
-                    </div>
-                </a>
-                <p></p>
-
-            </div>
-            <% }); %>
-
-            <% material.forEach(function(model) { %>
-                <div class="card col-xl-6 col-sm-12">
-                    <!-- <div id="title">
-                            <a href="/book/userbookdetail/<%=model.id%>">詳細資料頁面 </a>
-                        </div> -->
-                    <a href="/material/usermaterialreturn/<%=model.id%>" style="color:darkslategrey">
-    
-                        <p></p>
-                        <div id="info">
-                            <img src=<%=model.photo %> id="photo" width="150" height="150">
-                            <ul class="list-group">
-                                <li class="list-group-item" id="info">
-                                    <span id="briefinfo">種類:</span>
-                                    <%= model.itemtype %>
-                                </li>
-    
-                                <li class="list-group-item" id="info">
-                                    <span id="briefinfo">名稱:</span>
-                                    <%= model.materialname %>
-                                </li>
-    
-                                <li class="list-group-item" id="info">
-                                    <span id="briefinfo">逾期天數:</span>
-                                    <% var day=((model.expired-new Date().getTime())/(1000 * 3600 * 24))%>
-                                    <%=parseInt(day)%>天
-                                </li>
-    
-                            </ul>
-                        </div>
-                    </a>
-                    <p></p>
-    
+        <div >
+            <div class="row square2" style="background-color:lightgoldenrodyellow">
+                <div class="col center">
+                    種類
                 </div>
-                <% }); %>
-
+                <div class="col center">
+                    名稱
+                </div>
+                <div class="col center">
+                    逾期天數
+                </div>
+            </div>
         </div>
+        <% book.forEach(function(model) { %>
+        <a href="/book/userbookreturn/<%=model.id%>">
+            <div>
+                <div class="row square2" style="background-color:rgb(255, 255, 255)">
+                    <div class="col center">
+                        <%= model.itemtype %>
+                    </div>
+                    <div class="col center">
+                        <%= model.bookname %>
+                    </div>
+                    <div class="col center">
+                        <% var day=((model.expired-new Date().getTime())/(1000 * 3600 * 24))%>
+                        <%=parseInt(day)%>天
+                    </div>
+                </div>
+            </div>
+        </a>
+        <% }); %>
+        <% game.forEach(function(model) { %>
+        <a href="/game/usergamereturn/<%=model.id%>">
+            <div>
+                <div class="row square2" style="background-color:rgb(255, 255, 255)">
+                    <div class="col center">
+                        <%= model.itemtype %>
+                    </div>
+                    <div class="col center">
+                        <%= model.gamename %>
+                    </div>
+                    <div class="col center">
+                        <% var day=((model.expired-new Date().getTime())/(1000 * 3600 * 24))%>
+                        <%=parseInt(day)%>天
+                    </div>
+                </div>
+            </div>
+        </a>
+        <% }); %>
+        <% material.forEach(function(model) { %>
+        <a href="/material/usermaterialreturn/<%=model.id%>">
+            <div>
+                <div class="row square2" width=100 style="background-color:rgb(255, 255, 255)">
+                    <div class="col center">
+                        <%= model.itemtype %>
+                    </div>
+                    <div class="col center">
+                        <%= model.materialname %>
+                    </div>
+                    <div class="col center">
+                        <% var day=((model.expired-new Date().getTime())/(1000 * 3600 * 24))%>
+                        <%=parseInt(day)%>天
+                    </div>
+                </div>
+            </div>
+        </a>
+        <% }); %>
 
 
-
-
-
-
-
-
-        <!-- <div>
+    <!-- <div>
             <div class="container">
                 <h2 style="color:wheat; background-color: darkred;"> &nbsp;&nbsp;借用通知</h2>
                 <div class="square center" style="background-color:lightgoldenrodyellow">
@@ -188,9 +142,70 @@
         </div>
         <br> -->
 
+    <div>
+        <div class="container">
+            <h2 style="color:wheat; background-color: darkred;"> &nbsp;&nbsp;我的申請</h2>
+            <div class="square center" style="background-color:lightgoldenrodyellow">
+                <div class="row">
+                    <div class="col center">
+                        種類
+                    </div>
+                    <div class="col center">
+                        名稱
+                    </div>
+                    <div class="col center ">
+                        申請狀況
+                    </div>
+                </div>
+            </div>
+            <div class="square center">
+                <div class="row">
+                    <div class="col center">
+                        書籍
+                    </div>
+                    <div class="col center">
+                        想見你(2)
+                    </div>
+                    <div class="col center " style="color:blue">
+                        接納
+                    </div>
+                </div>
+            </div>
+            <div class="square center">
+                <div class="row">
+                    <div class="col center">
+                        桌遊
+                    </div>
+                    <div class="col center">
+                        矮人礦坑
+                    </div>
+
+                    <div class="col center " style="color:red">
+                        拒絕
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="square center">
+                <div class="row">
+                    <div class="col center">
+                        物資
+                    </div>
+                    <div class="col center">
+                        IPAD
+                    </div>
+                    <div class="col center " style="color:red">
+                        拒絕
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
         <div>
             <div class="container">
-                <h2 style="color:wheat; background-color: darkred;"> &nbsp;&nbsp;我的申請</h2>
+                <h2 style="color:wheat; background-color: darkred;"> &nbsp;&nbsp;借用歷史</h2>
                 <div class="square center" style="background-color:lightgoldenrodyellow">
                     <div class="row">
                         <div class="col center">
@@ -200,7 +215,7 @@
                             名稱
                         </div>
                         <div class="col center ">
-                            申請狀況
+                            備註
                         </div>
                     </div>
                 </div>
@@ -210,10 +225,10 @@
                             書籍
                         </div>
                         <div class="col center">
-                            想見你(2)
+                            想見你(1)
                         </div>
-                        <div class="col center " style="color:blue">
-                            接納
+                        <div class="col center " style="color:green">
+                            已歸還
                         </div>
                     </div>
                 </div>
@@ -223,13 +238,11 @@
                             桌遊
                         </div>
                         <div class="col center">
-                            矮人礦坑
+                            飛行棋
                         </div>
-
-                        <div class="col center " style="color:red">
-                            拒絕
+                        <div class="col center " style="color:indigo">
+                            遺失
                         </div>
-
                     </div>
                 </div>
 
@@ -240,79 +253,20 @@
                             物資
                         </div>
                         <div class="col center">
-                            IPAD
+                            原子筆
                         </div>
                         <div class="col center " style="color:red">
-                            拒絕
+                            損壞
                         </div>
                     </div>
                 </div>
             </div>
-            <br>
-            <div>
-                <div class="container">
-                    <h2 style="color:wheat; background-color: darkred;"> &nbsp;&nbsp;借用歷史</h2>
-                    <div class="square center" style="background-color:lightgoldenrodyellow">
-                        <div class="row">
-                            <div class="col center">
-                                種類
-                            </div>
-                            <div class="col center">
-                                名稱
-                            </div>
-                            <div class="col center ">
-                                備註
-                            </div>
-                        </div>
-                    </div>
-                    <div class="square center">
-                        <div class="row">
-                            <div class="col center">
-                                書籍
-                            </div>
-                            <div class="col center">
-                                想見你(1)
-                            </div>
-                            <div class="col center " style="color:green">
-                                已歸還
-                            </div>
-                        </div>
-                    </div>
-                    <div class="square center">
-                        <div class="row">
-                            <div class="col center">
-                                桌遊
-                            </div>
-                            <div class="col center">
-                                飛行棋
-                            </div>
-                            <div class="col center " style="color:indigo">
-                                遺失
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="square center">
-                        <div class="row">
-                            <div class="col center">
-                                物資
-                            </div>
-                            <div class="col center">
-                                原子筆
-                            </div>
-                            <div class="col center " style="color:red">
-                                損壞
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <br>
 
         </div>
+
+        <br>
+
+    </div>
 
 
     </div>
@@ -346,4 +300,3 @@
 
 
 </body>
-

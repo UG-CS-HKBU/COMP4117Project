@@ -11,7 +11,7 @@
 
         <% noti.forEach(function(model) { %>
             <div class="square2 center">
-                <%=new Date(model.createdAt).toLocaleDateString("zh-Hans-CN")%> <%=model.message%>
+                <%=new Date(model.createdAt).toLocaleDateString()%> <%=model.message%>
             </div>
             <br>
         <% }); %>
