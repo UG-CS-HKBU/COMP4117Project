@@ -38,6 +38,12 @@
                             <%=game.remark %>
                         </th>
                     </tr>
+                    <tr>
+                        <th id="detail" scope="row">
+                            續借事項:
+                            請在逾期天數少於14天時使用 可延長14天
+                        </th>
+                    </tr>
                 </table>
 
             </div>
@@ -52,7 +58,7 @@
                     <button type="submit" class="borrowbutton">歸還</button>
                 </form>
             </div>
-
+         
             <div class=" col-6 col-sm-6">
                 <a href="#">
                     <button type="submit" class="bookbutton"  onclick="renew('<%=game.id%>')">

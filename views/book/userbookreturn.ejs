@@ -48,6 +48,12 @@
                             <%=book.remark %>
                         </th>
                     </tr>
+                    <tr>
+                        <th id="detail" scope="row">
+                            續借事項:
+                            請在逾期天數少於14天時使用 可延長14天
+                        </th>
+                    </tr>
 
                 </table>
 
@@ -56,6 +62,7 @@
     </div>
 
     <br>
+    
 
     <form action="/book/remark/<%=book.id%>" method="GET">
         <button type="submit" class="btn btn-danger center">申報損壞/增加備註</button>

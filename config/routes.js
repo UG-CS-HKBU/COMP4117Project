@@ -45,6 +45,7 @@ module.exports.routes = {
   'GET /item/userpasswordupdate/:id': 'ItemController.userpasswordupdate',
   '    /item/noaccount': 'ItemController.noaccount',
   '    /item/wrongpassword': 'ItemController.wrongpassword',
+  
 
   //Vistormainpage
   '    /item/vistorsearch': 'ItemController.vistorsearch',
