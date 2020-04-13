@@ -14,8 +14,14 @@ module.exports = {
         if (!bookmodel) return res.notFound();
         var gamemodel = await User.findOne(id).populate("gameborrow");
         if (!gamemodel) return res.notFound();
+        var materialmodel = await User.findOne(id).populate("materialborrow");
+        if (!materialmodel) return res.notFound();
 
-        return res.view('item/userindex', { book: bookmodel.bookborrow,game:gamemodel.gameborrow });
+        return res.view('item/userindex', {
+            book: bookmodel.bookborrow,
+            game: gamemodel.gameborrow, 
+            material: materialmodel.materialborrow,
+        });
     },
 
     adminindex: async function (req, res) {
@@ -380,7 +386,7 @@ module.exports = {
         return res.view('item/wrongpassword');
     },
 
-    
+
 
 
 

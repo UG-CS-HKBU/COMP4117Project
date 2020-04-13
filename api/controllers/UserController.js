@@ -160,6 +160,28 @@ module.exports = {
 
     },
 
+    renewborrowbook: async function (req, res) {
+
+        // const thatBook = await Book.findOne(req.params.fk).populate("bookborrowBy", { id: req.params.id });
+
+        // const thatBook=await Book.findOne(req.params.id);
+                                
+        var date = new Date();
+
+        date.setDate(date.getDate() + 15);
+
+        var renewdate = date.getTime();
+
+        await Book.update(req.params.fk).set({ expired: renewdate }).fetch();
+
+        if (req.wantsJSON) {
+            return res.json({ message: "已續借該物品", url: '/item/userindex' });    // for ajax request
+        } else {
+            return res.redirect('/item/userindex');           // for normal request
+        }
+
+    },
+
     addborrowgame: async function (req, res) {
 
         // if (!await User.findOne(req.session.userid)) return res.notFound();
@@ -222,27 +244,6 @@ module.exports = {
 
     },
 
-    renewborrowbook: async function (req, res) {
-
-        // const thatBook = await Book.findOne(req.params.fk).populate("bookborrowBy", { id: req.params.id });
-
-        // const thatBook=await Book.findOne(req.params.id);
-                                
-        var date = new Date();
-
-        date.setDate(date.getDate() + 15);
-
-        var renewdate = date.getTime();
-
-        await Book.update(req.params.fk).set({ expired: renewdate }).fetch();
-
-        if (req.wantsJSON) {
-            return res.json({ message: "已續借該物品", url: '/item/userindex' });    // for ajax request
-        } else {
-            return res.redirect('/item/userindex');           // for normal request
-        }
-
-    },
 
     renewborrowgame: async function (req, res) {
 
@@ -257,6 +258,91 @@ module.exports = {
         var renewdate = date.getTime();
 
         await Game.update(req.params.fk).set({ expired: renewdate }).fetch();
+
+        if (req.wantsJSON) {
+            return res.json({ message: "已續借該物品", url: '/item/userindex' });    // for ajax request
+        } else {
+            return res.redirect('/item/userindex');           // for normal request
+        }
+
+    },
+
+    addborrowmaterial: async function (req, res) {
+
+        // if (!await User.findOne(req.session.userid)) return res.notFound();
+
+        const requirematerial = await Material.findOne({ materialname: req.body.qrcode });
+
+        const thatMaterial = await Material.findOne(requirematerial.id).populate("materialborrowBy", { id: req.session.userid });
+
+        if (!thatMaterial) return res.notFound();
+
+        if (thatMaterial.materialborrowBy.length)
+            return res.status(409).send("已經借取");   // conflict
+
+        await User.addToCollection(req.session.userid, "materialborrow").members(requirematerial.id);
+
+        await Material.update(requirematerial.id).set({ status: "borrowed" }).fetch();
+
+        var date = new Date();
+
+        date.setDate(date.getDate() + 31);
+
+        var borrowdate = date.getTime();
+
+        await Material.update(requirematerial.id).set({ expired: borrowdate }).fetch();
+
+        //return res.ok('Operation completed.');
+        if (req.wantsJSON) {
+            return res.json({ message: "已借取該物品", url: '/item/userindex' });    // for ajax request
+        } else {
+            return res.redirect('/item/userindex');           // for normal request
+        }
+
+    },
+
+    removeborrowmaterial: async function (req, res) {
+
+        // if (!await User.findOne(req.session.userid)) return res.notFound();
+
+        const requirematerial = await Material.findOne({ materialname: req.body.qrcode });
+
+        const thatMaterial = await  Material.findOne(requirematerial.id).populate("materialborrowBy", { id: req.session.userid });
+
+        if (!thatMaterial) return res.notFound();
+
+        if (!thatMaterial.materialborrowBy.length)
+            return res.status(409).send("該物品沒有被借取");   // conflict
+
+        await User.removeFromCollection(req.session.userid, "materialborrow").members(requirematerial.id);
+
+        await Material.update(requirematerial.id).set({ status: "avaliable" }).fetch();
+
+        await Material.update(requirematerial.id).set({ expired: "30" }).fetch();
+
+        //return res.ok('Operation completed.');
+        if (req.wantsJSON) {
+            return res.json({ message: "已借取該物品", url: '/item/userindex' });    // for ajax request
+        } else {
+            return res.redirect('/item/userindex');           // for normal request
+        }
+
+    },
+
+
+    renewborrowmaterial: async function (req, res) {
+
+        // const thatBook = await Book.findOne(req.params.fk).populate("bookborrowBy", { id: req.params.id });
+
+        // const thatBook=await Book.findOne(req.params.id);
+
+        var date = new Date();
+
+        date.setDate(date.getDate() + 15);
+
+        var renewdate = date.getTime();
+
+        await Material.update(req.params.fk).set({ expired: renewdate }).fetch();
 
         if (req.wantsJSON) {
             return res.json({ message: "已續借該物品", url: '/item/userindex' });    // for ajax request

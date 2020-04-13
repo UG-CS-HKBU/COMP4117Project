@@ -8,7 +8,7 @@
 module.exports = {
 
     usermaterialsearch: async function (req, res) {
-        var models = await Material.find().sort([{ id: 'DESC' }]);
+        var models = await Material.find({ where: { status: "avaliable" } }).sort([{ id: 'DESC' }]);
         return res.view('material/usermaterialsearch', { material: models });
     },
 
@@ -50,6 +50,16 @@ module.exports = {
         if (!model) return res.notFound();
 
         return res.view('material/usermaterialdetail', { material: model });
+
+    },
+
+    usermaterialreturn: async function (req, res) {
+
+        var model = await Material.findOne(req.params.id);
+
+        if (!model) return res.notFound();
+
+        return res.view('material/usermaterialreturn', { material: model });
 
     },
 
@@ -168,6 +178,20 @@ module.exports = {
             return res.redirect("/material/adminmaterialedit");
         });
     },
+
+    borrow: async function(req, res) {
+        return res.view('material/borrow');
+    },
+
+    return: async function(req, res) {
+        return res.view('material/return');
+    },
+
+    print: async function (req, res) {
+        var models = await Material.find().sort([{ id: 'DESC' }]);
+        return res.view('material/print', { material: models });
+        
+    }
 
 
 };

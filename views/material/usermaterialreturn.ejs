@@ -45,17 +45,17 @@
     <div class="container">
         <div class="row">
             <div class=" col-6 col-sm-6">
-                <form action="/material/borrow" method="GET">
-                    <button type="submit" class="borrowbutton">借取</button>
+                <form action="/material/return" method="GET">
+                    <button type="submit" class="borrowbutton">歸還</button>
                 </form>
             </div>
 
             <div class=" col-6 col-sm-6">
-                <a href="#">
-                    <button type="submit" class="bookbutton">
-                        預訂
+                
+                    <button type="submit" class="bookbutton" onclick="renew('<%=material.id%>')">
+                        續借
                     </button>
-                </a>
+                
             </div>
         </div>
     </div>
@@ -88,3 +88,32 @@
     </nav>
     </div>
 </body>
+
+<script>
+
+    async function renew(materialid) {
+
+        var r = confirm("確認續借?");
+
+        if (r) {
+
+            var response = await fetch("/user/renewborrowmaterial/" + materialid, {
+                method: "POST",
+                credentials: 'same-origin',
+            });
+
+            if (response.ok) {
+                var data = await response.json();
+                alert(data.message);
+                window.location = data.url;
+            } else {
+                alert("已經續借");
+            }
+
+        } else {
+            alert("取消");
+        }
+
+    };
+
+</script>

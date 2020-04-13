@@ -31,8 +31,11 @@ module.exports.routes = {
   'POST /user/returnbook': 'UserController.removeborrowbook',
   'POST /user/borrowgame': 'UserController.addborrowgame',
   'POST /user/returngame': 'UserController.removeborrowgame',
+  'POST /user/borrowmaterial': 'UserController.addborrowmaterial',
+  'POST /user/returnmaterial': 'UserController.removeborrowmaterial',
   'POST /user/renewborrowbook/:fk': 'UserController.renewborrowbook',
   'POST /user/renewborrowgame/:fk': 'UserController.renewborrowgame',
+  'POST /user/renewborrowmaterial/:fk': 'UserController.renewborrowmaterial',
 
   //Usermainpage
   '    /item/userindex': 'ItemController.userindex',
@@ -96,6 +99,7 @@ module.exports.routes = {
   '   /material/usermaterialsearch': 'MaterialController.usermaterialsearch',
   'GET /material/usermamterialresult': 'MaterialController.usermaterialresult',
   '   /material/usermaterialdetail/:id': 'MaterialController.usermaterialdetail',
+  '   /material/usermaterialreturn/:id': 'MaterialController.usermaterialreturn',
 
   //AdminBookpage
   '   /book/adminbooksearch': 'BookController.adminbooksearch',
@@ -158,6 +162,10 @@ module.exports.routes = {
   '/game/borrow':'GameController.borrow',
   '/game/return':'GameController.return',
   '/game/print':'GameController.print',
+
+  '/material/borrow':'MaterialController.borrow',
+  '/material/return':'MaterialController.return',
+  '/material/print':'MaterialController.print',
 
   
 

@@ -59,7 +59,17 @@ module.exports = {
 
     remark:{
       type:'string',
-    }
+    },
+
+    materialborrowBy:{
+      collection:"User",
+      via:"materialborrow"
+    },
+
+    status:{
+      type:"string",
+      defaultsTo:"avaliable"
+    },
 
   },
 

@@ -58,6 +58,11 @@ module.exports = {
       via:"gameborrowBy"
     },
 
+    materialborrow:{
+      collection:"Material",
+      via:"materialborrowBy"
+    },
+
 
 
     
