@@ -70,6 +70,7 @@
                     <div class="col center">
                         <% var day=((model.expired-new Date().getTime())/(1000 * 3600 * 24))%>
                         <%=parseInt(day)%>天
+                        <!-- <script>sendreminder(1)</script> -->
                     </div>
                 </div>
             </div>
@@ -402,3 +403,19 @@
 
 
 </body>
+
+<!-- <script>
+   function sendreminder(day)
+   {
+       if(day<=7)
+       {
+        await sails.helpers.sendSingleEmail({
+            to: 'leungjay0424@gmail.com',
+            from: sails.config.custom.mailgunFrom,
+            subject: '借用物資通知',
+            // text: '你已借用'+thatMaterial.materialname+'(數量: '+borrowamount+') 請於'+new Date(expireddate2).toLocaleDateString()+'前歸還',
+            text:'你有物資將於7天後到期 請準時歸還'
+        });
+       }
+   }
+</script> -->

@@ -129,7 +129,16 @@ module.exports = {
 
         var expireddate = date.getTime();
 
+        var expireddate2=date;
+
         await Book.update(requirebook.id).set({ expired: expireddate }).fetch();
+
+        await sails.helpers.sendSingleEmail({
+            to: 'leungjay0424@gmail.com',
+            from: sails.config.custom.mailgunFrom,
+            subject: '借用書本通知',
+            text: '你已借用書本('+thatBook.bookname+ ') 請於'+new Date(expireddate2).toLocaleDateString()+'前歸還',
+        });
 
         //return res.ok('Operation completed.');
         if (req.wantsJSON) {
@@ -158,6 +167,8 @@ module.exports = {
         await Book.update(requirebook.id).set({ status: "avaliable" }).fetch();
 
         await Book.update(requirebook.id).set({ expired: "30" }).fetch();
+
+        
 
         //return res.ok('Operation completed.');
         if (req.wantsJSON) {
@@ -221,7 +232,16 @@ module.exports = {
 
         var expireddate = date.getTime();
 
+        var expireddate2=date;
+
         await Game.update(requiregame.id).set({ expired: expireddate }).fetch();
+
+        await sails.helpers.sendSingleEmail({
+            to: 'leungjay0424@gmail.com',
+            from: sails.config.custom.mailgunFrom,
+            subject: '借用桌遊通知',
+            text: '你已借用桌遊('+thatGame.gamename+ ') 請於'+new Date(expireddate2).toLocaleDateString()+'前歸還',
+        });
 
         //return res.ok('Operation completed.');
         if (req.wantsJSON) {
@@ -308,6 +328,8 @@ module.exports = {
 
         var orginalamount=thatMaterial.amount;
 
+        var calculation=orginalamount-borrowamount;
+
         await Material.update(requirematerial.id).set({ amount: orginalamount-borrowamount }).fetch()
 
         // await Material.update(requirematerial.id).set({ status: "borrowed" }).fetch();
@@ -327,11 +349,21 @@ module.exports = {
         await Material.update(requirematerial.id).set({ expired: expireddate }).fetch();
 
         await sails.helpers.sendSingleEmail({
-            to: 'leungduckwa123@gmail.com',
+            to: 'leungjay0424@gmail.com',
             from: sails.config.custom.mailgunFrom,
             subject: '借用物資通知',
             text: '你已借用'+thatMaterial.materialname+'(數量: '+borrowamount+') 請於'+new Date(expireddate2).toLocaleDateString()+'前歸還',
         });
+
+        if(calculation<5)
+        {
+            await sails.helpers.sendSingleEmail({
+                to: 'leungjay0424@gmail.com',
+                from: sails.config.custom.mailgunFrom,
+                subject: '物資耗盡通知',
+                text: '物資'+thatMaterial.materialname+'(數量只剩下: '+calculation+') 請購買',
+            });
+        }
 
         //return res.ok('Operation completed.');
         if (req.wantsJSON) {
@@ -430,6 +462,8 @@ module.exports = {
 
         var orginalamount=thatGift.amount;
 
+        var calculation=orginalamount-borrowamount;
+
         await Gift.update(requiregift.id).set({ amount: orginalamount-borrowamount }).fetch()
 
         // var date = new Date();
@@ -441,6 +475,17 @@ module.exports = {
         // await Material.update(requirematerial.id).set({ expired: expireddate }).fetch();
 
         //return res.ok('Operation completed.');
+
+        if(calculation<5)
+        {
+            await sails.helpers.sendSingleEmail({
+                to: 'leungjay0424@gmail.com',
+                from: sails.config.custom.mailgunFrom,
+                subject: '禮物耗盡通知',
+                text: '禮物'+thatGift.giftname+'(數量只剩下: '+calculation+') 請購買',
+            });
+        }
+
         if (req.wantsJSON) {
             return res.json({ message: "已借取該物品", url: '/item/userindex' });    // for ajax request
         } else {
