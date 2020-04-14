@@ -185,7 +185,8 @@ module.exports = {
     },
 
     return: async function(req, res) {
-        return res.view('material/return');
+        var model=await Material.findOne(req.params.id);
+        return res.view('material/return',{material:model});
     },
 
     print: async function (req, res) {

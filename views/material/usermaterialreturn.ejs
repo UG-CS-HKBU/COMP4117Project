@@ -24,7 +24,7 @@
                         </th>
                     </tr>
                     <tr>
-                        <th id="detail" scope="row">數量:
+                        <th id="detail" scope="row">現有數量:
                             <%= material.amount %>
                         </th>
                     </tr>
@@ -45,7 +45,7 @@
     <div class="container">
         <div class="row">
             <div class=" col-6 col-sm-6">
-                <form action="/material/return" method="GET">
+                <form action="/material/return/<%=material.id%>" method="GET">
                     <button type="submit" class="borrowbutton">歸還</button>
                 </form>
             </div>
