@@ -67,6 +67,15 @@ module.exports = {
       via:"gameborrow"
     },
 
+    gamehistoryBy:{
+      collection:"User",
+      via:"gamehistory"
+    },
+
+    borrowdate:{
+      type:"string",
+    },
+
     status:{
       type:"string",
       defaultsTo:"avaliable"

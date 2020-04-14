@@ -198,6 +198,8 @@ module.exports = {
 
         const thatGame = await Game.findOne(requiregame.id).populate("gameborrowBy", { id: req.session.userid });
 
+        const historyGame= await Game.findOne(requiregame.id).populate("gamehistoryBy",{id :req.session.userid});
+
         if (!thatGame) return res.notFound();
 
         if (thatGame.gameborrowBy.length)
@@ -205,15 +207,21 @@ module.exports = {
 
         await User.addToCollection(req.session.userid, "gameborrow").members(requiregame.id);
 
+        await User.addToCollection(req.session.userid, "gamehistory").members(requiregame.id);
+
         await Game.update(requiregame.id).set({ status: "borrowed" }).fetch();
+
+        var borrowdate=new Date();
+        
+        await Game.update(requiregame.id).set({ borrowdate: borrowdate }).fetch();
 
         var date = new Date();
 
         date.setDate(date.getDate() + 31);
 
-        var borrowdate = date.getTime();
+        var expireddate = date.getTime();
 
-        await Game.update(requiregame.id).set({ expired: borrowdate }).fetch();
+        await Game.update(requiregame.id).set({ expired: expireddate }).fetch();
 
         //return res.ok('Operation completed.');
         if (req.wantsJSON) {

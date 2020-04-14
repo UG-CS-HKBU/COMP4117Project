@@ -16,6 +16,8 @@ module.exports = {
         if (!bookmodel) return res.notFound();
         var gamemodel = await User.findOne(id).populate("gameborrow",{sort:'id DESC'});
         if (!gamemodel) return res.notFound();
+        var gamemodel2 = await User.findOne(id).populate("gamehistory",{sort:'id DESC'});
+        if (!gamemodel2) return res.notFound();    
         var materialmodel = await User.findOne(id).populate("materialborrow",{sort:'id DESC'});
         if (!materialmodel) return res.notFound();
 
@@ -24,6 +26,7 @@ module.exports = {
             game: gamemodel.gameborrow,
             material: materialmodel.materialborrow,
             book2:bookmodel2.bookhistory,
+            game2:gamemodel2.gamehistory,
         });
     },
 

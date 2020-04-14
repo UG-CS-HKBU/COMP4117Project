@@ -66,6 +66,11 @@ module.exports = {
     bookhistory:{
       collection:"Book",
       via:"bookhistoryBy"
+    },
+
+    gamehistory:{
+      collection:"Game",
+      via:"gamehistoryBy"
     }
 
 
