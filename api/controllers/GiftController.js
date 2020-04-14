@@ -231,6 +231,21 @@ module.exports = {
         });
     },
 
+    borrow: async function(req, res) {
+        var model=await Gift.findOne(req.params.id)
+        return res.view('gift/borrow',{gift:model});
+    },
+
+    return: async function(req, res) {
+        return res.view('gift/return');
+    },
+
+    print: async function (req, res) {
+        var models = await Gift.find().sort([{ id: 'DESC' }]);
+        return res.view('gift/print', { gift: models });
+        
+    }
+
 
 
 

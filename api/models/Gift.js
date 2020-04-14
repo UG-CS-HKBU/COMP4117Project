@@ -69,6 +69,15 @@ module.exports = {
 
     remark:{
       type:'string',
+    },
+
+    giftborrowBy:{
+      collection:"User",
+      via:"giftborrow"
+    },
+
+    borrowdate:{
+      type:"string",
     }
 
   },

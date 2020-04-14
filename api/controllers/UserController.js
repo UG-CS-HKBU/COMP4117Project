@@ -376,6 +376,55 @@ module.exports = {
 
     },
 
+    addborrowgift: async function (req, res) {
+
+        // if (!await User.findOne(req.session.userid)) return res.notFound();
+
+        const requiregift = await Gift.findOne(req.params.id);
+
+        const thatGift = await Gift.findOne(requiregift.id).populate("giftborrowBy", { id: req.session.userid });
+
+        // const historyMaterial= await Material.findOne(requirematerial.id).populate("materialhistoryBy",{id :req.session.userid});
+
+        if (!thatGift) return res.notFound();
+
+        // if (thatGift.materialborrowBy.length)
+        //     return res.status(409).send("已經借取");   // conflict
+
+        await User.addToCollection(req.session.userid, "giftborrow").members(requiregift.id);
+
+        // await User.addToCollection(req.session.userid, "materialhistory").members(requirematerial.id);
+
+        // await Gift.update(requirematerial.id).set({ status: "borrowed" }).fetch();
+
+        var borrowdate=new Date();
+        
+        await Gift.update(requiregift.id).set({ borrowdate: borrowdate }).fetch();
+
+        var borrowamount=req.body.amount;
+
+        var orginalamount=thatGift.amount;
+
+        await Gift.update(requiregift.id).set({ amount: orginalamount-borrowamount }).fetch()
+
+        // var date = new Date();
+
+        // date.setDate(date.getDate() + 31);
+
+        // var expireddate = date.getTime();
+
+        // await Material.update(requirematerial.id).set({ expired: expireddate }).fetch();
+
+        //return res.ok('Operation completed.');
+        if (req.wantsJSON) {
+            return res.json({ message: "已借取該物品", url: '/item/userindex' });    // for ajax request
+        } else {
+            return res.redirect('/item/userindex');           // for normal request
+        }
+
+    },
+
+
 
 
 

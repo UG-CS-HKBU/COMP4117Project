@@ -76,9 +76,12 @@ module.exports = {
     materialhistory:{
       collection:"Material",
       via:"materialhistoryBy"
-    }
+    },
 
-
+    giftborrow:{
+      collection:"Gift",
+      via:"giftborrowBy"
+    },
 
     
 

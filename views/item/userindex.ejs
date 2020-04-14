@@ -140,6 +140,38 @@
             </div>
         </a>
         <% }); %>
+        <h2 style="color:wheat; background-color: darkred;"> &nbsp;&nbsp;禮物領取歷史</h2>
+
+        <div>
+            <div class="row square2" style="background-color:lightgoldenrodyellow">
+                <div class="col center">
+                    種類
+                </div>
+                <div class="col center">
+                    名稱
+                </div>
+                <div class="col center">
+                    領取日期
+                </div>
+            </div>
+        </div>
+        <% gift.forEach(function(model) { %>
+            <a href="/gift/usergiftdetail/<%=model.id%>">
+                <div>
+                    <div class="row square2" style="background-color:rgb(255, 255, 255)">
+                        <div class="col center">
+                            <%= model.category %>
+                        </div>
+                        <div class="col center">
+                            <%= model.giftname %>
+                        </div>
+                        <div class="col center">
+                            <%=new Date(model.borrowdate).toLocaleDateString()%>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        <% }); %>
 
 
         <!-- <div>
@@ -208,7 +240,7 @@
         </div>
         <br> -->
 
-        <ul id="result">
+        <!-- <ul id="result">
         </ul>
 
         <div>
@@ -335,7 +367,7 @@
 
             <br>
 
-        </div>
+        </div> -->
 
 
     </div>

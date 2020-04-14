@@ -36,6 +36,7 @@ module.exports.routes = {
   'POST /user/renewborrowbook/:fk': 'UserController.renewborrowbook',
   'POST /user/renewborrowgame/:fk': 'UserController.renewborrowgame',
   'POST /user/renewborrowmaterial/:fk': 'UserController.renewborrowmaterial',
+  'POST /user/borrowgift/:id': 'UserController.addborrowgift',
 
   //Usermainpage
   '    /item/userindex': 'ItemController.userindex',
@@ -164,6 +165,10 @@ module.exports.routes = {
   '/game/borrow':'GameController.borrow',
   '/game/return':'GameController.return',
   '/game/print':'GameController.print',
+
+  '/gift/borrow/:id':'GiftController.borrow',
+  '/gift/return':'GiftController.return',
+  '/gift/print':'GiftController.print',
 
   '/material/borrow':'MaterialController.borrow',
   '/material/return':'MaterialController.return',
