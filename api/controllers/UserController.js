@@ -285,6 +285,8 @@ module.exports = {
 
     addborrowmaterial: async function (req, res) {
 
+        
+
         // if (!await User.findOne(req.session.userid)) return res.notFound();
 
         const requirematerial = await Material.findOne(req.params.id);
@@ -320,7 +322,16 @@ module.exports = {
 
         var expireddate = date.getTime();
 
+        var expireddate2 = date;
+
         await Material.update(requirematerial.id).set({ expired: expireddate }).fetch();
+
+        await sails.helpers.sendSingleEmail({
+            to: 'leungduckwa123@gmail.com',
+            from: sails.config.custom.mailgunFrom,
+            subject: '借用物資通知',
+            text: '你已借用'+thatMaterial.materialname+'(數量: '+borrowamount+') 請於'+new Date(expireddate2).toLocaleDateString()+'前歸還',
+        });
 
         //return res.ok('Operation completed.');
         if (req.wantsJSON) {

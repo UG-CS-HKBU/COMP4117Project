@@ -12,6 +12,7 @@
     "dexie": "^2.0.4",
     "grunt": "1.0.4",
     "jsqr": "^1.2.0",
+    "mailgun-js": "^0.22.0",
     "moment": "^2.24.0",
     "qrcode-generator": "^1.4.4",
     "sails": "^1.2.3",
