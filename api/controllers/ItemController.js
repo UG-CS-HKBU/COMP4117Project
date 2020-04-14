@@ -12,6 +12,8 @@ module.exports = {
         var id = req.session.userid
         var bookmodel = await User.findOne(id).populate("bookborrow",{sort:'id DESC'});
         if (!bookmodel) return res.notFound();
+        var bookmodel2 = await User.findOne(id).populate("bookhistory",{sort:'id DESC'});
+        if (!bookmodel) return res.notFound();
         var gamemodel = await User.findOne(id).populate("gameborrow",{sort:'id DESC'});
         if (!gamemodel) return res.notFound();
         var materialmodel = await User.findOne(id).populate("materialborrow",{sort:'id DESC'});
@@ -21,6 +23,7 @@ module.exports = {
             book: bookmodel.bookborrow,
             game: gamemodel.gameborrow,
             material: materialmodel.materialborrow,
+            book2:bookmodel2.bookhistory,
         });
     },
 

@@ -9,8 +9,8 @@
         <h5 class="center">請用相機掃瞄物品中的QRcode</h5>
         <h5 class="center">核對物品名稱後按提交</h5>
         <form action="/user/borrowgame" method="POST">
-            <input class="center"id="qrinput" name="qrcode" />
-            <input class="center"type="submit" />
+            <input class="center" id="qrinput" name="qrcode" />
+            <input class="center" type="submit" />
         </form>
         <canvas id="canvas"></canvas>
         <nav class="bottomnav fixed-bottom">
@@ -43,7 +43,7 @@
 </body>
 
 
-
+<script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
 <script>
     var video = document.createElement("video");
     var canvasElement = document.getElementById("canvas");

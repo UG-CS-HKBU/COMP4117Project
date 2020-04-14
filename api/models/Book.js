@@ -72,6 +72,15 @@ module.exports = {
       via:"bookborrow"
     },
 
+    bookhistoryBy:{
+      collection:"User",
+      via:"bookhistory"
+    },
+
+    borrowdate:{
+      type:"string",
+    },
+
     expired:{
       type:"string",
       defaultsTo:"30"

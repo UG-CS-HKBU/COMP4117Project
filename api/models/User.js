@@ -63,6 +63,11 @@ module.exports = {
       via:"materialborrowBy"
     },
 
+    bookhistory:{
+      collection:"Book",
+      via:"bookhistoryBy"
+    }
+
 
 
     

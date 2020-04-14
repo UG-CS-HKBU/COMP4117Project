@@ -7,7 +7,7 @@
         <br>
         <h2 style="color:wheat; background-color: darkred;"> &nbsp;&nbsp;借用通知</h2>
 
-        <div >
+        <div>
             <div class="row square2" style="background-color:lightgoldenrodyellow">
                 <div class="col center">
                     種類
@@ -74,9 +74,41 @@
             </div>
         </a>
         <% }); %>
+        <h2 style="color:wheat; background-color: darkred;"> &nbsp;&nbsp;借用歷史</h2>
+
+        <div>
+            <div class="row square2" style="background-color:lightgoldenrodyellow">
+                <div class="col center">
+                    種類
+                </div>
+                <div class="col center">
+                    名稱
+                </div>
+                <div class="col center">
+                    借用日期
+                </div>
+            </div>
+        </div>
+        <% book2.forEach(function(model) { %>
+        <a href="/book/userbookdetail/<%=model.id%>">
+            <div>
+                <div class="row square2" style="background-color:rgb(255, 255, 255)">
+                    <div class="col center">
+                        <%= model.itemtype %>
+                    </div>
+                    <div class="col center">
+                        <%= model.bookname %>
+                    </div>
+                    <div class="col center">
+                        <%=new Date(model.borrowdate).toLocaleDateString()%>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <% }); %>
 
 
-    <!-- <div>
+        <!-- <div>
             <div class="container">
                 <h2 style="color:wheat; background-color: darkred;"> &nbsp;&nbsp;借用通知</h2>
                 <div class="square center" style="background-color:lightgoldenrodyellow">
@@ -142,70 +174,12 @@
         </div>
         <br> -->
 
-    <div>
-        <div class="container">
-            <h2 style="color:wheat; background-color: darkred;"> &nbsp;&nbsp;我的申請</h2>
-            <div class="square center" style="background-color:lightgoldenrodyellow">
-                <div class="row">
-                    <div class="col center">
-                        種類
-                    </div>
-                    <div class="col center">
-                        名稱
-                    </div>
-                    <div class="col center ">
-                        申請狀況
-                    </div>
-                </div>
-            </div>
-            <div class="square center">
-                <div class="row">
-                    <div class="col center">
-                        書籍
-                    </div>
-                    <div class="col center">
-                        想見你(2)
-                    </div>
-                    <div class="col center " style="color:blue">
-                        接納
-                    </div>
-                </div>
-            </div>
-            <div class="square center">
-                <div class="row">
-                    <div class="col center">
-                        桌遊
-                    </div>
-                    <div class="col center">
-                        矮人礦坑
-                    </div>
+        <ul id="result">
+        </ul>
 
-                    <div class="col center " style="color:red">
-                        拒絕
-                    </div>
-
-                </div>
-            </div>
-
-
-            <div class="square center">
-                <div class="row">
-                    <div class="col center">
-                        物資
-                    </div>
-                    <div class="col center">
-                        IPAD
-                    </div>
-                    <div class="col center " style="color:red">
-                        拒絕
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
         <div>
             <div class="container">
-                <h2 style="color:wheat; background-color: darkred;"> &nbsp;&nbsp;借用歷史</h2>
+                <h2 style="color:wheat; background-color: darkred;"> &nbsp;&nbsp;我的申請</h2>
                 <div class="square center" style="background-color:lightgoldenrodyellow">
                     <div class="row">
                         <div class="col center">
@@ -215,7 +189,7 @@
                             名稱
                         </div>
                         <div class="col center ">
-                            備註
+                            申請狀況
                         </div>
                     </div>
                 </div>
@@ -225,10 +199,10 @@
                             書籍
                         </div>
                         <div class="col center">
-                            想見你(1)
+                            想見你(2)
                         </div>
-                        <div class="col center " style="color:green">
-                            已歸還
+                        <div class="col center " style="color:blue">
+                            接納
                         </div>
                     </div>
                 </div>
@@ -238,11 +212,13 @@
                             桌遊
                         </div>
                         <div class="col center">
-                            飛行棋
+                            矮人礦坑
                         </div>
-                        <div class="col center " style="color:indigo">
-                            遺失
+
+                        <div class="col center " style="color:red">
+                            拒絕
                         </div>
+
                     </div>
                 </div>
 
@@ -253,20 +229,79 @@
                             物資
                         </div>
                         <div class="col center">
-                            原子筆
+                            IPAD
                         </div>
                         <div class="col center " style="color:red">
-                            損壞
+                            拒絕
                         </div>
                     </div>
                 </div>
             </div>
+            <br>
+            <div>
+                <div class="container">
+                    <h2 style="color:wheat; background-color: darkred;"> &nbsp;&nbsp;借用歷史</h2>
+                    <div class="square center" style="background-color:lightgoldenrodyellow">
+                        <div class="row">
+                            <div class="col center">
+                                種類
+                            </div>
+                            <div class="col center">
+                                名稱
+                            </div>
+                            <div class="col center ">
+                                備註
+                            </div>
+                        </div>
+                    </div>
+                    <div class="square center">
+                        <div class="row">
+                            <div class="col center">
+                                書籍
+                            </div>
+                            <div class="col center">
+                                想見你(1)
+                            </div>
+                            <div class="col center " style="color:green">
+                                已歸還
+                            </div>
+                        </div>
+                    </div>
+                    <div class="square center">
+                        <div class="row">
+                            <div class="col center">
+                                桌遊
+                            </div>
+                            <div class="col center">
+                                飛行棋
+                            </div>
+                            <div class="col center " style="color:indigo">
+                                遺失
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="square center">
+                        <div class="row">
+                            <div class="col center">
+                                物資
+                            </div>
+                            <div class="col center">
+                                原子筆
+                            </div>
+                            <div class="col center " style="color:red">
+                                損壞
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <br>
 
         </div>
-
-        <br>
-
-    </div>
 
 
     </div>

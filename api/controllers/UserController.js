@@ -106,6 +106,8 @@ module.exports = {
 
         const thatBook = await Book.findOne(requirebook.id).populate("bookborrowBy", { id: req.session.userid });
 
+        const historyBook= await Book.findOne(requirebook.id).populate("bookhistoryBy",{id :req.session.userid});
+
         if (!thatBook) return res.notFound();
 
         if (thatBook.bookborrowBy.length)
@@ -113,15 +115,21 @@ module.exports = {
 
         await User.addToCollection(req.session.userid, "bookborrow").members(requirebook.id);
 
+        await User.addToCollection(req.session.userid, "bookhistory").members(requirebook.id);
+
         await Book.update(requirebook.id).set({ status: "borrowed" }).fetch();
+
+        var borrowdate=new Date();
+        
+        await Book.update(requirebook.id).set({ borrowdate: borrowdate }).fetch();
 
         var date = new Date();
 
         date.setDate(date.getDate() + 31);
 
-        var borrowdate = date.getTime();
+        var expireddate = date.getTime();
 
-        await Book.update(requirebook.id).set({ expired: borrowdate }).fetch();
+        await Book.update(requirebook.id).set({ expired: expireddate }).fetch();
 
         //return res.ok('Operation completed.');
         if (req.wantsJSON) {
