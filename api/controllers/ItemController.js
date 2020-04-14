@@ -20,6 +20,8 @@ module.exports = {
         if (!gamemodel2) return res.notFound();    
         var materialmodel = await User.findOne(id).populate("materialborrow",{sort:'id DESC'});
         if (!materialmodel) return res.notFound();
+        var materialmodel2 = await User.findOne(id).populate("materialhistory",{sort:'id DESC'});
+        if (!materialmodel2) return res.notFound();
 
         return res.view('item/userindex', {
             book: bookmodel.bookborrow,
@@ -27,6 +29,7 @@ module.exports = {
             material: materialmodel.materialborrow,
             book2:bookmodel2.bookhistory,
             game2:gamemodel2.gamehistory,
+            material2:materialmodel2.materialhistory,
         });
     },
 

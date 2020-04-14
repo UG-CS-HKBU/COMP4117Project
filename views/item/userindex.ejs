@@ -107,7 +107,7 @@
         </a>
         <% }); %>
         <% game2.forEach(function(model) { %>
-        <a href="/game/userganmedetail/<%=model.id%>">
+        <a href="/game/usergamedetail/<%=model.id%>">
             <div>
                 <div class="row square2" style="background-color:rgb(255, 255, 255)">
                     <div class="col center">
@@ -115,6 +115,23 @@
                     </div>
                     <div class="col center">
                         <%= model.gamename %>
+                    </div>
+                    <div class="col center">
+                        <%=new Date(model.borrowdate).toLocaleDateString()%>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <% }); %>
+        <% material2.forEach(function(model) { %>
+        <a href="/material/usermaterialdetail/<%=model.id%>">
+            <div>
+                <div class="row square2" style="background-color:rgb(255, 255, 255)">
+                    <div class="col center">
+                        <%= model.itemtype %>
+                    </div>
+                    <div class="col center">
+                        <%= model.materialname %>
                     </div>
                     <div class="col center">
                         <%=new Date(model.borrowdate).toLocaleDateString()%>

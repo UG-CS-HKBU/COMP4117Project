@@ -291,6 +291,8 @@ module.exports = {
 
         const thatMaterial = await Material.findOne(requirematerial.id).populate("materialborrowBy", { id: req.session.userid });
 
+        const historyMaterial= await Material.findOne(requirematerial.id).populate("materialhistoryBy",{id :req.session.userid});
+
         if (!thatMaterial) return res.notFound();
 
         if (thatMaterial.materialborrowBy.length)
@@ -298,15 +300,21 @@ module.exports = {
 
         await User.addToCollection(req.session.userid, "materialborrow").members(requirematerial.id);
 
+        await User.addToCollection(req.session.userid, "materialhistory").members(requirematerial.id);
+
         await Material.update(requirematerial.id).set({ status: "borrowed" }).fetch();
+
+        var borrowdate=new Date();
+        
+        await Material.update(requirematerial.id).set({ borrowdate: borrowdate }).fetch();
 
         var date = new Date();
 
         date.setDate(date.getDate() + 31);
 
-        var borrowdate = date.getTime();
+        var expireddate = date.getTime();
 
-        await Material.update(requirematerial.id).set({ expired: borrowdate }).fetch();
+        await Material.update(requirematerial.id).set({ expired: expireddate }).fetch();
 
         //return res.ok('Operation completed.');
         if (req.wantsJSON) {

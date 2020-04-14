@@ -71,6 +71,11 @@ module.exports = {
     gamehistory:{
       collection:"Game",
       via:"gamehistoryBy"
+    },
+
+    materialhistory:{
+      collection:"Material",
+      via:"materialhistoryBy"
     }
 
 

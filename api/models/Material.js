@@ -66,6 +66,16 @@ module.exports = {
       via:"materialborrow"
     },
 
+    materialhistoryBy:{
+      collection:"User",
+      via:"materialhistory"
+    },
+
+    borrowdate:{
+      type:"string",
+    },
+
+
     status:{
       type:"string",
       defaultsTo:"avaliable"
