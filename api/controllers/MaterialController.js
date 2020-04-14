@@ -180,7 +180,8 @@ module.exports = {
     },
 
     borrow: async function(req, res) {
-        return res.view('material/borrow');
+        var model=await Material.findOne(req.params.id);
+        return res.view('material/borrow',{material:model});
     },
 
     return: async function(req, res) {

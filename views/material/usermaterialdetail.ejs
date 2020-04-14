@@ -14,7 +14,7 @@
                         </th>
                     </tr>
                     <tr>
-                        <th id="detail" scope="row">書名:
+                        <th id="detail" scope="row">名稱:
                             <%= material.materialname %>
                         </th>
                     </tr>
@@ -45,7 +45,7 @@
     <div class="container">
         <div class="row">
             <div class=" col-6 col-sm-6">
-                <form action="/material/borrow" method="GET">
+                <form action="/material/borrow/<%=material.id%>" method="GET">
                     <button type="submit" class="borrowbutton">借取</button>
                 </form>
             </div>

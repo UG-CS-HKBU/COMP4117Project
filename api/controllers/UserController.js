@@ -287,7 +287,7 @@ module.exports = {
 
         // if (!await User.findOne(req.session.userid)) return res.notFound();
 
-        const requirematerial = await Material.findOne({ materialname: req.body.qrcode });
+        const requirematerial = await Material.findOne(req.params.id);
 
         const thatMaterial = await Material.findOne(requirematerial.id).populate("materialborrowBy", { id: req.session.userid });
 
@@ -302,7 +302,13 @@ module.exports = {
 
         await User.addToCollection(req.session.userid, "materialhistory").members(requirematerial.id);
 
-        await Material.update(requirematerial.id).set({ status: "borrowed" }).fetch();
+        var borrowamount=req.body.amount;
+
+        var orginalamount=thatMaterial.amount;
+
+        await Material.update(requirematerial.id).set({ amount: orginalamount-borrowamount }).fetch()
+
+        // await Material.update(requirematerial.id).set({ status: "borrowed" }).fetch();
 
         var borrowdate=new Date();
         

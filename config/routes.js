@@ -31,12 +31,13 @@ module.exports.routes = {
   'POST /user/returnbook': 'UserController.removeborrowbook',
   'POST /user/borrowgame': 'UserController.addborrowgame',
   'POST /user/returngame': 'UserController.removeborrowgame',
-  'POST /user/borrowmaterial': 'UserController.addborrowmaterial',
+  // 'POST /user/borrowmaterial': 'UserController.addborrowmaterial',
   'POST /user/returnmaterial': 'UserController.removeborrowmaterial',
   'POST /user/renewborrowbook/:fk': 'UserController.renewborrowbook',
   'POST /user/renewborrowgame/:fk': 'UserController.renewborrowgame',
   'POST /user/renewborrowmaterial/:fk': 'UserController.renewborrowmaterial',
   'POST /user/borrowgift/:id': 'UserController.addborrowgift',
+  'POST /user/borrowmaterial/:id': 'UserController.addborrowmaterial',
 
   //Usermainpage
   '    /item/userindex': 'ItemController.userindex',
@@ -170,7 +171,7 @@ module.exports.routes = {
   '/gift/return':'GiftController.return',
   '/gift/print':'GiftController.print',
 
-  '/material/borrow':'MaterialController.borrow',
+  '/material/borrow/:id':'MaterialController.borrow',
   '/material/return':'MaterialController.return',
   '/material/print':'MaterialController.print',
 
