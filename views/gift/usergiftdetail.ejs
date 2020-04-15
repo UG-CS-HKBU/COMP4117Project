@@ -40,7 +40,7 @@
                     </tr>
                     <tr>
                         <th id="detail" scope="row">備註:
-                            <%=gift.remark %>
+                            <%=gift.remarks %>
                         </th>
                     </tr>
                 </table>
@@ -59,11 +59,11 @@
             </div>
 
             <div class=" col-6 col-sm-6">
-                <a href="#">
+                <form action="/gift/useraddremark/<%=gift.id%>" method="GET">
                     <button type="submit" class="bookbutton">
-                        預定
+                        備註
                     </button>
-                </a>
+                </form>
             </div>
         </div>
     </div>

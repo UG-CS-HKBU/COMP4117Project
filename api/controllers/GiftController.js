@@ -244,6 +244,29 @@ module.exports = {
         var models = await Gift.find().sort([{ id: 'DESC' }]);
         return res.view('gift/print', { gift: models });
         
+    },
+
+    useraddremark: async function (req, res) {
+        var model = await Gift.findOne(req.params.id);
+        if (req.method == "GET") {
+            return res.view('gift/useraddremark', { gift: model })
+        } else {
+
+            var userremarks = req.body.remarks;
+
+            await Item.create(
+                {
+                    message:"禮物("+model.giftname+")新增備註: "+userremarks,
+                });
+
+
+            var models = await Gift.update(req.params.id).set({
+                remarks: userremarks,
+            }).fetch();
+            if (models.length == 0) return res.notFound();
+
+            return res.view('gift/usergiftdetail', { gift: model })
+        }
     }
 
 
