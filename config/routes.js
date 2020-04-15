@@ -189,6 +189,11 @@ module.exports.routes = {
   '/material/return/:id':'MaterialController.return',
   '/material/print':'MaterialController.print',
 
+  // 'GET /book/upload1/:id': 'BookController.upload1',
+  // 'POST /book/upload1/:id': 'BookController.upload1',
+  'GET /book/uploadphoto/:id': 'BookController.uploadphoto',
+  'POST /book/uploadphoto/:id': 'BookController.uploadphoto',
+
   
 
 

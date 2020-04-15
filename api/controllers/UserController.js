@@ -102,6 +102,8 @@ module.exports = {
 
         // if (!await User.findOne(req.session.userid)) return res.notFound();
 
+        const thatUser =await User.findOne(req.session.userid);
+
         const requirebook = await Book.findOne({ bookname: req.body.qrcode });
 
         const thatBook = await Book.findOne(requirebook.id).populate("bookborrowBy", { id: req.session.userid });
@@ -122,6 +124,10 @@ module.exports = {
         var borrowdate = new Date();
 
         await Book.update(requirebook.id).set({ borrowdate: borrowdate }).fetch();
+
+        await Book.update(requirebook.id).set({ borrowinfo:thatUser.username+" "+new Date(borrowdate).toLocaleDateString() }).fetch();
+
+        await Book.update(requirebook.id).set({ returninfo:""}).fetch();
 
         var date = new Date();
 

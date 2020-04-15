@@ -95,6 +95,10 @@ module.exports = {
       type: 'string'
     },
 
+    avatar:{
+      type:'string'
+    },
+
     label:{
       type:'string',
     },
@@ -102,6 +106,17 @@ module.exports = {
     remarks:{
       type:'string',
       defaultsTo:""
+    },
+
+    borrowinfo:{
+      type:'string',
+      defaultsTo:""
+    },
+
+    returninfo:{
+      type:'string',
+      defaultsTo:"",
+
     }
 
 

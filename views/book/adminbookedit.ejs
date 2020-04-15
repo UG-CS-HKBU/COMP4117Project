@@ -20,6 +20,11 @@
                     <th scope="row"></th>
                     <td><a href="/book/adminbookdetail/<%=model.id%>"><%=model.bookname%></a></td>
                     <td>
+                        <form action="/book/uploadphoto/<%=model.id%>" method="GET">
+                            <button type="submit" class="btn btn-primary center">上傳相片</button>
+                        </form>
+                    </td>
+                    <td>
                         <a href="/book/adminbookupdate/<%=model.id%>" class="btn btn-primary" id="edit">
                             修改
                         </a>

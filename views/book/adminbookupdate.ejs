@@ -26,7 +26,8 @@
 
                 <div class="col-xl-6 col-form-label">
                     <label>出版社:</label>
-                    <input type="text" class="form-control" name="Book[publisher]" value="<%= book.publisher %>" required>
+                    <input type="text" class="form-control" name="Book[publisher]" value="<%= book.publisher %>"
+                        required>
                 </div>
 
                 <div class="col-xl-6 col-form-label">
@@ -41,7 +42,8 @@
 
                 <div class="col-xl-6 col-form-label">
                     <label>位置:</label>
-                    <input type="text" class="form-control" name="Book[location]]" value="<%= book.location %>" required>
+                    <input type="text" class="form-control" name="Book[location]]" value="<%= book.location %>"
+                        required>
                 </div>
 
                 <div class="col-xl-6 col-form-label">
@@ -52,6 +54,10 @@
                 <button type="submit" class="btn btn-primary center">修改</button>
             </div>
 
+        </form>
+
+        <form action="/book/upload1/<%=book.id%>" method="GET">
+            <button type="submit" class="btn btn-primary center">上傳相片</button>
         </form>
 
 
@@ -87,6 +93,4 @@
 </body>
 
 <script>
-    var a = document.querySelector('option[value="<%=book.category%>"]');
-    a.selected = "selected";
-</script>
+    var a = document.querySelector('option[value="<%=book.category%>" ]'); a.selected = "selected"; </script>
