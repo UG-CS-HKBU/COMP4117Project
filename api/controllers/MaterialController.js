@@ -193,6 +193,29 @@ module.exports = {
         var models = await Material.find().sort([{ id: 'DESC' }]);
         return res.view('material/print', { material: models });
         
+    },
+
+    useraddremark: async function (req, res) {
+        var model = await Material.findOne(req.params.id);
+        if (req.method == "GET") {
+            return res.view('material/useraddremark', { material: model })
+        } else {
+
+            var userremarks = req.body.remarks;
+
+            await Item.create(
+                {
+                    message:"物資("+model.materialname+")新增備註: "+userremarks,
+                });
+
+
+            var models = await Material.update(req.params.id).set({
+                remarks: userremarks,
+            }).fetch();
+            if (models.length == 0) return res.notFound();
+
+            return res.view('material/usermaterialreturn', { material: model })
+        }
     }
 
 

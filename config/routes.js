@@ -112,6 +112,8 @@ module.exports.routes = {
   'GET /material/usermamterialresult': 'MaterialController.usermaterialresult',
   '   /material/usermaterialdetail/:id': 'MaterialController.usermaterialdetail',
   '   /material/usermaterialreturn/:id': 'MaterialController.usermaterialreturn',
+  'GET   /material/useraddremark/:id': 'MaterialController.useraddremark',
+  'POST  /material/useraddremark/:id': 'MaterialController.useraddremark',
 
   //AdminBookpage
   '   /book/adminbooksearch': 'BookController.adminbooksearch',
