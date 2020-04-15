@@ -45,6 +45,16 @@ module.exports = {
 
     },
 
+    userbookdetail2: async function (req, res) {
+
+        var model = await Book.findOne(req.params.id);
+
+        if (!model) return res.notFound();
+
+        return res.view('book/userbookdetail2', { book: model });
+
+    },
+
     userbookreturn: async function (req, res) {
 
         var model = await Book.findOne(req.params.id);
