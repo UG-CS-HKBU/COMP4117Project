@@ -200,6 +200,9 @@ module.exports.routes = {
   'GET /gift/uploadphoto/:id': 'GiftController.uploadphoto',
   'POST /gift/uploadphoto/:id': 'GiftController.uploadphoto',
 
+  'GET /material/uploadphoto/:id': 'MaterialController.uploadphoto',
+  'POST /material/uploadphoto/:id': 'MaterialController.uploadphoto',
+
   
 
 

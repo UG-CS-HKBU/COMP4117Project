@@ -19,8 +19,12 @@
 
                     <th scope="row"></th>
                     <td><a href="/material/adminmaterialdetail/<%=model.id%>"><%=model.materialname%></a></td>
-                    <td></td>
-                    <td></td>
+                    
+                    <td>
+                        <form action="/material/uploadphoto/<%=model.id%>" method="GET">
+                            <button type="submit" class="btn btn-primary center">上傳相片</button>
+                        </form>
+                    </td>
                     <td>
                         <a href="/material/adminmaterialupdate/<%=model.id%>" class="btn btn-primary" id="edit">
                             修改

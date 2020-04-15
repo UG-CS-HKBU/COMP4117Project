@@ -226,7 +226,20 @@ module.exports = {
 
             return res.view('material/usermaterialreturn', { material: model })
         }
-    }
+    },
+
+    uploadphoto: async function(req, res) {
+        var model=await Material.findOne(req.params.id);
+
+        if (req.method == 'GET')
+            return res.view('material/uploadphoto',{material:model});
+    
+        await Material.update({id: model.id}, {
+            avatar: req.body.Material.avatar
+        });
+        
+        return res.redirect('/material/adminmaterialedit');
+    },
 
 
 };
