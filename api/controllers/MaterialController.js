@@ -53,6 +53,16 @@ module.exports = {
 
     },
 
+    usermaterialdetail2: async function (req, res) {
+
+        var model = await Material.findOne(req.params.id);
+
+        if (!model) return res.notFound();
+
+        return res.view('material/usermaterialdetail2', { material: model });
+
+    },
+
     usermaterialreturn: async function (req, res) {
 
         var model = await Material.findOne(req.params.id);

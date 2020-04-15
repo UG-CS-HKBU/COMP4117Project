@@ -114,6 +114,7 @@ module.exports.routes = {
   '   /material/usermaterialsearch': 'MaterialController.usermaterialsearch',
   'GET /material/usermamterialresult': 'MaterialController.usermaterialresult',
   '   /material/usermaterialdetail/:id': 'MaterialController.usermaterialdetail',
+  '   /material/usermaterialdetail2/:id': 'MaterialController.usermaterialdetail2',
   '   /material/usermaterialreturn/:id': 'MaterialController.usermaterialreturn',
   'GET   /material/useraddremark/:id': 'MaterialController.useraddremark',
   'POST  /material/useraddremark/:id': 'MaterialController.useraddremark',

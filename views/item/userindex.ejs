@@ -10,7 +10,7 @@
         <h2 style="color:wheat; background-color: darkred;"> &nbsp;&nbsp;借用通知</h2>
         <div class="container">
             <div>
-                <div class="row  squareyellow" style="background-color:lightgoldenrodyellow">
+                <div class="row squareyellow" style="background-color:lightgoldenrodyellow">
                     <div class="col center">
                         種類
                     </div>
@@ -41,8 +41,9 @@
                     </div>
                 </div>
             </a>
+            <% }); %>
         </div>
-        <% }); %>
+        
         <div class="container">
             <% game.forEach(function(model) { %>
             <a href="/game/usergamereturn/<%=model.id%>">
@@ -57,13 +58,13 @@
                         <div class="col center">
                             <% var day=((model.expired-new Date().getTime())/(1000 * 3600 * 24))%>
                             <%=parseInt(day)%>天
-
                         </div>
                     </div>
                 </div>
             </a>
+            <% }); %>
         </div>
-        <% }); %>
+        
         <div class="container">
             <% material.forEach(function(model) { %>
             <a href="/material/usermaterialreturn/<%=model.id%>">
@@ -85,6 +86,8 @@
             </a>
             <% }); %>
         </div>
+        
+        
         <h2 style="color:wheat; background-color: darkred;"> &nbsp;&nbsp;借用歷史</h2>
         <div class="container">
             <div>
@@ -141,7 +144,7 @@
         </div>
         <div class="container">
             <% material2.forEach(function(model) { %>
-            <a href="/material/usermaterialdetail/<%=model.id%>">
+            <a href="/material/usermaterialdetail2/<%=model.id%>">
                 <div>
                     <div class="row square" style="background-color:rgb(255, 255, 255)">
                         <div class="col center">
@@ -242,8 +245,6 @@
                         </div>
                     </div>
                 </div>
-
-
                 <div class="square center">
                     <div class="row">
                         <div class="col center">
@@ -258,13 +259,11 @@
                     </div>
                 </div>
             </div>
-
         </div>
         <br> -->
 
     <!-- <ul id="result">
         </ul>
-
         <div>
             <div class="container">
                 <h2 style="color:wheat; background-color: darkred;"> &nbsp;&nbsp;我的申請</h2>
@@ -302,15 +301,11 @@
                         <div class="col center">
                             矮人礦坑
                         </div>
-
                         <div class="col center " style="color:red">
                             拒絕
                         </div>
-
                     </div>
                 </div>
-
-
                 <div class="square center">
                     <div class="row">
                         <div class="col center">
@@ -368,8 +363,6 @@
                             </div>
                         </div>
                     </div>
-
-
                     <div class="square center">
                         <div class="row">
                             <div class="col center">
@@ -384,11 +377,8 @@
                         </div>
                     </div>
                 </div>
-
             </div>
-
             <br>
-
         </div> -->
 
 
