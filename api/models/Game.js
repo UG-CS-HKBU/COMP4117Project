@@ -83,7 +83,11 @@ module.exports = {
 
     remarks:{
       type:'string',
-    }
+    },
+
+    avatar:{
+      type:'string'
+    },
 
 
 

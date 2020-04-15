@@ -78,7 +78,11 @@ module.exports = {
 
     borrowdate:{
       type:"string",
-    }
+    },
+
+    avatar:{
+      type:'string'
+    },
 
   },
 

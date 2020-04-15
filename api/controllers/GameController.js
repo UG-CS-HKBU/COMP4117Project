@@ -241,7 +241,20 @@ module.exports = {
 
             return res.view('game/usergamereturn', { game: model })
         }
-    }
+    },
+
+    uploadphoto: async function(req, res) {
+        var model=await Game.findOne(req.params.id);
+
+        if (req.method == 'GET')
+            return res.view('game/uploadphoto',{game:model});
+    
+        await Game.update({id: model.id}, {
+            avatar: req.body.Game.avatar
+        });
+        
+        return res.redirect('/game/admingameedit');
+    },
   
 
 };

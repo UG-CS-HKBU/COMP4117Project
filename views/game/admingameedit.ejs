@@ -21,6 +21,11 @@
                     <td><a href="/game/admingamedetail/<%=model.id%>" ><%=model.gamename%></a></td>
                     <!-- <td><img src="https://api.qrserver.com/v1/create-qr-code/?size=50x50&data=<%=model.gamename%>"></td> -->
                     <td>
+                        <form action="/game/uploadphoto/<%=model.id%>" method="GET">
+                            <button type="submit" class="btn btn-primary center">上傳相片</button>
+                        </form>
+                    </td>
+                    <td>
                         <a href="/game/admingameupdate/<%=model.id%>" class="btn btn-primary" id="edit">
                             修改
                         </a>

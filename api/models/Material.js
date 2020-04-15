@@ -81,6 +81,10 @@ module.exports = {
       defaultsTo:"avaliable"
     },
 
+    avatar:{
+      type:'string'
+    },
+
   },
 
 };
