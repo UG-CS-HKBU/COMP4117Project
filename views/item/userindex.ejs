@@ -5,178 +5,198 @@
         <img src="https://cubc.org.hk/wp-content/uploads/2016/08/logo_retina_x2.png" class="center">
 
         <br>
+
+
         <h2 style="color:wheat; background-color: darkred;"> &nbsp;&nbsp;借用通知</h2>
-
-        <div>
-            <div class="row square2" style="background-color:lightgoldenrodyellow">
-                <div class="col center">
-                    種類
-                </div>
-                <div class="col center">
-                    名稱
-                </div>
-                <div class="col center">
-                    逾期天數
+        <div class="container">
+            <div>
+                <div class="row  squareyellow" style="background-color:lightgoldenrodyellow">
+                    <div class="col center">
+                        種類
+                    </div>
+                    <div class="col center">
+                        名稱
+                    </div>
+                    <div class="col center">
+                        逾期天數
+                    </div>
                 </div>
             </div>
         </div>
-        <% book.forEach(function(model) { %>
-        <a href="/book/userbookreturn/<%=model.id%>">
-            <div>
-                <div class="row square2" style="background-color:rgb(255, 255, 255)">
-                    <div class="col center">
-                        <%= model.itemtype %>
-                    </div>
-                    <div class="col center">
-                        <%= model.bookname %>
-                    </div>
-                    <div class="col center">
-                        <% var day=((model.expired-new Date().getTime())/(1000 * 3600 * 24))%>
-                        <%=parseInt(day)%>天
-                    </div>
-                </div>
-            </div>
-        </a>
-        <% }); %>
-        <% game.forEach(function(model) { %>
-        <a href="/game/usergamereturn/<%=model.id%>">
-            <div>
-                <div class="row square2" style="background-color:rgb(255, 255, 255)">
-                    <div class="col center">
-                        <%= model.itemtype %>
-                    </div>
-                    <div class="col center">
-                        <%= model.gamename %>
-                    </div>
-                    <div class="col center">
-                        <% var day=((model.expired-new Date().getTime())/(1000 * 3600 * 24))%>
-                        <%=parseInt(day)%>天
-                        
+        <div class="container">
+            <% book.forEach(function(model) { %>
+            <a href="/book/userbookreturn/<%=model.id%>">
+                <div>
+                    <div class="row square" style="background-color:rgb(255, 255, 255)">
+                        <div class="col center">
+                            <%= model.itemtype %>
+                        </div>
+                        <div class="col center">
+                            <%= model.bookname %>
+                        </div>
+                        <div class="col center">
+                            <% var day=((model.expired-new Date().getTime())/(1000 * 3600 * 24))%>
+                            <%=parseInt(day)%>天
+                        </div>
                     </div>
                 </div>
-            </div>
-        </a>
+            </a>
+        </div>
         <% }); %>
-        <% material.forEach(function(model) { %>
-        <a href="/material/usermaterialreturn/<%=model.id%>">
-            <div>
-                <div class="row square2" width=100 style="background-color:rgb(255, 255, 255)">
-                    <div class="col center">
-                        <%= model.itemtype %>
-                    </div>
-                    <div class="col center">
-                        <%= model.materialname %>
-                    </div>
-                    <div class="col center">
-                        <% var day=((model.expired-new Date().getTime())/(1000 * 3600 * 24))%>
-                        <%=parseInt(day)%>天
-                        <!-- <script>sendreminder(1)</script> -->
+        <div class="container">
+            <% game.forEach(function(model) { %>
+            <a href="/game/usergamereturn/<%=model.id%>">
+                <div>
+                    <div class="row square" style="background-color:rgb(255, 255, 255)">
+                        <div class="col center">
+                            <%= model.itemtype %>
+                        </div>
+                        <div class="col center">
+                            <%= model.gamename %>
+                        </div>
+                        <div class="col center">
+                            <% var day=((model.expired-new Date().getTime())/(1000 * 3600 * 24))%>
+                            <%=parseInt(day)%>天
+
+                        </div>
                     </div>
                 </div>
-            </div>
-        </a>
+            </a>
+        </div>
         <% }); %>
+        <div class="container">
+            <% material.forEach(function(model) { %>
+            <a href="/material/usermaterialreturn/<%=model.id%>">
+                <div>
+                    <div class="row square" width=100 style="background-color:rgb(255, 255, 255)">
+                        <div class="col center">
+                            <%= model.itemtype %>
+                        </div>
+                        <div class="col center">
+                            <%= model.materialname %>
+                        </div>
+                        <div class="col center">
+                            <% var day=((model.expired-new Date().getTime())/(1000 * 3600 * 24))%>
+                            <%=parseInt(day)%>天
+                            <!-- <script>sendreminder(1)</script> -->
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <% }); %>
+        </div>
         <h2 style="color:wheat; background-color: darkred;"> &nbsp;&nbsp;借用歷史</h2>
-
-        <div>
-            <div class="row square2" style="background-color:lightgoldenrodyellow">
-                <div class="col center">
-                    種類
-                </div>
-                <div class="col center">
-                    名稱
-                </div>
-                <div class="col center">
-                    借用日期
+        <div class="container">
+            <div>
+                <div class="row squareyellow" style="background-color:lightgoldenrodyellow">
+                    <div class="col center">
+                        種類
+                    </div>
+                    <div class="col center">
+                        名稱
+                    </div>
+                    <div class="col center">
+                        借用日期
+                    </div>
                 </div>
             </div>
         </div>
-        <% book2.forEach(function(model) { %>
-        <a href="/book/userbookdetail/<%=model.id%>">
-            <div>
-                <div class="row square2" style="background-color:rgb(255, 255, 255)">
-                    <div class="col center">
-                        <%= model.itemtype %>
-                    </div>
-                    <div class="col center">
-                        <%= model.bookname %>
-                    </div>
-                    <div class="col center">
-                        <%=new Date(model.borrowdate).toLocaleDateString()%>
-                    </div>
-                </div>
-            </div>
-        </a>
-        <% }); %>
-        <% game2.forEach(function(model) { %>
-        <a href="/game/usergamedetail/<%=model.id%>">
-            <div>
-                <div class="row square2" style="background-color:rgb(255, 255, 255)">
-                    <div class="col center">
-                        <%= model.itemtype %>
-                    </div>
-                    <div class="col center">
-                        <%= model.gamename %>
-                    </div>
-                    <div class="col center">
-                        <%=new Date(model.borrowdate).toLocaleDateString()%>
+        <div class="container">
+            <% book2.forEach(function(model) { %>
+            <a href="/book/userbookdetail/<%=model.id%>">
+                <div>
+                    <div class="row square" style="background-color:rgb(255, 255, 255)">
+                        <div class="col center">
+                            <%= model.itemtype %>
+                        </div>
+                        <div class="col center">
+                            <%= model.bookname %>
+                        </div>
+                        <div class="col center">
+                            <%=new Date(model.borrowdate).toLocaleDateString()%>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </a>
-        <% }); %>
-        <% material2.forEach(function(model) { %>
-        <a href="/material/usermaterialdetail/<%=model.id%>">
-            <div>
-                <div class="row square2" style="background-color:rgb(255, 255, 255)">
-                    <div class="col center">
-                        <%= model.itemtype %>
-                    </div>
-                    <div class="col center">
-                        <%= model.materialname %>
-                    </div>
-                    <div class="col center">
-                        <%=new Date(model.borrowdate).toLocaleDateString()%>
+            </a>
+            <% }); %>
+        </div>
+        <div class="container">
+            <% game2.forEach(function(model) { %>
+            <a href="/game/usergamedetail/<%=model.id%>">
+                <div>
+                    <div class="row square" style="background-color:rgb(255, 255, 255)">
+                        <div class="col center">
+                            <%= model.itemtype %>
+                        </div>
+                        <div class="col center">
+                            <%= model.gamename %>
+                        </div>
+                        <div class="col center">
+                            <%=new Date(model.borrowdate).toLocaleDateString()%>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </a>
-        <% }); %>
+            </a>
+            <% }); %>
+        </div>
+        <div class="container">
+            <% material2.forEach(function(model) { %>
+            <a href="/material/usermaterialdetail/<%=model.id%>">
+                <div>
+                    <div class="row square" style="background-color:rgb(255, 255, 255)">
+                        <div class="col center">
+                            <%= model.itemtype %>
+                        </div>
+                        <div class="col center">
+                            <%= model.materialname %>
+                        </div>
+                        <div class="col center">
+                            <%=new Date(model.borrowdate).toLocaleDateString()%>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <% }); %>
+        </div>
         <h2 style="color:wheat; background-color: darkred;"> &nbsp;&nbsp;禮物領取歷史</h2>
-
-        <div>
-            <div class="row square2" style="background-color:lightgoldenrodyellow">
-                <div class="col center">
-                    種類
-                </div>
-                <div class="col center">
-                    名稱
-                </div>
-                <div class="col center">
-                    領取日期
+        <div class="container">
+            <div>
+                <div class="row squareyellow" style="background-color:lightgoldenrodyellow">
+                    <div class="col center">
+                        種類
+                    </div>
+                    <div class="col center">
+                        名稱
+                    </div>
+                    <div class="col center">
+                        領取日期
+                    </div>
                 </div>
             </div>
         </div>
-        <% gift.forEach(function(model) { %>
-        <a href="/gift/usergiftdetail/<%=model.id%>">
-            <div>
-                <div class="row square2" style="background-color:rgb(255, 255, 255)">
-                    <div class="col center">
-                        <%= model.category %>
-                    </div>
-                    <div class="col center">
-                        <%= model.giftname %>
-                    </div>
-                    <div class="col center">
-                        <%=new Date(model.borrowdate).toLocaleDateString()%>
+        <div class="container">
+            <% gift.forEach(function(model) { %>
+            <a href="/gift/usergiftdetail/<%=model.id%>">
+                <div>
+                    <div class="row square" style="background-color:rgb(255, 255, 255)">
+                        <div class="col center">
+                            <%= model.category %>
+                        </div>
+                        <div class="col center">
+                            <%= model.giftname %>
+                        </div>
+                        <div class="col center">
+                            <%=new Date(model.borrowdate).toLocaleDateString()%>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </a>
-        <% }); %>
+            </a>
+            <% }); %>
+        </div>
+    </div>
 
 
-        <!-- <div>
+    <!-- <div>
             <div class="container">
                 <h2 style="color:wheat; background-color: darkred;"> &nbsp;&nbsp;借用通知</h2>
                 <div class="square center" style="background-color:lightgoldenrodyellow">
@@ -242,7 +262,7 @@
         </div>
         <br> -->
 
-        <!-- <ul id="result">
+    <!-- <ul id="result">
         </ul>
 
         <div>
