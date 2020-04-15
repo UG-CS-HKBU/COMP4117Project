@@ -99,7 +99,7 @@ module.exports = {
       type:'string',
     },
 
-    remark:{
+    remarks:{
       type:'string',
       defaultsTo:""
     }

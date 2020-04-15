@@ -55,7 +55,7 @@ module.exports = {
 
     },
 
-    
+
 
     vistorbooksearch: async function (req, res) {
         var models = await Book.find().sort([{ id: 'DESC' }])
@@ -135,7 +135,7 @@ module.exports = {
 
     adminbookedit: async function (req, res) {
         var models = await Book.find().sort([{ id: 'DESC' }]);
-        
+
         return res.view('book/adminbookedit', { book: models });
     },
 
@@ -207,29 +207,52 @@ module.exports = {
         });
     },
 
-    borrow: async function(req, res) {
+    borrow: async function (req, res) {
         return res.view('book/borrow');
     },
 
-    return: async function(req, res) {
+    return: async function (req, res) {
         return res.view('book/return');
     },
 
     print: async function (req, res) {
         var models = await Book.find().sort([{ id: 'DESC' }]);
         return res.view('book/print', { book: models });
-        
+
+    },
+
+    useraddremark: async function (req, res) {
+        var model = await Book.findOne(req.params.id);
+        if (req.method == "GET") {
+            return res.view('book/useraddremark', { book: model })
+        } else {
+
+            var userremarks = req.body.remarks;
+
+            await Item.create(
+                {
+                    message:"書籍("+model.bookname+")新增備註: "+userremarks,
+                });
+
+
+            var models = await Book.update(req.params.id).set({
+                remarks: userremarks,
+            }).fetch();
+            if (models.length == 0) return res.notFound();
+
+            return res.view('book/userbookreturn', { book: model })
+        }
     }
 
-    
 
-    
 
-    
 
-    
 
-    
+
+
+
+
+
 
 
 

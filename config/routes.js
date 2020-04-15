@@ -88,6 +88,8 @@ module.exports.routes = {
   'GET /book/userbookresult': 'BookController.userbookresult',
   '   /book/userbookdetail/:id': 'BookController.userbookdetail',
   '   /book/userbookreturn/:id': 'BookController.userbookreturn',
+  'GET   /book/useraddremark/:id': 'BookController.useraddremark',
+  'POST  /book/useraddremark/:id': 'BookController.useraddremark',
 
   //UserGamepage
   '   /game/usergamesearch': 'GameController.usergamesearch',

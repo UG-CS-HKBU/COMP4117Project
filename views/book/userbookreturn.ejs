@@ -45,7 +45,7 @@
                     </tr>
                     <tr>
                         <th id="detail" scope="row">備註:
-                            <%=book.remark %>
+                            <%=book.remarks %>
                         </th>
                     </tr>
                     <tr>
@@ -64,7 +64,7 @@
     <br>
     
 
-    <form action="/book/remark/<%=book.id%>" method="GET">
+    <form action="/book/useraddremark/<%=book.id%>" method="GET">
         <button type="submit" class="btn btn-danger center">申報損壞/增加備註</button>
     </form>
 
