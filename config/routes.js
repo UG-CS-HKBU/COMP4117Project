@@ -197,6 +197,9 @@ module.exports.routes = {
   'GET /game/uploadphoto/:id': 'GameController.uploadphoto',
   'POST /game/uploadphoto/:id': 'GameController.uploadphoto',
 
+  'GET /gift/uploadphoto/:id': 'GiftController.uploadphoto',
+  'POST /gift/uploadphoto/:id': 'GiftController.uploadphoto',
+
   
 
 

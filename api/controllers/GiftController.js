@@ -277,7 +277,20 @@ module.exports = {
 
             return res.view('gift/usergiftdetail', { gift: model })
         }
-    }
+    },
+
+    uploadphoto: async function(req, res) {
+        var model=await Gift.findOne(req.params.id);
+
+        if (req.method == 'GET')
+            return res.view('gift/uploadphoto',{gift:model});
+    
+        await Gift.update({id: model.id}, {
+            avatar: req.body.Gift.avatar
+        });
+        
+        return res.redirect('/gift/admingiftedit');
+    },
 
 
 
