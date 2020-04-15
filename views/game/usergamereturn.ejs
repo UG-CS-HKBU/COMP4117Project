@@ -38,12 +38,12 @@
                             <%=game.remark %>
                         </th>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <th id="detail" scope="row">
                             續借功能:
                             逾期天數少於14天時使用 可延長14天
                         </th>
-                    </tr>
+                    </tr> -->
                 </table>
 
             </div>
@@ -51,6 +51,13 @@
     </div>
 
     <br>
+
+    <form action="/game/useraddremark/<%=game.id%>" method="GET">
+        <button type="submit" class="btn btn-danger center">申報損壞/增加備註</button>
+    </form>
+
+    <br>
+    
     <div class="container">
         <div class="row">
             <div class=" col-6 col-sm-6">
