@@ -106,6 +106,7 @@ module.exports.routes = {
   '   /gift/usergiftsearch': 'GiftController.usergiftsearch',
   'GET /gift/usergiftresult': 'GiftController.usergiftresult',
   '   /gift/usergiftdetail/:id': 'GiftController.usergiftdetail',
+  '   /gift/usergiftdetail2/:id': 'GiftController.usergiftdetail2',
   'GET   /gift/useraddremark/:id': 'GiftController.useraddremark',
   'POST  /gift/useraddremark/:id': 'GiftController.useraddremark',
 
