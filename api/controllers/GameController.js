@@ -208,6 +208,29 @@ module.exports = {
         var models = await Game.find().sort([{ id: 'DESC' }]);
         return res.view('game/print', { game: models });
         
+    },
+
+    useraddremark: async function (req, res) {
+        var model = await Game.findOne(req.params.id);
+        if (req.method == "GET") {
+            return res.view('game/useraddremark', { game: model })
+        } else {
+
+            var userremarks = req.body.remarks;
+
+            await Item.create(
+                {
+                    message:"桌遊("+model.gamename+")新增備註: "+userremarks,
+                });
+
+
+            var models = await Game.update(req.params.id).set({
+                remarks: userremarks,
+            }).fetch();
+            if (models.length == 0) return res.notFound();
+
+            return res.view('game/usergamereturn', { game: model })
+        }
     }
   
 

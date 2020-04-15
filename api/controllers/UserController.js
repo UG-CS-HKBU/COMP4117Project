@@ -106,7 +106,7 @@ module.exports = {
 
         const thatBook = await Book.findOne(requirebook.id).populate("bookborrowBy", { id: req.session.userid });
 
-        const historyBook= await Book.findOne(requirebook.id).populate("bookhistoryBy",{id :req.session.userid});
+        const historyBook = await Book.findOne(requirebook.id).populate("bookhistoryBy", { id: req.session.userid });
 
         if (!thatBook) return res.notFound();
 
@@ -119,8 +119,8 @@ module.exports = {
 
         await Book.update(requirebook.id).set({ status: "borrowed" }).fetch();
 
-        var borrowdate=new Date();
-        
+        var borrowdate = new Date();
+
         await Book.update(requirebook.id).set({ borrowdate: borrowdate }).fetch();
 
         var date = new Date();
@@ -129,7 +129,7 @@ module.exports = {
 
         var expireddate = date.getTime();
 
-        var expireddate2=date;
+        var expireddate2 = date;
 
         await Book.update(requirebook.id).set({ expired: expireddate }).fetch();
 
@@ -168,7 +168,7 @@ module.exports = {
 
         await Book.update(requirebook.id).set({ expired: "30" }).fetch();
 
-        
+
 
         //return res.ok('Operation completed.');
         if (req.wantsJSON) {
@@ -184,19 +184,31 @@ module.exports = {
         // const thatBook = await Book.findOne(req.params.fk).populate("bookborrowBy", { id: req.params.id });
 
         // const thatBook=await Book.findOne(req.params.id);
-                                
-        var date = new Date();
 
-        date.setDate(date.getDate() + 15);
+        const renewBook = await Book.findOne(req.params.fk);
 
-        var renewdate = date.getTime();
+        var day = ((renewBook.expired - new Date().getTime()) / (1000 * 3600 * 24));
 
-        await Book.update(req.params.fk).set({ expired: renewdate }).fetch();
+        //console.log(day);
 
-        if (req.wantsJSON) {
-            return res.json({ message: "已續借該物品", url: '/item/userindex' });    // for ajax request
-        } else {
-            return res.redirect('/item/userindex');           // for normal request
+        if (day < 14) {
+
+            var date = new Date();
+
+            date.setDate(date.getDate() + 15);
+
+            var renewdate = date.getTime();
+
+            await Book.update(req.params.fk).set({ expired: renewdate }).fetch();
+
+            if (req.wantsJSON) {
+                return res.json({ message: "已續借該物品", url: '/item/userindex' });    // for ajax request
+            } else {
+                return res.redirect('/item/userindex');           // for normal request
+            }
+        }else
+        if(day>14){
+            return res.redirect('/item/cannotrenew')
         }
 
     },
@@ -209,7 +221,7 @@ module.exports = {
 
         const thatGame = await Game.findOne(requiregame.id).populate("gameborrowBy", { id: req.session.userid });
 
-        const historyGame= await Game.findOne(requiregame.id).populate("gamehistoryBy",{id :req.session.userid});
+        const historyGame = await Game.findOne(requiregame.id).populate("gamehistoryBy", { id: req.session.userid });
 
         if (!thatGame) return res.notFound();
 
@@ -222,8 +234,8 @@ module.exports = {
 
         await Game.update(requiregame.id).set({ status: "borrowed" }).fetch();
 
-        var borrowdate=new Date();
-        
+        var borrowdate = new Date();
+
         await Game.update(requiregame.id).set({ borrowdate: borrowdate }).fetch();
 
         var date = new Date();
@@ -232,7 +244,7 @@ module.exports = {
 
         var expireddate = date.getTime();
 
-        var expireddate2=date;
+        var expireddate2 = date;
 
         await Game.update(requiregame.id).set({ expired: expireddate }).fetch();
 
@@ -305,7 +317,7 @@ module.exports = {
 
     addborrowmaterial: async function (req, res) {
 
-        
+
 
         // if (!await User.findOne(req.session.userid)) return res.notFound();
 
@@ -313,7 +325,7 @@ module.exports = {
 
         const thatMaterial = await Material.findOne(requirematerial.id).populate("materialborrowBy", { id: req.session.userid });
 
-        const historyMaterial= await Material.findOne(requirematerial.id).populate("materialhistoryBy",{id :req.session.userid});
+        const historyMaterial = await Material.findOne(requirematerial.id).populate("materialhistoryBy", { id: req.session.userid });
 
         if (!thatMaterial) return res.notFound();
 
@@ -324,18 +336,18 @@ module.exports = {
 
         await User.addToCollection(req.session.userid, "materialhistory").members(requirematerial.id);
 
-        var borrowamount=req.body.amount;
+        var borrowamount = req.body.amount;
 
-        var orginalamount=thatMaterial.amount;
+        var orginalamount = thatMaterial.amount;
 
-        var calculation=orginalamount-borrowamount;
+        var calculation = orginalamount - borrowamount;
 
-        await Material.update(requirematerial.id).set({ amount: orginalamount-borrowamount }).fetch()
+        await Material.update(requirematerial.id).set({ amount: orginalamount - borrowamount }).fetch()
 
         // await Material.update(requirematerial.id).set({ status: "borrowed" }).fetch();
 
-        var borrowdate=new Date();
-        
+        var borrowdate = new Date();
+
         await Material.update(requirematerial.id).set({ borrowdate: borrowdate }).fetch();
 
         var date = new Date();
@@ -380,7 +392,7 @@ module.exports = {
 
         const requirematerial = await Material.findOne(req.params.id);
 
-        const thatMaterial = await  Material.findOne(requirematerial.id).populate("materialborrowBy", { id: req.session.userid });
+        const thatMaterial = await Material.findOne(requirematerial.id).populate("materialborrowBy", { id: req.session.userid });
 
         if (!thatMaterial) return res.notFound();
 
@@ -389,13 +401,13 @@ module.exports = {
 
         await User.removeFromCollection(req.session.userid, "materialborrow").members(requirematerial.id);
 
-        var returnamount=parseInt(req.body.amount);
+        var returnamount = parseInt(req.body.amount);
 
-        var orginalamount=parseInt(thatMaterial.amount);
+        var orginalamount = parseInt(thatMaterial.amount);
 
-        var calculation=parseInt(orginalamount+returnamount);
+        var calculation = parseInt(orginalamount + returnamount);
 
-        await Material.update(requirematerial.id).set({ amount: calculation}).fetch()
+        await Material.update(requirematerial.id).set({ amount: calculation }).fetch()
 
         // await Material.update(requirematerial.id).set({ status: "avaliable" }).fetch();
 
@@ -454,17 +466,17 @@ module.exports = {
 
         // await Gift.update(requirematerial.id).set({ status: "borrowed" }).fetch();
 
-        var borrowdate=new Date();
-        
+        var borrowdate = new Date();
+
         await Gift.update(requiregift.id).set({ borrowdate: borrowdate }).fetch();
 
-        var borrowamount=req.body.amount;
+        var borrowamount = req.body.amount;
 
-        var orginalamount=thatGift.amount;
+        var orginalamount = thatGift.amount;
 
-        var calculation=orginalamount-borrowamount;
+        var calculation = orginalamount - borrowamount;
 
-        await Gift.update(requiregift.id).set({ amount: orginalamount-borrowamount }).fetch()
+        await Gift.update(requiregift.id).set({ amount: orginalamount - borrowamount }).fetch()
 
         // var date = new Date();
 
