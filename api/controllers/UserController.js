@@ -441,19 +441,31 @@ module.exports = {
 
         // const thatBook=await Book.findOne(req.params.id);
 
-        var date = new Date();
+        const renewMaterial = await Material.findOne(req.params.fk);
 
-        date.setDate(date.getDate() + 15);
+        var day = ((renewMaterial.expired - new Date().getTime()) / (1000 * 3600 * 24));
 
-        var renewdate = date.getTime();
+        //console.log(day);
 
-        await Material.update(req.params.fk).set({ expired: renewdate }).fetch();
+        if (day < 14) {
 
-        if (req.wantsJSON) {
-            return res.json({ message: "已續借該物品", url: '/item/userindex' });    // for ajax request
-        } else {
-            return res.redirect('/item/userindex');           // for normal request
-        }
+            var date = new Date();
+
+            date.setDate(date.getDate() + 15);
+
+            var renewdate = date.getTime();
+
+            await Material.update(req.params.fk).set({ expired: renewdate }).fetch();
+
+            if (req.wantsJSON) {
+                return res.json({ message: "已續借該物品", url: '/item/userindex' });    // for ajax request
+            } else {
+                return res.redirect('/item/userindex');           // for normal request
+            }
+        } else
+            if (day > 14) {
+                return res.redirect('/item/cannotrenew')
+            }
 
     },
 

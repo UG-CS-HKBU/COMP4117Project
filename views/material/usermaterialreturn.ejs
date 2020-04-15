@@ -33,7 +33,7 @@
                             <%=material.remark %>
                         </th>
                     </tr>
-                    
+
 
                 </table>
 
@@ -51,11 +51,11 @@
             </div>
 
             <div class=" col-6 col-sm-6">
-                
-                    <button type="submit" class="bookbutton" onclick="renew('<%=material.id%>')">
-                        續借
+                <form action="/user/renewborrowmaterial/<%=material.id%>" method="POST">
+                    <button type="submit" class="bookbutton">
+                        備註
                     </button>
-                
+                </form>
             </div>
         </div>
     </div>
