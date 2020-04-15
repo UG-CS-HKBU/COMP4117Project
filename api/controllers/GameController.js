@@ -43,6 +43,16 @@ module.exports = {
 
     },
 
+    usergamedetail2: async function (req, res) {
+
+        var model = await Game.findOne(req.params.id);
+
+        if (!model) return res.notFound();
+
+        return res.view('game/usergamedetail2', { game: model });
+
+    },
+
     usergamereturn: async function (req, res) {
 
         var model = await Game.findOne(req.params.id);

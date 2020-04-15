@@ -97,6 +97,7 @@ module.exports.routes = {
   '   /game/usergamesearch': 'GameController.usergamesearch',
   'GET /game/usergameresult': 'GameController.usergameresult',
   '   /game/usergamedetail/:id': 'GameController.usergamedetail',
+  '   /game/usergamedetail2/:id': 'GameController.usergamedetail2',
   '   /game/usergamereturn/:id': 'GameController.usergamereturn',
   'GET   /game/useraddremark/:id': 'GameController.useraddremark',
   'POST  /game/useraddremark/:id': 'GameController.useraddremark',
