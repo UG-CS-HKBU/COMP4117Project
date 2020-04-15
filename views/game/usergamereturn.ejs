@@ -40,8 +40,8 @@
                     </tr>
                     <tr>
                         <th id="detail" scope="row">
-                            續借事項:
-                            請在逾期天數少於14天時使用 可延長14天
+                            續借功能:
+                            逾期天數少於14天時使用 可延長14天
                         </th>
                     </tr>
                 </table>
@@ -60,11 +60,11 @@
             </div>
          
             <div class=" col-6 col-sm-6">
-                <a href="#">
-                    <button type="submit" class="bookbutton"  onclick="renew('<%=game.id%>')">
+                <form action="/user/renewborrowgame/<%=game.id%>" method="POST">
+                    <button type="submit" class="bookbutton">
                         續借
                     </button>
-                </a>
+                </form>
             </div>
         </div>
     </div>

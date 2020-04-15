@@ -81,7 +81,7 @@ module.exports = {
       defaultsTo:"avaliable"
     },
 
-    remark:{
+    remarks:{
       type:'string',
     }
 
