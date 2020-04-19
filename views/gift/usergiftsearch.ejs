@@ -7,8 +7,8 @@
 
         <form action="/gift/usergiftresult" method="GET">
             <div class="form-group">
-                <select name="category" class="form-control" required>
-                    <option value="">選擇禮物種類</option>
+                <select name="category" class="form-control" >
+                    <option value=""></option>
                     <option value="小型禮物">小型禮物</option>
                     <option value="中型禮物">中型禮物</option>
                     <option value="大型禮物">大型禮物</option>
@@ -43,7 +43,7 @@
                     <a href="/gift/usergiftdetail/<%=model.id%>" style="color:darkslategrey">
                         <p></p>
                         <div id="info">
-                            <img src=<%=model.photo %> id="photo" width="150" height="150">
+                            <img src=<%=model.avatar %> id="photo" width="150" height="150">
                             <ul class="list-group">
                                 <li class="list-group-item" id="info">
                                     <span id="briefinfo">名稱:</span>
