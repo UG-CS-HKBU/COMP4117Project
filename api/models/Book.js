@@ -134,6 +134,14 @@ module.exports = {
 
     reserveperson:{
       type:'string'
+    },
+
+    no:{
+      type:'string'
+    },
+
+    compversion:{
+      type:'string'
     }
 
     

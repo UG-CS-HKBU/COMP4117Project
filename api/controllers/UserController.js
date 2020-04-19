@@ -101,7 +101,7 @@ module.exports = {
 
         await User.addToCollection(req.session.userid, "bookborrow").members(requirebook.id);
 
-        await Book.update(requirebook.id).set({ status: "已被借取" }).fetch();
+        await Book.update(requirebook.id).set({ status: "已被"+thatUser.username+"借取" }).fetch();
 
         await Book.update(requirebook.id).set({ borrowperson: thatUser.username }).fetch();
 
@@ -241,6 +241,8 @@ module.exports = {
 
         // if (!await User.findOne(req.session.userid)) return res.notFound();
 
+        const thatUser = await User.findOne(req.session.userid);
+
         const requirebook = await Book.findOne({ bookname: req.body.qrcode });
 
         const thatBook = await Book.findOne(requirebook.id).populate("bookborrowBy", { id: req.session.userid });
@@ -257,6 +259,10 @@ module.exports = {
         await Book.update(requirebook.id).set({ expired: "30" }).fetch();
 
         await Book.update(requirebook.id).set({ borrowperson: "" }).fetch();
+
+        var returndate = new Date();
+
+        await Book.update(requirebook.id).set({ returninfo: thatUser.username + " " + new Date(returndate).toLocaleDateString() }).fetch();
 
         //return res.ok('Operation completed.');
         if (req.wantsJSON) {
