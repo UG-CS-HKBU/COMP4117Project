@@ -334,7 +334,7 @@ module.exports = {
  
          await User.addToCollection(req.session.userid, "gameborrow").members(requiregame.id);
  
-         await Game.update(requiregame.id).set({ status: "已被借取" }).fetch();
+         await Game.update(requiregame.id).set({ status: "已被"+thatUser.username+"借取" }).fetch();
  
          await Game.update(requiregame.id).set({ borrowperson: thatUser.username }).fetch();
  
@@ -402,6 +402,10 @@ module.exports = {
         await Game.update(requiregame.id).set({ expired: "30" }).fetch();
 
         await Game.update(requiregame.id).set({ borrowperson: "" }).fetch();
+
+        var returndate = new Date();
+
+        await Game.update(requiregame.id).set({ returninfo: thatUser.username + " " + new Date(returndate).toLocaleDateString() }).fetch();
 
         //return res.ok('Operation completed.');
         if (req.wantsJSON) {
