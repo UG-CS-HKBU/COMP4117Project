@@ -19,7 +19,9 @@ module.exports = {
         var gamemodel = await User.findOne(id).populate("gameborrow",{sort:'id DESC'});
         if (!gamemodel) return res.notFound();
         var gamemodel2 = await User.findOne(id).populate("gamehistory",{sort:'id DESC'});
-        if (!gamemodel2) return res.notFound();    
+        if (!gamemodel2) return res.notFound();
+        var gamemodel3 = await User.findOne(id).populate("gamereserve",{sort:'id DESC'});
+        if (!gamemodel) return res.notFound();    
         var materialmodel = await User.findOne(id).populate("materialborrow",{sort:'id DESC'});
         if (!materialmodel) return res.notFound();
         var materialmodel2 = await User.findOne(id).populate("materialhistory",{sort:'id DESC'});
@@ -36,6 +38,7 @@ module.exports = {
             material2:materialmodel2.materialhistory,
             gift:giftmodel.giftborrow,
             book3:bookmodel3.bookreserve,
+            game3:gamemodel3.gamereserve,
         });
     },
 

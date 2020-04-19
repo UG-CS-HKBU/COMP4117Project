@@ -89,6 +89,24 @@ module.exports = {
       type:'string'
     },
 
+    gamereserveBy:{
+      collection:'User',
+      via:"gamereserve"
+
+    },
+
+    borrowperson:{
+      type:'string'
+    },
+
+    reserveperson:{
+      type:'string'
+    },
+
+    reserveto:{
+      type:"string",
+    },
+
 
 
   },

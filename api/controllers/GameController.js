@@ -8,7 +8,7 @@
 module.exports = {
 
     usergamesearch: async function (req, res) {
-        var models = await Game.find({ where: { status: "avaliable" } }).sort([{ id: 'DESC' }]);
+        var models = await Game.find().sort([{ id: 'DESC' }]);
         return res.view('game/usergamesearch', { game: models});
     },
 
@@ -60,6 +60,16 @@ module.exports = {
         if (!model) return res.notFound();
 
         return res.view('game/usergamereturn', { game: model });
+
+    },
+
+    usergamereserve: async function (req, res) {
+
+        var model = await Game.findOne(req.params.id);
+
+        if (!model) return res.notFound();
+
+        return res.view('game/usergamereserve', { game: model });
 
     },
 

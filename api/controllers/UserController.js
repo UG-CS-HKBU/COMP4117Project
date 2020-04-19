@@ -237,9 +237,6 @@ module.exports = {
 
     },
 
-
-
-
     removeborrowbook: async function (req, res) {
 
         // if (!await User.findOne(req.session.userid)) return res.notFound();
@@ -255,7 +252,7 @@ module.exports = {
 
         await User.removeFromCollection(req.session.userid, "bookborrow").members(requirebook.id);
 
-        await Book.update(requirebook.id).set({ status: "avaliable" }).fetch();
+        await Book.update(requirebook.id).set({ status: "可借取" }).fetch();
 
         await Book.update(requirebook.id).set({ expired: "30" }).fetch();
 
@@ -306,52 +303,76 @@ module.exports = {
 
     addborrowgame: async function (req, res) {
 
-        // if (!await User.findOne(req.session.userid)) return res.notFound();
+         // if (!await User.findOne(req.session.userid)) return res.notFound();
 
-        const requiregame = await Game.findOne({ gamename: req.body.qrcode });
+         const thatUser = await User.findOne(req.session.userid);
 
-        const thatGame = await Game.findOne(requiregame.id).populate("gameborrowBy", { id: req.session.userid });
-
-        const historyGame = await Game.findOne(requiregame.id).populate("gamehistoryBy", { id: req.session.userid });
-
-        if (!thatGame) return res.notFound();
-
-        if (thatGame.gameborrowBy.length)
-            return res.status(409).send("已經借取");   // conflict
-
-        await User.addToCollection(req.session.userid, "gameborrow").members(requiregame.id);
-
-        await User.addToCollection(req.session.userid, "gamehistory").members(requiregame.id);
-
-        await Game.update(requiregame.id).set({ status: "borrowed" }).fetch();
-
-        var borrowdate = new Date();
-
-        await Game.update(requiregame.id).set({ borrowdate: borrowdate }).fetch();
-
-        var date = new Date();
-
-        date.setDate(date.getDate() + 31);
-
-        var expireddate = date.getTime();
-
-        var expireddate2 = date;
-
-        await Game.update(requiregame.id).set({ expired: expireddate }).fetch();
-
-        // await sails.helpers.sendSingleEmail({
-        //     to: 'leungjay0424@gmail.com',
-        //     from: sails.config.custom.mailgunFrom,
-        //     subject: '借用桌遊通知',
-        //     text: '你已借用桌遊('+thatGame.gamename+ ') 請於'+new Date(expireddate2).toLocaleDateString()+'前歸還',
-        // });
-
-        //return res.ok('Operation completed.');
-        if (req.wantsJSON) {
-            return res.json({ message: "已借取該物品", url: '/item/userindex' });    // for ajax request
-        } else {
-            return res.redirect('/item/userindex');           // for normal request
-        }
+         const requiregame = await Game.findOne({ gamename: req.body.qrcode });
+ 
+         const borrowGame = await Game.findOne(requiregame.id).populate("gameborrowBy", { id: req.session.userid });
+ 
+         const reserveGame = await Game.findOne(requiregame.id).populate("gamereserveBy", { id: req.session.userid });
+ 
+         if (!borrowGame) return res.notFound();
+ 
+         if (borrowGame.gameborrowBy.length)
+             return res.status(409).send("已經借取");   // conflict
+ 
+         if (requiregame.borrowperson != thatUser.username && requiregame.borrowperson != "") {
+             return res.status(409).send("已被他人借取");
+         }
+ 
+         if (requiregame.reserveperson != thatUser.username && requiregame.reserveperson != "") {
+             return res.status(409).send("已被他人預約");
+         }
+ 
+         await User.addToCollection(req.session.userid, "gameborrow").members(requiregame.id);
+ 
+         await Game.update(requiregame.id).set({ status: "已被借取" }).fetch();
+ 
+         await Game.update(requiregame.id).set({ borrowperson: thatUser.username }).fetch();
+ 
+         var borrowdate = new Date();
+ 
+         await Game.update(requiregame.id).set({ borrowdate: borrowdate }).fetch();
+ 
+         await Game.update(requiregame.id).set({ borrowinfo: thatUser.username + " " + new Date(borrowdate).toLocaleDateString() }).fetch();
+ 
+         await Game.update(requiregame.id).set({ returninfo: "" }).fetch();
+ 
+         var date = new Date();
+ 
+         date.setDate(date.getDate() + 31);
+ 
+         var expireddate = date.getTime();
+ 
+         var expireddate2 = date;
+ 
+         await Game.update(requiregame.id).set({ expired: expireddate }).fetch();
+ 
+         const historyGame = await Game.findOne(requiregame.id).populate("gamehistoryBy", { id: req.session.userid });
+ 
+         await User.addToCollection(req.session.userid, "gamehistory").members(requiregame.id);
+ 
+         if(requiregame.reserveperson==thatUser.username)
+         {
+             await User.removeFromCollection(req.session.userid, "gamereserve").members(requiregame.id);
+         }
+ 
+ 
+         // await sails.helpers.sendSingleEmail({
+         //     to: 'leungjay0424@gmail.com',
+         //     from: sails.config.custom.mailgunFrom,
+         //     subject: '借用桌遊通知',
+         //     text: '你已借用桌遊('+thatGame.gamename+ ') 請於'+new Date(expireddate2).toLocaleDateString()+'前歸還',
+         // });
+ 
+         //return res.ok('Operation completed.');
+         if (req.wantsJSON) {
+             return res.json({ message: "已借取該物品", url: '/item/userindex' });    // for ajax request
+         } else {
+             return res.redirect('/item/userindex');           // for normal request
+         }
 
     },
 
@@ -370,9 +391,11 @@ module.exports = {
 
         await User.removeFromCollection(req.session.userid, "gameborrow").members(requiregame.id);
 
-        await Game.update(requiregame.id).set({ status: "avaliable" }).fetch();
+        await Game.update(requiregame.id).set({ status: "可借取" }).fetch();
 
         await Game.update(requiregame.id).set({ expired: "30" }).fetch();
+
+        await Game.update(requiregame.id).set({ borrowperson: "" }).fetch();
 
         //return res.ok('Operation completed.');
         if (req.wantsJSON) {
@@ -380,7 +403,6 @@ module.exports = {
         } else {
             return res.redirect('/item/userindex');           // for normal request
         }
-
     },
 
 
@@ -615,6 +637,94 @@ module.exports = {
 
         if (req.wantsJSON) {
             return res.json({ message: "已借取該物品", url: '/item/userindex' });    // for ajax request
+        } else {
+            return res.redirect('/item/userindex');           // for normal request
+        }
+
+    },
+
+    addreservegame: async function (req, res) {
+
+        // if (!await User.findOne(req.session.userid)) return res.notFound();
+
+        const thatUser = await User.findOne(req.session.userid);
+
+        const requiregame = await Game.findOne(req.params.id);
+
+        const borrowGame = await Game.findOne(requiregame.id).populate("gameborrowBy", { id: req.session.userid });
+
+        const reserveGame = await Game.findOne(requiregame.id).populate("gamereserveBy", { id: req.session.userid });
+
+        if (!reserveGame) return res.notFound();
+
+        if (reserveGame.gamereserveBy.length)
+            return res.status(409).send("已經預約");   // conflict
+
+        if (borrowGame.gameborrowBy.length)
+            return res.status(409).send("已經借取");   // conflict
+
+        if (requiregame.borrowperson != thatUser.username && requiregame.borrowperson != "") {
+            return res.status(409).send("已被他人借取");
+        }
+
+        if (requiregame.reserveperson != thatUser.username && requiregame.reserveperson != "") {
+            return res.status(409).send("已被他人預約");
+        }
+
+        await User.addToCollection(req.session.userid, "gamereserve").members(requiregame.id);
+
+        await Game.update(requiregame.id).set({ status: "已被" + thatUser.username + "預約" }).fetch();
+
+        var date = new Date();
+
+        date.setDate(date.getDate() + 4);
+
+        var expireddate = date.getTime();
+
+        await Game.update(requiregame.id).set({ reserveto: expireddate }).fetch();
+
+        await Game.update(requiregame.id).set({ reserveperson: thatUser.username }).fetch();
+
+        // await sails.helpers.sendSingleEmail({
+        //     to: 'leungjay0424@gmail.com',
+        //     from: sails.config.custom.mailgunFrom,
+        //     subject: '預約桌遊通知',
+        //     text: '你已預約桌遊('+thatGame.gamename+') 請於3天內借取 如不需要 請取消預約',
+        // });
+
+        //return res.ok('Operation completed.');
+        if (req.wantsJSON) {
+            return res.json({ message: "已預約該物品", url: '/item/userindex' });    // for ajax request
+        } else {
+            return res.redirect('/item/userindex');           // for normal request
+        }
+
+    },
+
+    removereservegame: async function (req, res) {
+
+        // if (!await User.findOne(req.session.userid)) return res.notFound();
+
+        const requiregame = await Game.findOne(req.params.id);
+
+        const thatGame = await Game.findOne(requiregame.id).populate("gamereserveBy", { id: req.session.userid });
+
+        if (!thatGame) return res.notFound();
+
+        if (!thatGame.gamereserveBy.length)
+            return res.status(409).send("該物品沒有被預定");   // conflict
+
+        await User.removeFromCollection(req.session.userid, "gamereserve").members(requiregame.id);
+
+        await Game.update(requiregame.id).set({ status: "可借取" }).fetch();
+
+        await Game.update(requiregame.id).set({ reserveto: "" }).fetch();
+
+        await Game.update(requiregame.id).set({ reserveperson: "" }).fetch();
+
+        //return res.ok('Operation completed.');
+        if (req.wantsJSON) {
+            return res.json({ message: "已取消預定該物品", url: '/item/userindex' });    // for ajax request
         } else {
             return res.redirect('/item/userindex');           // for normal request
         }

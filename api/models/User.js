@@ -86,6 +86,11 @@ module.exports = {
     bookreserve:{
       collection:"Book",
       via:"bookreserveBy"
+    },
+
+    gamereserve:{
+      collection:"Game",
+      via:"gamereserveBy"
     }
 
     

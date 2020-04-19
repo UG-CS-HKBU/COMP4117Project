@@ -4,56 +4,40 @@
     <div class="container">
         <div class="row">
             <div class="card col-xl-6">
-                <img class="responsive" src=<%=book.photo %>>
+                <img class="responsive" src=<%=game.photo %> >
             </div>
             <div class="card col-xl-6">
                 <table class="table">
                     <tr>
                         <th id="detail" scope="row">位置:
-                            <%= book.location%>
+                            <%= game.location%>
                         </th>
                     </tr>
                     <tr>
-                        <th id="detail" scope="row">書名:
-                            <%= book.bookname %>
+                        <th id="detail" scope="row">名稱:
+                            <%= game.gamename %>
                         </th>
                     </tr>
                     <tr>
                         <th id="detail" scope="row">類型:
-                            <%=book.category %>
+                            <%=game.category %>
                         </th>
                     </tr>
                     <tr>
-                        <th id="detail" scope="row">作者:
-                            <%= book.author %>
+                        <th id="detail" scope="row">桌遊編號:
+                            <%= game.serialno%>
                         </th>
                     </tr>
                     <tr>
                         <th id="detail" scope="row">出版社:
-                            <%=book.publisher %>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th id="detail" scope="row">出版年份:
-                            <%=book.year %>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th id="detail" scope="row">ISBN:
-                            <%=book.ISBN %>
+                            <%=game.publisher %>
                         </th>
                     </tr>
                     <tr>
                         <th id="detail" scope="row">備註:
-                            <%=book.remarks %>
+                            <%=game.remark %>
                         </th>
                     </tr>
-                    <tr>
-                        <th id="detail" scope="row">狀態:
-                            <%=book.status %>
-                        </th>
-                    </tr>
-
                 </table>
 
             </div>
@@ -66,16 +50,15 @@
         <div class="row">
             <div class=" col-6 col-sm-6">
                 
-                    <!-- <button type="submit" class="borrowbutton" onclick="borrow('<%=req.session.userid%>','<%=book.id%>')">借取</button> -->
-                    <form action="/book/borrow" method="GET">
+                    <!-- <button type="submit" class="borrowbutton" onclick="borrow('<%=req.session.userid%>','<%=game.id%>')">借取</button> -->
+                    <form action="/game/borrow" method="GET">
                         <button type="submit" class="borrowbutton">借取</button>
                     </form>
                 
             </div>
 
             <div class=" col-6 col-sm-6">
-                
-                <form action="/user/removereservebook/<%=book.id%>" method="POST">
+                <form action="/user/removereservegame/<%=game.id%>" method="POST">
                     <button type="submit" class="bookbutton">
                         取消預定
                     </button>
@@ -119,13 +102,13 @@
 
 <script>
 
-    async function removereserve(bookid) {
+    async function removereserve(gameid) {
 
         var r = confirm("確認取消預定?");
 
         if (r) {
 
-            var response = await fetch("/user/removereservebook/"+ bookid, {
+            var response = await fetch("/user/removereservegame/"+ gameid, {
                 method: "POST",
                 credentials: 'same-origin',
             });

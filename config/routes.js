@@ -41,6 +41,8 @@ module.exports.routes = {
   'POST /user/returnmaterial/:id': 'UserController.removeborrowmaterial',
   'POST /user/addreservebook/:id': 'UserController.addreservebook',
   'POST /user/removereservebook/:id': 'UserController.removereservebook',
+  'POST /user/addreservegame/:id': 'UserController.addreservegame',
+  'POST /user/removereservegame/:id': 'UserController.removereservegame',
 
   //Usermainpage
   '    /item/userindex': 'ItemController.userindex',
@@ -102,6 +104,7 @@ module.exports.routes = {
   '   /game/usergamedetail/:id': 'GameController.usergamedetail',
   '   /game/usergamedetail2/:id': 'GameController.usergamedetail2',
   '   /game/usergamereturn/:id': 'GameController.usergamereturn',
+  '   /game/usergamereserve/:id': 'GameController.usergamereserve',
   'GET   /game/useraddremark/:id': 'GameController.useraddremark',
   'POST  /game/useraddremark/:id': 'GameController.useraddremark',
 
