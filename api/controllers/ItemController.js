@@ -193,6 +193,7 @@ module.exports = {
                 department: req.body.department,
                 position: req.body.position,
                 email: req.body.email,
+                role:req.body.role
             });
 
         return res.view('item/adminaddaccount')
