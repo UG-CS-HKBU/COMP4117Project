@@ -78,7 +78,7 @@ module.exports = {
 
     status:{
       type:"string",
-      defaultsTo:"avaliable"
+      defaultsTo:"可借取"
     },
 
     remarks:{

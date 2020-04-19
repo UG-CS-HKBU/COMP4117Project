@@ -7,8 +7,8 @@
 
         <form action="/game/usergameresult" method="GET">
             <div class="form-group">
-                <select name="category" class="form-control" required>
-                    <option value="">選擇桌遊種類</option>
+                <select name="category" class="form-control">
+                    <option value=""></option>
                     <option value="棋類遊戲">棋類遊戲</option>
                     <option value="卡牌遊戲">卡牌遊戲</option>
                     <option value="骰子遊戲">骰子遊戲</option>
@@ -41,7 +41,7 @@
 
                         <p></p>
                         <div id="info">
-                            <img src=<%=model.photo %> id="photo" width="150" height="150">
+                            <img src=<%=model.avatar %> id="photo" width="150" height="150">
                             <ul class="list-group">
                                 <li class="list-group-item" id="info">
                                     <span id="briefinfo">名稱:</span>
