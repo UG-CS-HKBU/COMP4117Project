@@ -16,17 +16,17 @@ module.exports = {
         const qCatrgory = req.query.category || "";
         const qBookname = req.query.bookname;
         const qAuthor = req.query.author;
-        const qPublisher = req.query.publisher;
-        const qISBN = req.query.ISBN;
+        const qNo = req.query.no;
+        // const qPublisher = req.query.publisher;
+        // const qISBN = req.query.ISBN;
 
         var models = await Book.find({
             where: {
-
+                category: { contains: qCatrgory },
+                no: { contains: qNo },
                 category: { contains: qCatrgory },
                 bookname: { contains: qBookname },
                 author: { contains: qAuthor },
-                publisher: { contains: qPublisher },
-                ISBN: { contains: qISBN },
             }
 
         }).sort([{ id: 'DESC' }]);
@@ -86,17 +86,17 @@ module.exports = {
         const qCatrgory = req.query.category || "";
         const qBookname = req.query.bookname;
         const qAuthor = req.query.author;
-        const qPublisher = req.query.publisher;
-        const qISBN = req.query.ISBN;
+        const qNo = req.query.no;
+        // const qPublisher = req.query.publisher;
+        // const qISBN = req.query.ISBN;
 
         var models = await Book.find({
             where: {
-
+                category: { contains: qCatrgory },
+                no: { contains: qNo },
                 category: { contains: qCatrgory },
                 bookname: { contains: qBookname },
                 author: { contains: qAuthor },
-                publisher: { contains: qPublisher },
-                ISBN: { contains: qISBN },
             }
 
         }).sort([{ id: 'DESC' }]);
@@ -124,17 +124,17 @@ module.exports = {
         const qCatrgory = req.query.category || "";
         const qBookname = req.query.bookname;
         const qAuthor = req.query.author;
-        const qPublisher = req.query.publisher;
-        const qISBN = req.query.ISBN;
+        const qNo = req.query.no;
+        // const qPublisher = req.query.publisher;
+        // const qISBN = req.query.ISBN;
 
         var models = await Book.find({
             where: {
-
+                category: { contains: qCatrgory },
+                no: { contains: qNo },
                 category: { contains: qCatrgory },
                 bookname: { contains: qBookname },
                 author: { contains: qAuthor },
-                publisher: { contains: qPublisher },
-                ISBN: { contains: qISBN },
             }
 
         }).sort([{ id: 'DESC' }]);
@@ -180,10 +180,7 @@ module.exports = {
                 author: req.body.Book.author,
                 category: req.body.Book.category,
                 location: req.body.Book.location,
-                photo: req.body.Book.photo,
                 year: req.body.Book.year,
-                publisher: req.body.Book.publisher,
-                ISBN: req.body.Book.ISBN,
             }).fetch();
             if (models.length == 0) return res.notFound();
 
@@ -251,7 +248,7 @@ module.exports = {
 
             await Item.create(
                 {
-                    message:"書籍("+model.bookname+")新增備註: "+userremarks,
+                    message: "書籍(" + model.bookname + ")新增備註: " + userremarks,
                 });
 
 
@@ -264,16 +261,16 @@ module.exports = {
         }
     },
 
-    uploadphoto: async function(req, res) {
-        var model=await Book.findOne(req.params.id);
+    uploadphoto: async function (req, res) {
+        var model = await Book.findOne(req.params.id);
 
         if (req.method == 'GET')
-            return res.view('book/uploadphoto',{book:model});
-    
-        await Book.update({id: model.id}, {
+            return res.view('book/uploadphoto', { book: model });
+
+        await Book.update({ id: model.id }, {
             avatar: req.body.Book.avatar
         });
-        
+
         return res.redirect('/book/adminbookedit');
     },
 

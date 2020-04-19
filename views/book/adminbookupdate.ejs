@@ -5,13 +5,18 @@
             <div class="form-group row">
                 <div class="col-xl-6 col-form-label">
                     <label>書本種類:</label>
-                    <!-- <select name="Book[category]" class="form-control">
-                        <option value="小說">小說</option>
-                        <option value="自傳">自傳</option>
-                        <option value="心理勵志">心理勵志</option>
-                        <option value="圖書">圖書</option>
-                    </select> -->
-                    <input type="text" class="form-control" name="Book[category]" value="<%= book.category %>" required>
+                    <select name="Book[category]" class="form-control">
+                        <option value="成長系列">成長系列</option>
+                        <option value="哀傷">哀傷</option>
+                        <option value="家庭關係">家庭關係</option>
+                        <option value="情緒教育">情緒教育</option>
+                    </select>
+                    <!--<input type="text" class="form-control" name="Book[category]" value="<%= book.category %>" required>-->
+                </div>
+
+                <div class="col-xl-6 col-form-label">
+                    <label>編號:</label>
+                    <input type="text" class="form-control" name="Book[no]" value="<%= book.no %>" required>
                 </div>
 
                 <div class="col-xl-6 col-form-label">
@@ -20,14 +25,8 @@
                 </div>
 
                 <div class="col-xl-6 col-form-label">
-                    <label>作者:</label>
+                    <label>作者/機構:</label>
                     <input type="text" class="form-control" name="Book[author]" value="<%= book.author %>" required>
-                </div>
-
-                <div class="col-xl-6 col-form-label">
-                    <label>出版社:</label>
-                    <input type="text" class="form-control" name="Book[publisher]" value="<%= book.publisher %>"
-                        required>
                 </div>
 
                 <div class="col-xl-6 col-form-label">
@@ -36,28 +35,14 @@
                 </div>
 
                 <div class="col-xl-6 col-form-label">
-                    <label>ISBN:</label>
-                    <input type="number" class="form-control" name="Book[ISBN]" value="<%= book.ISBN %>" required>
-                </div>
-
-                <div class="col-xl-6 col-form-label">
                     <label>位置:</label>
                     <input type="text" class="form-control" name="Book[location]]" value="<%= book.location %>"
-                        required>
-                </div>
-
-                <div class="col-xl-6 col-form-label">
-                    <label>相片:</label>
-                    <input type="url" class="form-control" name="Book[photo]" value="<%= book.photo %>" required>
+                        >
                 </div>
 
                 <button type="submit" class="btn btn-primary center">修改</button>
             </div>
 
-        </form>
-
-        <form action="/book/upload1/<%=book.id%>" method="GET">
-            <button type="submit" class="btn btn-primary center">上傳相片</button>
         </form>
 
 

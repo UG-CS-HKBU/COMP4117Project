@@ -35,33 +35,33 @@ module.exports.bootstrap = async function () {
 
   await Book.createEach([
     {
-      bookname: "這世界很煩，但你要很可愛 (2)", ISBN: "9789578683761", location: "A架15行", category: "心理勵志",
-      author: "萬特特", year: "2020", publisher: "幸福文化",
-      photo: "https://www.books.com.tw/img/001/084/50/0010845024.jpg"
+      bookname: "這世界很煩，但你要很可愛 (2)",  location: "A架15行", category: "成長系列",
+      author: "萬特特/幸福文化", year: "2020", no:"001",
+      avatar: "https://www.books.com.tw/img/001/084/50/0010845024.jpg"
     },
 
     {
-      bookname: "這世界很煩，但你要很可愛 (1)", ISBN: "9789578683761", location: "A架15行", category: "心理勵志",
-      author: "萬特特", year: "2020", publisher: "幸福文化",
-      photo: "https://www.books.com.tw/img/001/084/50/0010845024.jpg"
+      bookname: "這世界很煩，但你要很可愛 (1)",  location: "A架15行", category: "成長系列",
+      author: "萬特特/幸福文化", year: "2020", no:"002",
+      avatar: "https://www.books.com.tw/img/001/084/50/0010845024.jpg"
     },
 
     {
-      bookname: "想見你 (2)", ISBN: "9789869811750", location: "B架11行", category: "小說",
-      author: "三鳳製作", year: "2020", publisher: "水靈文創",
-      photo: "https://im1.book.com.tw/image/getImage?i=https://www.books.com.tw/img/001/084/01/0010840192.jpg&v=5dc55fd1&w=250&h=250"
+      bookname: "想見你 (2)",  location: "B架11行", category: "成長系列",
+      author: "三鳳製作/水靈文創", year: "2020", no:"003",
+      avatar: "https://im1.book.com.tw/image/getImage?i=https://www.books.com.tw/img/001/084/01/0010840192.jpg&v=5dc55fd1&w=250&h=250"
     },
 
     {
-      bookname: "想見你 (1)", ISBN: "9789869811750", location: "B架11行", category: "小說",
-      author: "三鳳製作", year: "2020", publisher: "水靈文創",
-      photo: "https://im1.book.com.tw/image/getImage?i=https://www.books.com.tw/img/001/084/01/0010840192.jpg&v=5dc55fd1&w=250&h=250"
+      bookname: "想見你 (1)",  location: "B架11行", category: "成長系列",
+      author: "三鳳製作/水靈文創", year: "2020", no:"004",
+      avatar: "https://im1.book.com.tw/image/getImage?i=https://www.books.com.tw/img/001/084/01/0010840192.jpg&v=5dc55fd1&w=250&h=250"
     },
 
     {
-      bookname: "曼巴精神", ISBN: "9789573284192", location: "B架24行", category: "自傳",
-      author: "Kobe Bryant", year: "2019", publisher: "遠流",
-      photo: "https://im1.book.com.tw/image/getImage?i=https://www.books.com.tw/img/001/081/41/0010814172.jpg&v=5c63ffbb&w=250&h=250"
+      bookname: "曼巴精神",  location: "B架24行", category: "成長系列",
+      author: "Kobe Bryant/遠流", year: "2019", no:"005",
+      avatar: "https://im1.book.com.tw/image/getImage?i=https://www.books.com.tw/img/001/081/41/0010814172.jpg&v=5c63ffbb&w=250&h=250"
     },
 
   ]);

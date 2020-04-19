@@ -4,28 +4,26 @@
         <div class="row">
             <% book.forEach(function(model) { %>
                 <div class="card col-xl-6 col-sm-12">
-                    <!-- <div id="title">
-                    <a href="/book/vistorbookdetail/<%=model.id%>">詳細資料頁面 </a>
-                </div> -->
                     <a href="/book/vistorbookdetail/<%=model.id%>" style="color:darkslategrey">
                         <p></p>
                         <div id="info">
-                            <img src=<%=model.photo %> id="photo" width="150" height="150">
+                            <img src=<%=model.avatar %> id="photo" width="150" height="150">
                             <ul class="list-group">
+                                <li class="list-group-item" id="info">
+                                    <span id="briefinfo">編號:</span>
+                                    <%= model.no %>
+                                </li>
+                                
                                 <li class="list-group-item" id="info">
                                     <span id="briefinfo">書名:</span>
                                     <%= model.bookname %>
                                 </li>
 
                                 <li class="list-group-item" id="info">
-                                    <span id="briefinfo">作者:</span>
+                                    <span id="briefinfo">作者/機構:</span>
                                     <%= model.author %>
                                 </li>
 
-                                <li class="list-group-item" id="info">
-                                    <span id="briefinfo">出版社:</span>
-                                    <%= model.publisher %>
-                                </li>
 
                             </ul>
                         </div>
