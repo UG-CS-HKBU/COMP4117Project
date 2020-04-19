@@ -83,6 +83,11 @@ module.exports = {
       via:"giftborrowBy"
     },
 
+    bookreserve:{
+      collection:"Book",
+      via:"bookreserveBy"
+    }
+
     
 
   },

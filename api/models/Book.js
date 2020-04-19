@@ -77,6 +77,12 @@ module.exports = {
       via:"bookhistory"
     },
 
+    bookreserveBy:{
+      collection:'User',
+      via:"bookreserve"
+
+    },
+
     borrowdate:{
       type:"string",
     },
@@ -86,9 +92,13 @@ module.exports = {
       defaultsTo:"30"
     },
 
+    reserveto:{
+      type:"string",
+    },
+
     status:{
       type:"string",
-      defaultsTo:"avaliable"
+      defaultsTo:"可借取"
     },
 
     avatarPath: {
@@ -116,8 +126,22 @@ module.exports = {
     returninfo:{
       type:'string',
       defaultsTo:"",
+    },
 
+    borrowperson:{
+      type:'string'
+    },
+
+    reserveperson:{
+      type:'string'
     }
+
+    
+
+
+    
+
+
 
 
 

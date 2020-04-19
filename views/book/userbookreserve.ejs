@@ -74,11 +74,10 @@
             </div>
 
             <div class=" col-6 col-sm-6">
-                <form action="/user/addreservebook/<%=book.id%>" method="POST">
-                    <button type="submit" class="bookbutton">
-                        預定
+                
+                    <button type="submit" class="bookbutton" onclick="removereserve('<%=book.id%>')">
+                        取消預定
                     </button>
-                <form>
                
             </div>
         </div>
@@ -118,13 +117,13 @@
 
 <script>
 
-    async function reserve(bookid) {
+    async function removereserve(bookid) {
 
-        var r = confirm("確認預定?");
+        var r = confirm("確認取消預定?");
 
         if (r) {
 
-            var response = await fetch("/user/addreservebook/"+ bookid, {
+            var response = await fetch("/user/removereservebook/"+ bookid, {
                 method: "POST",
                 credentials: 'same-origin',
             });
@@ -134,7 +133,7 @@
                 alert(data.message);
                 window.location = data.url;
             } else {
-                alert("已經預定");
+                alert("已經取消預定");
             }
 
         } else {

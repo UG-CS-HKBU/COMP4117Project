@@ -74,60 +74,44 @@ module.exports = {
         });
     },
 
-    bookborrow: async function (req, res) {
-        if (!await User.findOne(req.params.id)) return res.notFound();
-
-        const thatBook = await Book.findOne(req.params.fk).populate("bookborrowBy", { id: req.params.id });
-
-        if (!thatBook) return res.notFound();
-
-        if (thatBook.bookborrowBy.length)
-            return res.status(409).send("Already added.");   // conflict
-
-        await User.addToCollection(req.params.id, "bookborrow").members(req.params.fk);
-
-        return res.ok('Operation completed.');
-    },
-
-    borrowlist: async function (req, res) {
-        var model = await User.findOne(req.params.id).populate("corent");
-
-        if (!model) return res.notFound();
-
-        return res.view('apartment/clientrental', { apartment: model.corent });
-
-    },
-
     addborrowbook: async function (req, res) {
 
         // if (!await User.findOne(req.session.userid)) return res.notFound();
 
-        const thatUser =await User.findOne(req.session.userid);
+        const thatUser = await User.findOne(req.session.userid);
 
         const requirebook = await Book.findOne({ bookname: req.body.qrcode });
 
-        const thatBook = await Book.findOne(requirebook.id).populate("bookborrowBy", { id: req.session.userid });
+        const borrowBook = await Book.findOne(requirebook.id).populate("bookborrowBy", { id: req.session.userid });
 
-        const historyBook = await Book.findOne(requirebook.id).populate("bookhistoryBy", { id: req.session.userid });
+        const reserveBook = await Book.findOne(requirebook.id).populate("bookreserveBy", { id: req.session.userid });
 
-        if (!thatBook) return res.notFound();
+        if (!borrowBook) return res.notFound();
 
-        if (thatBook.bookborrowBy.length)
+        if (borrowBook.bookborrowBy.length)
             return res.status(409).send("已經借取");   // conflict
+
+        if (requirebook.borrowperson != thatUser.username && requirebook.borrowperson != "") {
+            return res.status(409).send("已被他人借取");
+        }
+
+        if (requirebook.reserveperson != thatUser.username && requirebook.reserveperson != "") {
+            return res.status(409).send("已被他人預約");
+        }
 
         await User.addToCollection(req.session.userid, "bookborrow").members(requirebook.id);
 
-        await User.addToCollection(req.session.userid, "bookhistory").members(requirebook.id);
+        await Book.update(requirebook.id).set({ status: "已被借取" }).fetch();
 
-        await Book.update(requirebook.id).set({ status: "borrowed" }).fetch();
+        await Book.update(requirebook.id).set({ borrowperson: thatUser.username }).fetch();
 
         var borrowdate = new Date();
 
         await Book.update(requirebook.id).set({ borrowdate: borrowdate }).fetch();
 
-        await Book.update(requirebook.id).set({ borrowinfo:thatUser.username+" "+new Date(borrowdate).toLocaleDateString() }).fetch();
+        await Book.update(requirebook.id).set({ borrowinfo: thatUser.username + " " + new Date(borrowdate).toLocaleDateString() }).fetch();
 
-        await Book.update(requirebook.id).set({ returninfo:""}).fetch();
+        await Book.update(requirebook.id).set({ returninfo: "" }).fetch();
 
         var date = new Date();
 
@@ -138,6 +122,16 @@ module.exports = {
         var expireddate2 = date;
 
         await Book.update(requirebook.id).set({ expired: expireddate }).fetch();
+
+        const historyBook = await Book.findOne(requirebook.id).populate("bookhistoryBy", { id: req.session.userid });
+
+        await User.addToCollection(req.session.userid, "bookhistory").members(requirebook.id);
+
+        if(requirebook.reserveperson==thatUser.username)
+        {
+            await User.removeFromCollection(req.session.userid, "bookreserve").members(requirebook.id);
+        }
+
 
         // await sails.helpers.sendSingleEmail({
         //     to: 'leungjay0424@gmail.com',
@@ -154,6 +148,97 @@ module.exports = {
         }
 
     },
+
+    addreservebook: async function (req, res) {
+
+        // if (!await User.findOne(req.session.userid)) return res.notFound();
+
+        const thatUser = await User.findOne(req.session.userid);
+
+        const requirebook = await Book.findOne(req.params.id);
+
+        const borrowBook = await Book.findOne(requirebook.id).populate("bookborrowBy", { id: req.session.userid });
+
+        const reserveBook = await Book.findOne(requirebook.id).populate("bookreserveBy", { id: req.session.userid });
+
+        if (!reserveBook) return res.notFound();
+
+        if (reserveBook.bookreserveBy.length)
+            return res.status(409).send("已經預約");   // conflict
+
+        if (borrowBook.bookborrowBy.length)
+            return res.status(409).send("已經借取");   // conflict
+
+        if (requirebook.borrowperson != thatUser.username && requirebook.borrowperson != "") {
+            return res.status(409).send("已被他人借取");
+        }
+
+        if (requirebook.reserveperson != thatUser.username && requirebook.reserveperson != "") {
+            return res.status(409).send("已被他人預約");
+        }
+
+        await User.addToCollection(req.session.userid, "bookreserve").members(requirebook.id);
+
+        await Book.update(requirebook.id).set({ status: "已被" + thatUser.username + "預約" }).fetch();
+
+        var date = new Date();
+
+        date.setDate(date.getDate() + 4);
+
+        var expireddate = date.getTime();
+
+        await Book.update(requirebook.id).set({ reserveto: expireddate }).fetch();
+
+        await Book.update(requirebook.id).set({ reserveperson: thatUser.username }).fetch();
+
+        // await sails.helpers.sendSingleEmail({
+        //     to: 'leungjay0424@gmail.com',
+        //     from: sails.config.custom.mailgunFrom,
+        //     subject: '預約書本通知',
+        //     text: '你已預約書本('+thatBook.bookname+') 請於3天內借取 如不需要 請取消預約',
+        // });
+
+        //return res.ok('Operation completed.');
+        if (req.wantsJSON) {
+            return res.json({ message: "已預約該物品", url: '/item/userindex' });    // for ajax request
+        } else {
+            return res.redirect('/item/userindex');           // for normal request
+        }
+
+    },
+
+    removereservebook: async function (req, res) {
+
+        // if (!await User.findOne(req.session.userid)) return res.notFound();
+
+        const requirebook = await Book.findOne(req.params.id);
+
+        const thatBook = await Book.findOne(requirebook.id).populate("bookreserveBy", { id: req.session.userid });
+
+        if (!thatBook) return res.notFound();
+
+        if (!thatBook.bookreserveBy.length)
+            return res.status(409).send("該物品沒有被預定");   // conflict
+
+        await User.removeFromCollection(req.session.userid, "bookreserve").members(requirebook.id);
+
+        await Book.update(requirebook.id).set({ status: "可借取" }).fetch();
+
+        await Book.update(requirebook.id).set({ reserveto: "" }).fetch();
+
+        await Book.update(requirebook.id).set({ reserveperson: "" }).fetch();
+
+        //return res.ok('Operation completed.');
+        if (req.wantsJSON) {
+            return res.json({ message: "已取消預定該物品", url: '/item/userindex' });    // for ajax request
+        } else {
+            return res.redirect('/item/userindex');           // for normal request
+        }
+
+    },
+
+
+
 
     removeborrowbook: async function (req, res) {
 
@@ -174,7 +259,7 @@ module.exports = {
 
         await Book.update(requirebook.id).set({ expired: "30" }).fetch();
 
-
+        await Book.update(requirebook.id).set({ borrowperson: "" }).fetch();
 
         //return res.ok('Operation completed.');
         if (req.wantsJSON) {
@@ -535,6 +620,8 @@ module.exports = {
         }
 
     },
+
+
 
 
 

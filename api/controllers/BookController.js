@@ -8,7 +8,7 @@
 module.exports = {
 
     userbooksearch: async function (req, res) {
-        var models = await Book.find({ where: { status: "avaliable" } }).sort([{ id: 'DESC' }]);
+        var models = await Book.find().sort([{ id: 'DESC' }]);
         return res.view('book/userbooksearch', { book: models });
     },
 
@@ -62,6 +62,16 @@ module.exports = {
         if (!model) return res.notFound();
 
         return res.view('book/userbookreturn', { book: model });
+
+    },
+
+    userbookreserve: async function (req, res) {
+
+        var model = await Book.findOne(req.params.id);
+
+        if (!model) return res.notFound();
+
+        return res.view('book/userbookreserve', { book: model });
 
     },
 
@@ -252,25 +262,6 @@ module.exports = {
 
             return res.view('book/userbookreturn', { book: model })
         }
-    },
-
-    upload1: async function(req, res) {
-
-        var model=await Book.findOne(req.params.id);
-
-        if (req.method == 'GET')
-            return res.view('book/upload1',{book:model});
-    
-        req.file('avatarfile').upload({maxBytes: 10000000}, async function whenDone(err, uploadedFiles) {
-            if (err) { return res.serverError(err); }
-            if (uploadedFiles.length === 0){ return res.badRequest('No file was uploaded'); }
-    
-            await Book.update({id: model.id}, {
-                avatarPath: uploadedFiles[0].fd
-            });
-    
-            return res.ok('File uploaded.');
-        });
     },
 
     uploadphoto: async function(req, res) {

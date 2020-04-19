@@ -39,6 +39,8 @@ module.exports.routes = {
   'POST /user/borrowgift/:id': 'UserController.addborrowgift',
   'POST /user/borrowmaterial/:id': 'UserController.addborrowmaterial',
   'POST /user/returnmaterial/:id': 'UserController.removeborrowmaterial',
+  'POST /user/addreservebook/:id': 'UserController.addreservebook',
+  'POST /user/removereservebook/:id': 'UserController.removereservebook',
 
   //Usermainpage
   '    /item/userindex': 'ItemController.userindex',
@@ -90,6 +92,7 @@ module.exports.routes = {
   '   /book/userbookdetail/:id': 'BookController.userbookdetail',
   '   /book/userbookdetail2/:id': 'BookController.userbookdetail2',
   '   /book/userbookreturn/:id': 'BookController.userbookreturn',
+  '   /book/userbookreserve/:id': 'BookController.userbookreserve',
   'GET   /book/useraddremark/:id': 'BookController.useraddremark',
   'POST  /book/useraddremark/:id': 'BookController.useraddremark',
 

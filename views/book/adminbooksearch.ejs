@@ -40,6 +40,7 @@
                     <!-- <div id="title">
                     <a href="/book/adminbookdetail/<%=model.id%>">詳細資料頁面 </a>
                 </div> -->
+                <%=if(model.status=="可借用"){%>
                     <a href="/book/adminbookdetail/<%=model.id%>" style="color:darkslategrey">
 
                         <p></p>
@@ -65,7 +66,7 @@
                         </div>
                     </a>
                     <p></p>
-
+                <%}%>
                 </div>
                 <% }); %>
 
@@ -101,3 +102,7 @@
 
     </div>
 </body>
+
+<script>
+    
+</script>

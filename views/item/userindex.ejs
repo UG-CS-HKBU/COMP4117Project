@@ -86,6 +86,42 @@
             </a>
             <% }); %>
         </div>
+        <h2 style="color:wheat; background-color: darkred;"> &nbsp;&nbsp;已預約物品</h2>
+        <div class="container">
+            <div>
+                <div class="row squareyellow" style="background-color:lightgoldenrodyellow">
+                    <div class="col center">
+                        種類
+                    </div>
+                    <div class="col center">
+                        名稱
+                    </div>
+                    <div class="col center">
+                        逾期天數
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <% book3.forEach(function(model) { %>
+            <a href="/book/userbookreserve/<%=model.id%>">
+                <div>
+                    <div class="row square" style="background-color:rgb(255, 255, 255)">
+                        <div class="col center">
+                            <%= model.itemtype %>
+                        </div>
+                        <div class="col center">
+                            <%= model.bookname %>
+                        </div>
+                        <div class="col center">
+                            <% var day=((model.reserveto-new Date().getTime())/(1000 * 3600 * 24))%>
+                            <%=parseInt(day)%>天
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <% }); %>
+        </div>
         
         
         <h2 style="color:wheat; background-color: darkred;"> &nbsp;&nbsp;借用歷史</h2>
