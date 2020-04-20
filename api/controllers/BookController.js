@@ -31,6 +31,11 @@ module.exports = {
 
         }).sort([{ id: 'DESC' }]);
 
+        if(models.length==0)
+        {
+            return res.redirect('/item/useritemnotfound');
+        }
+
         return res.view('book/userbookresult', { book: models });
 
     },
@@ -101,9 +106,16 @@ module.exports = {
 
         }).sort([{ id: 'DESC' }]);
 
+        if(models.length==0)
+        {
+            return res.redirect('/item/visitoritemnotfound');
+        }
+
         return res.view('book/vistorbookresult', { book: models });
 
     },
+
+    
 
     vistorbookdetail: async function (req, res) {
 
@@ -139,6 +151,11 @@ module.exports = {
             }
 
         }).sort([{ id: 'DESC' }]);
+
+        if(models.length==0)
+        {
+            return res.redirect('/item/adminitemnotfound');
+        }
 
         return res.view('book/adminbookresult', { book: models });
 

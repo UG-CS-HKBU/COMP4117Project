@@ -38,6 +38,11 @@ module.exports = {
             }).sort([{ id: 'DESC' }]);
         }
 
+        if(models.length==0)
+        {
+            return res.redirect('/item/useritemnotfound');
+        }
+
 
         return res.view('material/usermaterialresult', { material: models });
 
@@ -102,6 +107,11 @@ module.exports = {
                 }
 
             }).sort([{ id: 'DESC' }]);
+        }
+
+        if(models.length==0)
+        {
+            return res.redirect('/item/adminitemnotfound');
         }
 
 

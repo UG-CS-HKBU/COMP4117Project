@@ -209,6 +209,10 @@ module.exports.routes = {
   'GET /material/uploadphoto/:id': 'MaterialController.uploadphoto',
   'POST /material/uploadphoto/:id': 'MaterialController.uploadphoto',
 
+  '/item/visitoritemnotfound': 'ItemController.visitoritemnotfound',
+  '/item/useritemnotfound': 'ItemController.useritemnotfound',
+  '/item/adminitemnotfound': 'ItemController.adminitemnotfound',
+
   
 
 

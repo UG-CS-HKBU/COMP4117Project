@@ -9,27 +9,32 @@ module.exports = {
 
     usergamesearch: async function (req, res) {
         var models = await Game.find().sort([{ id: 'DESC' }]);
-        return res.view('game/usergamesearch', { game: models});
+        return res.view('game/usergamesearch', { game: models });
     },
 
-    usergameresult: async function(req, res){
-        const qCatrgory=req.query.category || "";
+    usergameresult: async function (req, res) {
+        const qCatrgory = req.query.category || "";
         const qGamename = req.query.gamename;
         const qPublisher = req.query.publisher;
         const qSerialno = req.query.serialno;
 
         var models = await Game.find({
-            where:{
-            
-            category:{contains:qCatrgory},
-            gamename:{contains:qGamename},
-            publisher:{contains:qPublisher},
-            serialno:{contains:qSerialno},
-            }
-            
-        }).sort([{id:'DESC'}]);
+            where: {
 
-        return res.view('game/usergameresult', {game:models});
+                category: { contains: qCatrgory },
+                gamename: { contains: qGamename },
+                publisher: { contains: qPublisher },
+                serialno: { contains: qSerialno },
+            }
+
+        }).sort([{ id: 'DESC' }]);
+
+        if(models.length==0)
+        {
+            return res.redirect('/item/useritemnotfound');
+        }
+
+        return res.view('game/usergameresult', { game: models });
 
     },
 
@@ -74,28 +79,35 @@ module.exports = {
     },
 
     admingamesearch: async function (req, res) {
-        var models = await Game.find().sort([{id:'DESC'}]);
-        return res.view('game/admingamesearch', { game: models});
+        var models = await Game.find().sort([{ id: 'DESC' }]);
+        return res.view('game/admingamesearch', { game: models });
     },
 
-    admingameresult: async function(req, res){
-        const qCatrgory=req.query.category || "";
+    admingameresult: async function (req, res) {
+        const qCatrgory = req.query.category || "";
         const qGamename = req.query.gamename;
         const qPublisher = req.query.publisher;
         const qSerialno = req.query.serialno;
 
         var models = await Game.find({
-            where:{
-            
-            category:{contains:qCatrgory},
-            gamename:{contains:qGamename},
-            publisher:{contains:qPublisher},
-            serialno:{contains:qSerialno},
-            }
-            
-        }).sort([{id:'DESC'}]);
+            where: {
 
-        return res.view('game/admingameresult', {game:models});
+                category: { contains: qCatrgory },
+                gamename: { contains: qGamename },
+                publisher: { contains: qPublisher },
+                serialno: { contains: qSerialno },
+            }
+
+        }).sort([{ id: 'DESC' }]);
+
+        if(models.length==0)
+        {
+            return res.redirect('/item/adminitemnotfound');
+        }
+
+
+
+        return res.view('game/admingameresult', { game: models });
 
     },
 
@@ -110,28 +122,32 @@ module.exports = {
     },
 
     vistorgamesearch: async function (req, res) {
-        var models = await Game.find().sort([{id:'DESC'}]);
-        return res.view('game/vistorgamesearch', { game: models});
+        var models = await Game.find().sort([{ id: 'DESC' }]);
+        return res.view('game/vistorgamesearch', { game: models });
     },
 
-    vistorgameresult: async function(req, res){
-        const qCatrgory=req.query.category || "";
+    vistorgameresult: async function (req, res) {
+        const qCatrgory = req.query.category || "";
         const qGamename = req.query.gamename;
         const qPublisher = req.query.publisher;
         const qSerialno = req.query.serialno;
 
         var models = await Game.find({
-            where:{
-            
-            category:{contains:qCatrgory},
-            gamename:{contains:qGamename},
-            publisher:{contains:qPublisher},
-            serialno:{contains:qSerialno},
-            }
-            
-        }).sort([{id:'DESC'}]);
+            where: {
 
-        return res.view('game/vistorgameresult', {game:models});
+                category: { contains: qCatrgory },
+                gamename: { contains: qGamename },
+                publisher: { contains: qPublisher },
+                serialno: { contains: qSerialno },
+            }
+
+        }).sort([{ id: 'DESC' }]);
+
+        if (models.length == 0) {
+            return res.redirect('/item/visitoritemnotfound');
+        }
+
+        return res.view('game/vistorgameresult', { game: models });
 
     },
 
@@ -146,12 +162,12 @@ module.exports = {
     },
 
     admingameedit: async function (req, res) {
-        var models = await Game.find().sort([{id:'DESC'}]);
-        return res.view('game/admingameedit', { game: models});
+        var models = await Game.find().sort([{ id: 'DESC' }]);
+        return res.view('game/admingameedit', { game: models });
     },
 
-     // action - adminupdate
-     admingameupdate: async function (req, res) {
+    // action - adminupdate
+    admingameupdate: async function (req, res) {
 
         if (req.method == "GET") {
 
@@ -194,15 +210,15 @@ module.exports = {
 
     },
 
-    import_xlsx: async function(req, res) {
+    import_xlsx: async function (req, res) {
 
         if (req.method == 'GET')
             return res.view('game/import_xlsx');
-    
-        req.file('file').upload({maxBytes: 10000000}, async function whenDone(err, uploadedFiles) {
+
+        req.file('file').upload({ maxBytes: 10000000 }, async function whenDone(err, uploadedFiles) {
             if (err) { return res.serverError(err); }
-            if (uploadedFiles.length === 0){ return res.badRequest('No file was uploaded'); }
-    
+            if (uploadedFiles.length === 0) { return res.badRequest('No file was uploaded'); }
+
             var XLSX = require('xlsx');
             var workbook = XLSX.readFile(uploadedFiles[0].fd);
             var ws = workbook.Sheets[workbook.SheetNames[0]];
@@ -216,18 +232,18 @@ module.exports = {
         });
     },
 
-    borrow: async function(req, res) {
+    borrow: async function (req, res) {
         return res.view('game/borrow');
     },
 
-    return: async function(req, res) {
+    return: async function (req, res) {
         return res.view('game/return');
     },
 
     print: async function (req, res) {
         var models = await Game.find().sort([{ id: 'DESC' }]);
         return res.view('game/print', { game: models });
-        
+
     },
 
     useraddremark: async function (req, res) {
@@ -240,7 +256,7 @@ module.exports = {
 
             await Item.create(
                 {
-                    message:"桌遊("+model.gamename+")新增備註: "+userremarks,
+                    message: "桌遊(" + model.gamename + ")新增備註: " + userremarks,
                 });
 
 
@@ -249,23 +265,23 @@ module.exports = {
             }).fetch();
             if (models.length == 0) return res.notFound();
 
-            return res.redirect('/game/userbookreturn/'+model.id);
+            return res.redirect('/game/userbookreturn/' + model.id);
         }
     },
 
-    uploadphoto: async function(req, res) {
-        var model=await Game.findOne(req.params.id);
+    uploadphoto: async function (req, res) {
+        var model = await Game.findOne(req.params.id);
 
         if (req.method == 'GET')
-            return res.view('game/uploadphoto',{game:model});
-    
-        await Game.update({id: model.id}, {
+            return res.view('game/uploadphoto', { game: model });
+
+        await Game.update({ id: model.id }, {
             avatar: req.body.Game.avatar
         });
-        
+
         return res.redirect('/game/admingameedit');
     },
-  
+
 
 };
 

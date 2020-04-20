@@ -433,6 +433,24 @@ module.exports = {
         return res.view('item/cannotrenew');
     },
 
+    visitoritemnotfound: async function (req, res) {
+        
+
+        return res.view('item/visitoritemnotfound')
+    },
+
+    useritemnotfound: async function (req, res) {
+        
+
+        return res.view('item/useritemnotfound')
+    },
+
+    adminitemnotfound: async function (req, res) {
+        
+
+        return res.view('item/adminitemnotfound')
+    },
+
 
 
 

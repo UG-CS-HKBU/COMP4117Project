@@ -69,6 +69,11 @@ module.exports = {
             }).sort([{ id: 'DESC' }]);
         }
 
+        if(models.length==0)
+        {
+            return res.redirect('/item/useritemnotfound');
+        }
+
         return res.view('gift/usergiftresult', { gift: models });
 
     },
@@ -153,6 +158,11 @@ module.exports = {
                 }
 
             }).sort([{ id: 'DESC' }]);
+        }
+
+        if(models.length==0)
+        {
+            return res.redirect('/item/adminitemnotfound');
         }
 
         return res.view('gift/admingiftresult', { gift: models });
