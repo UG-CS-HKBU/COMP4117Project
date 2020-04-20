@@ -275,7 +275,7 @@ module.exports = {
             }).fetch();
             if (models.length == 0) return res.notFound();
 
-            return res.view('gift/usergiftdetail', { gift: model })
+            return res.redirect('/gift/usergiftdetail/'+model.id)
         }
     },
 

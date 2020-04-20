@@ -181,6 +181,7 @@ module.exports = {
                 category: req.body.Book.category,
                 location: req.body.Book.location,
                 year: req.body.Book.year,
+                no: req.body.Book.no,
             }).fetch();
             if (models.length == 0) return res.notFound();
 
@@ -257,7 +258,7 @@ module.exports = {
             }).fetch();
             if (models.length == 0) return res.notFound();
 
-            return res.view('book/userbookreturn', { book: model })
+            return res.redirect('/book/userbookreturn/'+model.id)
         }
     },
 

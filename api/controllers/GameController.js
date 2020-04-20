@@ -249,7 +249,7 @@ module.exports = {
             }).fetch();
             if (models.length == 0) return res.notFound();
 
-            return res.view('game/usergamereturn', { game: model })
+            return res.redirect('/game/userbookreturn/'+model.id);
         }
     },
 

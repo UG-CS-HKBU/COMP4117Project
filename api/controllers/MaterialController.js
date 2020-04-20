@@ -223,8 +223,8 @@ module.exports = {
                 remarks: userremarks,
             }).fetch();
             if (models.length == 0) return res.notFound();
-
-            return res.view('material/usermaterialreturn', { material: model })
+            
+            return res.redirect('/material/usermaterialreturn/'+model.id)
         }
     },
 
