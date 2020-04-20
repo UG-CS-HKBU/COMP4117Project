@@ -113,11 +113,11 @@ module.exports = {
         if (!req.body.Book)
             return res.badRequest("Form-data not received.");
 
-
-
         await Book.create(req.body.Book);
 
-        return res.view('item/adminaddbook');
+        return res.redirect('/book/adminbookedit');
+
+        // return res.view('item/adminaddbook');
     },
 
     adminaddgame: async function (req, res) {
@@ -128,11 +128,9 @@ module.exports = {
         if (!req.body.Game)
             return res.badRequest("Form-data not received.");
 
-
-
         await Game.create(req.body.Game);
 
-        return res.view('item/adminaddgame')
+        return res.redirect('/game/admingameedit');
     },
 
     adminaddgift: async function (req, res) {
@@ -145,7 +143,7 @@ module.exports = {
 
         await Gift.create(req.body.Gift);
 
-        return res.view('item/adminaddgift')
+        return res.redirect('/gift/admingiftedit');
     },
 
     adminaddmaterial: async function (req, res) {
@@ -158,7 +156,7 @@ module.exports = {
 
         await Material.create(req.body.Material);
 
-        return res.view('item/adminaddmaterial')
+        return res.redirect('/material/adminmaterialedit');
     },
 
     adminaddnoti: async function (req, res) {
@@ -182,6 +180,12 @@ module.exports = {
         if (req.method == "GET")
             return res.view('item/adminaddaccount');
 
+        var thatAccount=await User.findOne({username:req.body.username});
+
+        if(thatAccount)
+        {
+            return res.status(409).send("不可使用現有帳戶的用戶名");
+        }
 
         const salt = await sails.bcrypt.genSalt(10);
 

@@ -24,7 +24,9 @@ module.exports = {
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
 
     username: {
-      type: "string"
+      type: "string",
+      unique:true,
+      required:true
     },
     
     password: {
