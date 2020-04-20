@@ -5,11 +5,17 @@
             <div class="form-group row">
                 <div class="col-xl-6 col-form-label">
                     <label>禮物種類:</label>
-                    <select name="Gift[category]" class="form-control">
+                    <input type="text" class="form-control" name="Gift[category]" value="<%= gift.category %>" list="optionlist" required>
+                    <datalist id="optionlist">
                         <option value="小型禮物">小型禮物</option>
                         <option value="中型禮物">中型禮物</option>
                         <option value="大型禮物">大型禮物</option>
-                    </select>
+                    </datalist>
+                    <!-- <select name="Gift[category]" class="form-control">
+                        <option value="小型禮物">小型禮物</option>
+                        <option value="中型禮物">中型禮物</option>
+                        <option value="大型禮物">大型禮物</option>
+                    </select> -->
                 </div>
                 <div class="col-xl-6 col-form-label">
                     <label>禮物名稱:</label>
@@ -33,7 +39,7 @@
 
                 <div class="col-xl-6 col-form-label">
                     <label>位置:</label>
-                    <input type="text" class="form-control" name="Gift[location]]" value="<%= gift.location %>" required>
+                    <input type="text" class="form-control" name="Gift[location]]" value="<%= gift.location %>">
                 </div>
 
                 <button type="submit" class="btn btn-primary center">修改</button>

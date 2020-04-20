@@ -1,17 +1,18 @@
 <body onload="pageLoaded()">
     <div class="container">
 
-        <form action="/book/adminbookupdate/<%=book.id%>" method="POST">
+        <form action="/book/adminbookupdate/<%=book.id%>" method="POST" autocomplete="on">
             <div class="form-group row">
                 <div class="col-xl-6 col-form-label">
                     <label>書本種類:</label>
-                    <select name="Book[category]" class="form-control">
+                    <input type="text" class="form-control" name="Book[category]" value="<%= book.category %>" list="optionlist" required>
+                    <datalist id="optionlist">
                         <option value="成長系列">成長系列</option>
                         <option value="哀傷">哀傷</option>
                         <option value="家庭關係">家庭關係</option>
                         <option value="情緒教育">情緒教育</option>
-                    </select>
-                    <!--<input type="text" class="form-control" name="Book[category]" value="<%= book.category %>" required>-->
+                    </datalist>
+                    
                 </div>
 
                 <div class="col-xl-6 col-form-label">

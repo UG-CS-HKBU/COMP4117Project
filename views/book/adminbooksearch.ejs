@@ -6,13 +6,20 @@
         <label>類型:</label>
         <form action="/book/adminbookresult" method="GET">
             <div class="form-group">
-                <select name="category" class="form-control">
+                <input type="text" class="form-control" name="category" list="optionlist">
+                <datalist id="optionlist">
+                    <option value="成長系列">成長系列</option>
+                    <option value="哀傷">哀傷</option>
+                    <option value="家庭關係">家庭關係</option>
+                    <option value="情緒教育">情緒教育</option>
+                </datalist>
+                <!-- <select name="category" class="form-control">
                     <option value=""></option>
                     <option value="成長系列">成長系列</option>
                     <option value="哀傷">哀傷</option>
                     <option value="家庭關係">家庭關係</option>
                     <option value="情緒教育">情緒教育</option>
-                </select>
+                </select> -->
             </div>
             <div class="form-group">
                 <label>編號:</label>
