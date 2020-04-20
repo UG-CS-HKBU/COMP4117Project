@@ -225,7 +225,14 @@ module.exports = {
 
         if (models.length == 0) return res.notFound();
 
-        return res.redirect("/gift/admingiftedit");
+        if (req.wantsJSON) {
+            return res.json({ message: "該禮物已被刪除", url: '/gift/admingiftedit' });
+        } else {
+
+            return res.redirect("/gift/admingiftedit");;
+        }
+
+        // return res.redirect("/gift/admingiftedit");
 
     },
 

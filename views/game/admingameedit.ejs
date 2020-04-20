@@ -38,11 +38,11 @@
                             </a>
                         </td>
                         <td>
-                            <span id="deleteid"><%= model.id %></span>
-                            <form action="/game/admingamedelete/<%=model.id%>" method="POST">
-                                <button type="submit" class="btn btn-Link" style="color:tomato">
+                            <!-- <span id="deleteid"><%= model.id %></span> -->
+                            <!-- <form action="/game/admingamedelete/<%=model.id%>" method="POST"> -->
+                                <button type="submit" class="btn btn-Link" style="color:tomato" onclick="deleteGame('<%= model.id %>')">
                                     <Strong> 刪除</Strong></button>
-                            </form>
+                            <!-- </form> -->
                         </td>
                     </tr>
                     <% }); %>
@@ -81,3 +81,32 @@
 
     </div>
 </body>
+
+<script>
+
+    async function deleteGame(id) {
+
+        var r = confirm("確認刪除?");
+
+        if (r) {
+
+            var response = await fetch("/game/admingamedelete/" + id, {
+                method: "POST",
+                credentials: 'same-origin',
+            });
+
+            if (response.ok) {
+                var data = await response.json();
+                alert(data.message);
+                window.location = data.url;
+            } else {
+                alert(response.status + ": " + response.statusText);
+            }
+
+        } else {
+            alert("取消");
+        }
+
+    };
+
+</script>

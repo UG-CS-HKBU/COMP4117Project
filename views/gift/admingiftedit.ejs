@@ -37,7 +37,7 @@
                     <td>
                         <span id="deleteid"><%= model.id %></span>
                         <form action="/gift/admingiftdelete/<%=model.id%>" method="POST">
-                            <button type="submit" class="btn btn-Link" style="color: tomato;">
+                            <button type="submit" class="btn btn-Link" style="color: tomato;" onclick="deleteGift('<%= model.id %>')">
                                 <Strong> 刪除</Strong></button>
                         </form>
                     </td>
@@ -84,3 +84,32 @@
 
     </div>
 </body>
+
+<script>
+
+    async function deleteGift(id) {
+
+        var r = confirm("確認刪除?");
+
+        if (r) {
+
+            var response = await fetch("/gift/admingiftdelete/" + id, {
+                method: "POST",
+                credentials: 'same-origin',
+            });
+
+            if (response.ok) {
+                var data = await response.json();
+                alert(data.message);
+                window.location = data.url;
+            } else {
+                alert(response.status + ": " + response.statusText);
+            }
+
+        } else {
+            alert("取消");
+        }
+
+    };
+
+</script>

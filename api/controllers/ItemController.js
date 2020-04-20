@@ -180,10 +180,9 @@ module.exports = {
         if (req.method == "GET")
             return res.view('item/adminaddaccount');
 
-        var thatAccount=await User.findOne({username:req.body.username});
+        var thatAccount = await User.findOne({ username: req.body.username });
 
-        if(thatAccount)
-        {
+        if (thatAccount) {
             return res.status(409).send("不可使用現有帳戶的用戶名");
         }
 
@@ -221,7 +220,12 @@ module.exports = {
 
         if (models.length == 0) return res.notFound();
 
-        return res.redirect("/item/adminuseredit");
+        if (req.wantsJSON) {
+            return res.json({ message: "該用戶已被刪除", url: '/item/adminuseredit' });
+        } else {
+
+            return res.redirect("/item/adminuseredit");
+        }
 
     },
 
@@ -434,19 +438,19 @@ module.exports = {
     },
 
     visitoritemnotfound: async function (req, res) {
-        
+
 
         return res.view('item/visitoritemnotfound')
     },
 
     useritemnotfound: async function (req, res) {
-        
+
 
         return res.view('item/useritemnotfound')
     },
 
     adminitemnotfound: async function (req, res) {
-        
+
 
         return res.view('item/adminitemnotfound')
     },

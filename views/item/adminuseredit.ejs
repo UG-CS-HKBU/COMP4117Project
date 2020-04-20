@@ -42,12 +42,12 @@
                         </a>
                     </td>
                     <td>
-                        <span id="deleteid"><%= model.id %></span>
 
-                        <form action="/item/adminuserdelete/<%=model.id%>" method="POST">
-                            <button type="submit" class="btn btn-Link" style="color: tomato;">
-                                <Strong> 刪除</Strong></button>
-                        </form>
+                        <!-- <form action="/item/adminuserdelete/<%=model.id%>" method="POST"> -->
+                        <button type="submit" class="btn btn-Link" style="color: tomato;"
+                            onclick="deleteUser('<%= model.id %>')">
+                            <Strong> 刪除</Strong></button>
+                        <!-- </form> -->
 
                     </td>
 
@@ -91,3 +91,32 @@
 
     </div>
 </body>
+
+<script>
+
+    async function deleteUser(id) {
+
+        var r = confirm("確認刪除?");
+
+        if (r) {
+
+            var response = await fetch("/item/adminuserdelete/" + id, {
+                method: "POST",
+                credentials: 'same-origin',
+            });
+
+            if (response.ok) {
+                var data = await response.json();
+                alert(data.message);
+                window.location = data.url;
+            } else {
+                alert(response.status + ": " + response.statusText);
+            }
+
+        } else {
+            alert("取消");
+        }
+
+    };
+
+</script>

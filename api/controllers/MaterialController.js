@@ -173,7 +173,14 @@ module.exports = {
 
         if (models.length == 0) return res.notFound();
 
-        return res.redirect("/material/adminmaterialedit");
+        if (req.wantsJSON) {
+            return res.json({ message: "該物資已被刪除", url: '/material/adminmaterialedit' });
+        } else {
+
+            return res.redirect("/material/adminmaterialedit");;
+        }
+
+        // return res.redirect("/material/adminmaterialedit");
 
     },
 

@@ -31,8 +31,7 @@ module.exports = {
 
         }).sort([{ id: 'DESC' }]);
 
-        if(models.length==0)
-        {
+        if (models.length == 0) {
             return res.redirect('/item/useritemnotfound');
         }
 
@@ -106,8 +105,7 @@ module.exports = {
 
         }).sort([{ id: 'DESC' }]);
 
-        if(models.length==0)
-        {
+        if (models.length == 0) {
             return res.redirect('/item/visitoritemnotfound');
         }
 
@@ -115,7 +113,7 @@ module.exports = {
 
     },
 
-    
+
 
     vistorbookdetail: async function (req, res) {
 
@@ -152,8 +150,7 @@ module.exports = {
 
         }).sort([{ id: 'DESC' }]);
 
-        if(models.length==0)
-        {
+        if (models.length == 0) {
             return res.redirect('/item/adminitemnotfound');
         }
 
@@ -217,7 +214,12 @@ module.exports = {
 
         if (models.length == 0) return res.notFound();
 
-        return res.redirect("/book/adminbookedit");
+        if (req.wantsJSON) {
+            return res.json({ message: "該書本已被刪除", url: '/book/adminbookedit' });
+        } else {
+
+            return res.redirect("/book/adminbookedit");
+        }
 
     },
 
@@ -276,7 +278,7 @@ module.exports = {
             }).fetch();
             if (models.length == 0) return res.notFound();
 
-            return res.redirect('/book/userbookreturn/'+model.id)
+            return res.redirect('/book/userbookreturn/' + model.id)
         }
     },
 

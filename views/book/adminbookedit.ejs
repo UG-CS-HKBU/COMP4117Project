@@ -44,11 +44,11 @@
                         </a>
                     </td>
                     <td>
-                        <span id="deleteid"><%= model.id %></span>
-                        <form action="/book/adminbookdelete/<%=model.id%>" method="POST">
-                            <button type="submit" class="btn btn-Link" style="color:tomato;">
+                        <!-- <span id="deleteid"><%= model.id %></span> -->
+                        <!-- <form action="/book/adminbookdelete/<%=model.id%>" method="POST"> -->
+                            <button type="submit" class="btn btn-Link" style="color:tomato;" onclick="deleteBook('<%= model.id %>')">
                                 <strong>刪除</strong></button>
-                        </form>
+                        <!-- </form> -->
                     </td>
                 </tr>
                 <% }); %>
@@ -86,3 +86,32 @@
 
     </div>
 </body>
+
+<script>
+
+    async function deleteBook(id) {
+
+        var r = confirm("確認刪除?");
+
+        if (r) {
+
+            var response = await fetch("/book/adminbookdelete/" + id, {
+                method: "POST",
+                credentials: 'same-origin',
+            });
+
+            if (response.ok) {
+                var data = await response.json();
+                alert(data.message);
+                window.location = data.url;
+            } else {
+                alert(response.status + ": " + response.statusText);
+            }
+
+        } else {
+            alert("取消");
+        }
+
+    };
+
+</script>

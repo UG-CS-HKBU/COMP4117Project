@@ -206,7 +206,14 @@ module.exports = {
 
         if (models.length == 0) return res.notFound();
 
-        return res.redirect("/game/admingameedit");
+        if (req.wantsJSON) {
+            return res.json({ message: "該桌遊已被刪除", url: '/game/admingameedit' });
+        } else {
+
+            return res.redirect("/game/admingameedit");
+        }
+
+        
 
     },
 
