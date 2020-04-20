@@ -10,35 +10,35 @@ module.exports = {
 
     userindex: async function (req, res) {
         var id = req.session.userid
-        var bookmodel = await User.findOne(id).populate("bookborrow",{sort:'id DESC'});
+        var bookmodel = await User.findOne(id).populate("bookborrow", { sort: 'id DESC' });
         if (!bookmodel) return res.notFound();
-        var bookmodel2 = await User.findOne(id).populate("bookhistory",{sort:'id DESC'});
+        var bookmodel2 = await User.findOne(id).populate("bookhistory", { sort: 'id DESC' });
         if (!bookmodel) return res.notFound();
-        var bookmodel3 = await User.findOne(id).populate("bookreserve",{sort:'id DESC'});
+        var bookmodel3 = await User.findOne(id).populate("bookreserve", { sort: 'id DESC' });
         if (!bookmodel) return res.notFound();
-        var gamemodel = await User.findOne(id).populate("gameborrow",{sort:'id DESC'});
+        var gamemodel = await User.findOne(id).populate("gameborrow", { sort: 'id DESC' });
         if (!gamemodel) return res.notFound();
-        var gamemodel2 = await User.findOne(id).populate("gamehistory",{sort:'id DESC'});
+        var gamemodel2 = await User.findOne(id).populate("gamehistory", { sort: 'id DESC' });
         if (!gamemodel2) return res.notFound();
-        var gamemodel3 = await User.findOne(id).populate("gamereserve",{sort:'id DESC'});
-        if (!gamemodel) return res.notFound();    
-        var materialmodel = await User.findOne(id).populate("materialborrow",{sort:'id DESC'});
+        var gamemodel3 = await User.findOne(id).populate("gamereserve", { sort: 'id DESC' });
+        if (!gamemodel) return res.notFound();
+        var materialmodel = await User.findOne(id).populate("materialborrow", { sort: 'id DESC' });
         if (!materialmodel) return res.notFound();
-        var materialmodel2 = await User.findOne(id).populate("materialhistory",{sort:'id DESC'});
+        var materialmodel2 = await User.findOne(id).populate("materialhistory", { sort: 'id DESC' });
         if (!materialmodel2) return res.notFound();
-        var giftmodel = await User.findOne(id).populate("giftborrow",{sort:'id DESC'});
+        var giftmodel = await User.findOne(id).populate("giftborrow", { sort: 'id DESC' });
         if (!giftmodel) return res.notFound();
 
         return res.view('item/userindex', {
             book: bookmodel.bookborrow,
             game: gamemodel.gameborrow,
             material: materialmodel.materialborrow,
-            book2:bookmodel2.bookhistory,
-            game2:gamemodel2.gamehistory,
-            material2:materialmodel2.materialhistory,
-            gift:giftmodel.giftborrow,
-            book3:bookmodel3.bookreserve,
-            game3:gamemodel3.gamereserve,
+            book2: bookmodel2.bookhistory,
+            game2: gamemodel2.gamehistory,
+            material2: materialmodel2.materialhistory,
+            gift: giftmodel.giftborrow,
+            book3: bookmodel3.bookreserve,
+            game3: gamemodel3.gamereserve,
         });
     },
 
@@ -84,7 +84,7 @@ module.exports = {
     adminnoti: async function (req, res) {
         var models = await Item.find().sort([{ id: 'DESC' }]);
 
-        return res.view('item/adminnoti',{ noti: models });
+        return res.view('item/adminnoti', { noti: models });
     },
 
     adminaccount: async function (req, res) {
@@ -163,6 +163,7 @@ module.exports = {
 
     adminaddnoti: async function (req, res) {
 
+
         if (req.method == "GET")
             return res.view('item/adminaddnoti');
 
@@ -171,7 +172,9 @@ module.exports = {
 
         await Item.create(req.body.Item);
 
-        return res.view('item/adminaddnoti')
+        var models = await Item.find().sort([{ id: 'DESC' }]);
+
+        return res.view('item/adminnoti', { noti: models });
     },
 
     adminaddaccount: async function (req, res) {
@@ -193,10 +196,11 @@ module.exports = {
                 department: req.body.department,
                 position: req.body.position,
                 email: req.body.email,
-                role:req.body.role
+                role: req.body.role
             });
 
-        return res.view('item/adminaddaccount')
+        var models = await User.find({ role: "user" }).sort([{ id: 'DESC' }]);
+        return res.view('item/adminuseredit', { user: models });
     },
 
     adminuseredit: async function (req, res) {
