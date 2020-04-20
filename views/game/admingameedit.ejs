@@ -9,75 +9,75 @@
         <a class="btn btn-success" href="/item/adminaddgame" style="float: left">增加桌遊</a>
         <a class="btn btn-secondary" href="/game/print" style="float: right" target="_blank">打印QR code</a>
         <br>
-        <h4 class="center"><b>桌遊列表</b></h4>
+        <br>
+        <!-- <h4 class="center"><b>桌遊列表</b></h4> -->
 
         <div class="table-responsive">
-            <table class="table" id="admintable">
+            <h2 style="color:wheat; background-color: darkred;"> &nbsp;&nbsp;桌遊列表
+            </h2>
+            <div class="table-responsive">
+                <table class="table " id="admintable" class="row square" style="background-color:rgb(255, 255, 255)">
 
-                <% game.forEach( function(model) { %>
+                    <% game.forEach( function(model) { %>
+                    <tr class="tr2">
+                        <th scope="row"></th>
+                        <td>
+                            <a href="/game/admingamedetail/<%=model.id%>">
+                                <%=model.gamename%>
+                            </a>
+                        </td>
+                        <!-- <td><img src="https://api.qrserver.com/v1/create-qr-code/?size=50x50&data=<%=model.gamename%>"></td> -->
+                        <td>
+                            <form action="/game/uploadphoto/<%=model.id%>" method="GET">
+                                <button type="submit" class="btn btn-Link center">上傳相片</button>
+                            </form>
+                        </td>
+                        <td>
+                            <a href="/game/admingameupdate/<%=model.id%>" class="btn btn-Link" id="edit">
+                                修改
+                            </a>
+                        </td>
+                        <td>
+                            <span id="deleteid"><%= model.id %></span>
+                            <form action="/game/admingamedelete/<%=model.id%>" method="POST">
+                                <button type="submit" class="btn btn-Link" style="color:tomato">
+                                    <Strong> 刪除</Strong></button>
+                            </form>
+                        </td>
+                    </tr>
+                    <% }); %>
+
+                </table>
+            </div>
 
 
-                <tr class="tr2">
-
-                    <th scope="row"></th>
-                    <td><a href="/game/admingamedetail/<%=model.id%>" ><%=model.gamename%></a></td>
-                    <!-- <td><img src="https://api.qrserver.com/v1/create-qr-code/?size=50x50&data=<%=model.gamename%>"></td> -->
-                    <td>
-                        <form action="/game/uploadphoto/<%=model.id%>" method="GET">
-                            <button type="submit" class="btn btn-primary center">上傳相片</button>
-                        </form>
-                    </td>
-                    <td>
-                        <a href="/game/admingameupdate/<%=model.id%>" class="btn btn-primary" id="edit">
-                            修改
-                        </a>
-                    </td>
-                    <td>
-                        <span id="deleteid"><%= model.id %></span>
-
-                        <form action="/game/admingamedelete/<%=model.id%>"  method="POST">
-                            <button type="submit" class="btn btn-danger">
-                                刪除</button>
-                        </form>
-
-                    </td>
-
-                </tr>
-
-
-                <% }); %>
-
-            </table>
+            <nav class="bottomnav fixed-bottom">
+                <a href="/item/adminindex" class="nav__link">
+                    <i class="material-icons">
+                        home
+                    </i>
+                    <span class="nav__text">主頁</span>
+                </a>
+                <a href="/item/adminsearch" class="nav__link nav__link--active">
+                    <i class="material-icons">
+                        search
+                    </i>
+                    <span class="nav__text">搜尋</span>
+                </a>
+                <a href="/item/adminnoti" class="nav__link">
+                    <i class="material-icons">
+                        email
+                    </i>
+                    <span class="nav__text">通知</span>
+                </a>
+                <a href="/item/adminaccount" class="nav__link">
+                    <i class="material-icons">
+                        account_circle
+                    </i>
+                    <span class="nav__text">帳戶</span>
+                </a>
+            </nav>
         </div>
-
-
-        <nav class="bottomnav fixed-bottom">
-            <a href="/item/adminindex" class="nav__link">
-                <i class="material-icons">
-                    home
-                </i>
-                <span class="nav__text">主頁</span>
-            </a>
-            <a href="/item/adminsearch" class="nav__link nav__link--active">
-                <i class="material-icons">
-                    search
-                </i>
-                <span class="nav__text">搜尋</span>
-            </a>
-            <a href="/item/adminnoti" class="nav__link">
-                <i class="material-icons">
-                    email
-                </i>
-                <span class="nav__text">通知</span>
-            </a>
-            <a href="/item/adminaccount" class="nav__link">
-                <i class="material-icons">
-                    account_circle
-                </i>
-                <span class="nav__text">帳戶</span>
-            </a>
-        </nav>
-    </div>
 
     </div>
 </body>

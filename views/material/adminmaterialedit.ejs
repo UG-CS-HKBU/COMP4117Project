@@ -9,43 +9,40 @@
 
         <a class="btn btn-success" href="/item/adminaddmaterial" style="float: left">增加物資</a>
         <br>
-        <h4 class="center"><b>物資列表</b></h4>
+        <br>
+        <h2 style="color:wheat; background-color: darkred;"> &nbsp;&nbsp;物資列表</h4>
+        <!-- <h4 class="center"><b>物資列表</b></h4> -->
 
         <div class="table-responsive">
-            <table class="table " id="admintable">
+            <table class="table " id="admintable" class="row square" style="background-color:rgb(255, 255, 255)">
 
                 <% material.forEach( function(model) { %>
-
-
-                <tr class="tr2">
-
-                    <th scope="row"></th>
-                    <td><a href="/material/adminmaterialdetail/<%=model.id%>"><%=model.materialname%></a></td>
-                    
-                    <td>
-                        <form action="/material/uploadphoto/<%=model.id%>" method="GET">
-                            <button type="submit" class="btn btn-primary center">上傳相片</button>
-                        </form>
-                    </td>
-                    <td>
-                        <a href="/material/adminmaterialupdate/<%=model.id%>" class="btn btn-primary" id="edit">
-                            修改
-                        </a>
-                    </td>
-                    <td>
-                        <span id="deleteid"><%= model.id %></span>
-
-                        <form action="/material/adminmaterialdelete/<%=model.id%>"  method="POST">
-                            <button type="submit" class="btn btn-danger">
-                                刪除</button>
-                        </form>
-
-                    </td>
-
-                </tr>
-
-
-                <% }); %>
+                    <tr class="tr2">
+                        <th scope="row"></th>
+                        <td>
+                            <a href="/material/adminmaterialdetail/<%=model.id%>">
+                                <%=model.materialname%>
+                            </a>
+                        </td>
+                        <td>
+                            <form action="/material/uploadphoto/<%=model.id%>" method="GET">
+                                <button type="submit" class="btn btn-Link center">上傳相片</button>
+                            </form>
+                        </td>
+                        <td>
+                            <a href="/material/adminmaterialupdate/<%=model.id%>" class="btn btn-Link" id="edit">
+                        修改
+                    </a>
+                        </td>
+                        <td>
+                            <span id="deleteid"><%= model.id %></span>
+                            <form action="/material/adminmaterialdelete/<%=model.id%>" method="POST">
+                                <button type="submit" class="btn btn-Link " Style="color:tomato">
+                            <strong>刪除</strong></button>
+                            </form>
+                        </td>
+                    </tr>
+                    <% }); %>
 
             </table>
         </div>
