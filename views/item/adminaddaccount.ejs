@@ -36,26 +36,38 @@
                 <div class="form-group col-12 col-xl-12 ">
                     <label>部門:</label>
                     <br>
-                    <select name="department" required class=" col-12 col-xl-12" style="height: 37px;">
+                    <input type="text" class="form-control" name="department" list="optionlist">
+                    <datalist id="optionlist">
                         <option value="部門A">部門A</option>
                         <option value="部門B">部門B</option>
                         <option value="部門C">部門C</option>
-                    </select>
+                    </datalist>
+                    <!-- <select name="department" required class=" col-12 col-xl-12" style="height: 37px;">
+                        <option value="部門A">部門A</option>
+                        <option value="部門B">部門B</option>
+                        <option value="部門C">部門C</option>
+                    </select> -->
                 </div>
 
                 <div class="form-group col-12 col-xl-12 ">
                     <label>職位:</label>
                     <br>
-                    <select name="position" required class=" col-12 col-xl-12" style="height: 37px;">
+                    <input type="text" class="form-control" name="position" list="optionlist2">
+                    <datalist id="optionlist2">
                         <option value="職位A">職位A</option>
                         <option value="職位B">職位B</option>
                         <option value="職位C">職位C</option>
-                    </select>
+                    </datalist>
+                    <!-- <select name="position" required class=" col-12 col-xl-12" style="height: 37px;">
+                        <option value="職位A">職位A</option>
+                        <option value="職位B">職位B</option>
+                        <option value="職位C">職位C</option>
+                    </select> -->
 
 
                 </div>
 
-                <button type="sumbit" class="btn btn-primary center" >增加用戶</button>
+                <button type="sumbit" class="btn btn-primary center">增加用戶</button>
 
         </form>
 
