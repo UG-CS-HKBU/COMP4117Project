@@ -158,7 +158,7 @@ module.exports.routes = {
   '   /material/adminmaterialsearch': 'MaterialController.adminmaterialsearch',
   'GET /material/adminmamterialresult': 'MaterialController.adminmaterialresult',
   '   /material/adminmaterialdetail/:id': 'MaterialController.adminmaterialdetail',
-  '   /material/admingameedit': 'MaterialController.admingameedit',
+  '   /material/adminmaterialedit': 'MaterialController.adminmaterialedit',
   'GET /material/adminmaterialupdate/:id': 'MaterialController.adminmaterialupdate',
   'POST /material/adminmaterialupdate/:id': 'MaterialController.adminmaterialupdate',
   'POST /material/adminmaterialdelete/:id': 'MaterialController.adminmaterialdelete',

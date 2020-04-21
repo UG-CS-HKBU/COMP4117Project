@@ -76,12 +76,12 @@
             </div>
 
             <div class=" col-6 col-sm-6">
-                <form action="/book/adminbookdelete/<%=book.id%>" method="POST">
-                    <button type="submit" class="deletebutton">
+                <!-- <form action="/book/adminbookdelete/<%=book.id%>" method="POST"> -->
+                    <button type="submit" class="deletebutton" onclick="deleteBook('<%= book.id %>')">
                         刪除
                     </button>
 
-                </form>
+                <!-- </form> -->
             </div>
         </div>
     </div>
@@ -117,3 +117,32 @@
     </nav>
     </div>
 </body>
+
+<script>
+
+    async function deleteBook(id) {
+
+        var r = confirm("確認刪除?");
+
+        if (r) {
+
+            var response = await fetch("/book/adminbookdelete/" + id, {
+                method: "POST",
+                credentials: 'same-origin',
+            });
+
+            if (response.ok) {
+                var data = await response.json();
+                alert(data.message);
+                window.location = data.url;
+            } else {
+                alert(response.status + ": " + response.statusText);
+            }
+
+        } else {
+            alert("取消");
+        }
+
+    };
+
+</script>

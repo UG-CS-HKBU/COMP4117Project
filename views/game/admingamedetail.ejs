@@ -68,12 +68,12 @@
             </div>
 
             <div class=" col-6 col-sm-6">
-                <form action="/game/admingamedelete/<%=game.id%>" method="POST">
-                    <button type="submit" class="deletebutton">
+                <!-- <form action="/game/admingamedelete/<%=game.id%>" method="POST"> -->
+                    <button type="submit" class="deletebutton" onclick="deleteGame('<%= game.id %>')">
                         刪除
                     </button>
 
-                </form>
+                <!-- </form> -->
             </div>
         </div>
     </div>
@@ -108,3 +108,32 @@
     </nav>
     </div>
 </body>
+
+<script>
+
+    async function deleteGame(id) {
+
+        var r = confirm("確認刪除?");
+
+        if (r) {
+
+            var response = await fetch("/game/admingamedelete/" + id, {
+                method: "POST",
+                credentials: 'same-origin',
+            });
+
+            if (response.ok) {
+                var data = await response.json();
+                alert(data.message);
+                window.location = data.url;
+            } else {
+                alert(response.status + ": " + response.statusText);
+            }
+
+        } else {
+            alert("取消");
+        }
+
+    };
+
+</script>

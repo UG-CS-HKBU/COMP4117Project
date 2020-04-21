@@ -60,12 +60,12 @@
             </div>
 
             <div class=" col-6 col-sm-6">
-                <form action="/gift/admingiftdelete/<%=gift.id%>" method="POST">
-                    <button type="submit" class="deletebutton">
+                <!-- <form action="/gift/admingiftdelete/<%=gift.id%>" method="POST"> -->
+                    <button type="submit" class="deletebutton" onclick="deleteGift('<%= gift.id %>')">
                         刪除
                     </button>
 
-                </form>
+                <!-- </form> -->
             </div>
         </div>
     </div>
@@ -103,3 +103,32 @@
     </nav>
     </div>
 </body>
+
+<script>
+
+    async function deleteGift(id) {
+
+        var r = confirm("確認刪除?");
+
+        if (r) {
+
+            var response = await fetch("/gift/admingiftdelete/" + id, {
+                method: "POST",
+                credentials: 'same-origin',
+            });
+
+            if (response.ok) {
+                var data = await response.json();
+                alert(data.message);
+                window.location = data.url;
+            } else {
+                alert(response.status + ": " + response.statusText);
+            }
+
+        } else {
+            alert("取消");
+        }
+
+    };
+
+</script>
