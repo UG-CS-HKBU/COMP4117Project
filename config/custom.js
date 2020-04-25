@@ -20,9 +20,7 @@ module.exports.custom = {
   // stripeSecret: 'sk_test_Zzd814nldl91104qor5911gjald',
   // …
 
-  mailgunDomain: 'sandbox8e0e82504410422dba3a0ce4859a15ad.mailgun.org',
-  mailgunSecret: '6499caecbd083ad2e93c2e93edd8c905-f135b0f1-3052fd22',
-  mailgunFrom: 'leungduckwa123@gmail.com',
+  
 
 
 
