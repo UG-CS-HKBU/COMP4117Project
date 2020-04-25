@@ -146,6 +146,11 @@ module.exports = {
 
     expired2:{
       type:'string'
+    },
+
+    times:{
+      type:'number',
+      defaultsTo:0,
     }
 
     
