@@ -258,6 +258,32 @@ module.exports = {
         return res.redirect('/material/adminmaterialedit');
     },
 
+    export_xlsx: async function(req, res) {
+
+        var models = await Material.find();
+
+        var XLSX = require('xlsx');
+        var wb = XLSX.utils.book_new();
+
+        var ws = XLSX.utils.json_to_sheet(models.map(model => {
+            return {
+                materialname: model.materialname,
+                category: model.category,
+                amount: model.amount,
+                location: model.location,
+                remarks: model.remarks,
+                // borrowinfo: model.borrowinfo,
+                // returninfo: model.returninfo,
+                // ISBN: model.ISBN,                
+                // QRcode:model.??
+            }
+        }));
+        XLSX.utils.book_append_sheet(wb, ws, "物資");
+
+        res.set("Content-disposition", "attachment; filename=material.xlsx");
+        return res.end(XLSX.write(wb, { type: "buffer", bookType: "xlsx" }));
+    },
+
 
 };
 

@@ -213,6 +213,11 @@ module.exports.routes = {
   '/item/useritemnotfound': 'ItemController.useritemnotfound',
   '/item/adminitemnotfound': 'ItemController.adminitemnotfound',
 
+  '/book/export_xlsx': 'BookController.export_xlsx',
+  '/game/export_xlsx': 'GameController.export_xlsx',
+  '/gift/export_xlsx': 'GiftController.export_xlsx',
+  '/material/export_xlsx': 'MaterialController.export_xlsx',
+
   
 
 

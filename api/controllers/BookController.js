@@ -294,6 +294,34 @@ module.exports = {
 
         return res.redirect('/book/adminbookedit');
     },
+    
+    export_xlsx: async function(req, res) {
+
+        var models = await Book.find();
+
+        var XLSX = require('xlsx');
+        var wb = XLSX.utils.book_new();
+
+        var ws = XLSX.utils.json_to_sheet(models.map(model => {
+            return {
+                no: model.no,
+                bookname: model.bookname,
+                category: model.category,
+                author: model.author,
+                year: model.year,
+                location: model.location,
+                remarks:model.remarks,
+                // borrowinfo: model.borrowinfo,
+                // returninfo: model.returninfo,
+                // ISBN: model.ISBN,                
+                // QRcode:model.??
+            }
+        }));
+        XLSX.utils.book_append_sheet(wb, ws, "圖書");
+
+        res.set("Content-disposition", "attachment; filename=book.xlsx");
+        return res.end(XLSX.write(wb, { type: "buffer", bookType: "xlsx" }));
+    },
 
 
 

@@ -289,6 +289,32 @@ module.exports = {
         return res.redirect('/game/admingameedit');
     },
 
+    export_xlsx: async function(req, res) {
+
+        var models = await Game.find();
+
+        var XLSX = require('xlsx');
+        var wb = XLSX.utils.book_new();
+
+        var ws = XLSX.utils.json_to_sheet(models.map(model => {
+            return {
+                serialno: model.serialno,
+                gamename: model.gamename,
+                category: model.category,
+                location: model.location,
+                remarks:model.remarks,
+                // borrowinfo: model.borrowinfo,
+                // returninfo: model.returninfo,
+                // ISBN: model.ISBN,                
+                // QRcode:model.??
+            }
+        }));
+        XLSX.utils.book_append_sheet(wb, ws, "桌遊");
+
+        res.set("Content-disposition", "attachment; filename=game.xlsx");
+        return res.end(XLSX.write(wb, { type: "buffer", bookType: "xlsx" }));
+    },
+
 
 };
 
