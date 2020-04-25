@@ -123,6 +123,8 @@ module.exports = {
 
         await Book.update(requirebook.id).set({ expired: expireddate }).fetch();
 
+        await Book.update(requirebook.id).set({ expired2: expireddate2 }).fetch();
+
         const historyBook = await Book.findOne(requirebook.id).populate("bookhistoryBy", { id: req.session.userid });
 
         await User.addToCollection(req.session.userid, "bookhistory").members(requirebook.id);
@@ -355,7 +357,9 @@ module.exports = {
          var expireddate2 = date;
  
          await Game.update(requiregame.id).set({ expired: expireddate }).fetch();
- 
+
+         await Game.update(requiregame.id).set({ expired2: expireddate2 }).fetch();
+
          const historyGame = await Game.findOne(requiregame.id).populate("gamehistoryBy", { id: req.session.userid });
  
          await User.addToCollection(req.session.userid, "gamehistory").members(requiregame.id);
@@ -494,6 +498,8 @@ module.exports = {
         var expireddate2 = date;
 
         await Material.update(requirematerial.id).set({ expired: expireddate }).fetch();
+
+        await Material.update(requirematerial.id).set({ expired2: expireddate2 }).fetch();
 
         await sails.helpers.sendSingleEmail({
             to: 'leungjay0424@gmail.com',

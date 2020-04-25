@@ -85,6 +85,10 @@ module.exports = {
       type:'string'
     },
 
+    expired2:{
+      type:"string",
+    }
+
   },
 
 };

@@ -142,6 +142,10 @@ module.exports = {
 
     compversion:{
       type:'string'
+    },
+
+    expired2:{
+      type:'string'
     }
 
     

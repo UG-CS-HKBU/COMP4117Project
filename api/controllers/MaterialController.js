@@ -241,7 +241,7 @@ module.exports = {
             }).fetch();
             if (models.length == 0) return res.notFound();
             
-            return res.redirect('/material/usermaterialreturn/'+model.id)
+            return res.redirect('/material/usermaterialdetail/'+model.id)
         }
     },
 
