@@ -27,6 +27,9 @@
                                 <%=model.gamename%>
                             </a>
                         </td>
+                        <td>
+                            借用: <%=model.borrowinfo%>
+                        </td>
                         <!-- <td><img src="https://api.qrserver.com/v1/create-qr-code/?size=50x50&data=<%=model.gamename%>"></td> -->
                         <td>
                             <form action="/game/uploadphoto/<%=model.id%>" method="GET">
@@ -41,8 +44,9 @@
                         <td>
                             <!-- <span id="deleteid"><%= model.id %></span> -->
                             <!-- <form action="/game/admingamedelete/<%=model.id%>" method="POST"> -->
-                                <button type="submit" class="btn btn-Link" style="color:tomato" onclick="deleteGame('<%= model.id %>')">
-                                    <Strong> 刪除</Strong></button>
+                            <button type="submit" class="btn btn-Link" style="color:tomato"
+                                onclick="deleteGame('<%= model.id %>')">
+                                <Strong> 刪除</Strong></button>
                             <!-- </form> -->
                         </td>
                     </tr>

@@ -34,6 +34,9 @@
                             <%=model.bookname%>
                         </a>
                     </td>
+                    <td>                        
+                            借用: <%=model.borrowinfo%>                       
+                    </td>
                     <td>
                         <form action="/book/uploadphoto/<%=model.id%>" method="GET">
                             <button type="submit" class="btn btn-Link center">上傳相片</button>
