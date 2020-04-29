@@ -139,12 +139,12 @@ module.exports = {
         }
 
 
-        await sails.helpers.sendSingleEmail({
-            to: 'leungjay0424@gmail.com',
-            from: sails.config.custom.mailgunFrom,
-            subject: '借用書本通知',
-            text: '你已借用書本('+borrowBook.bookname+ ') 請於'+new Date(expireddate2).toLocaleDateString()+'前歸還',
-        });
+        // await sails.helpers.sendSingleEmail({
+        //     to: 'leungjay0424@gmail.com',
+        //     from: sails.config.custom.mailgunFrom,
+        //     subject: '借用書本通知',
+        //     text: '你已借用書本('+borrowBook.bookname+ ') 請於'+new Date(expireddate2).toLocaleDateString()+'前歸還',
+        // });
 
         //return res.ok('Operation completed.');
         if (req.wantsJSON) {
@@ -197,12 +197,12 @@ module.exports = {
 
         await Book.update(requirebook.id).set({ reserveperson: thatUser.username }).fetch();
 
-        await sails.helpers.sendSingleEmail({
-            to: 'leungjay0424@gmail.com',
-            from: sails.config.custom.mailgunFrom,
-            subject: '預約書本通知',
-            text: '你已預約書本('+reserveBook.bookname+') 請於3天內借取 如不需要 請取消預約',
-        });
+        // await sails.helpers.sendSingleEmail({
+        //     to: 'leungjay0424@gmail.com',
+        //     from: sails.config.custom.mailgunFrom,
+        //     subject: '預約書本通知',
+        //     text: '你已預約書本('+reserveBook.bookname+') 請於3天內借取 如不需要 請取消預約',
+        // });
 
         //return res.ok('Operation completed.');
         if (req.wantsJSON) {
@@ -378,12 +378,12 @@ module.exports = {
          }
  
  
-         await sails.helpers.sendSingleEmail({
-             to: 'leungjay0424@gmail.com',
-             from: sails.config.custom.mailgunFrom,
-             subject: '借用桌遊通知',
-             text: '你已借用桌遊('+borrowGame.gamename+ ') 請於'+new Date(expireddate2).toLocaleDateString()+'前歸還',
-         });
+        //  await sails.helpers.sendSingleEmail({
+        //      to: 'leungjay0424@gmail.com',
+        //      from: sails.config.custom.mailgunFrom,
+        //      subject: '借用桌遊通知',
+        //      text: '你已借用桌遊('+borrowGame.gamename+ ') 請於'+new Date(expireddate2).toLocaleDateString()+'前歸還',
+        //  });
  
          //return res.ok('Operation completed.');
          if (req.wantsJSON) {
@@ -509,22 +509,22 @@ module.exports = {
 
         await Material.update(requirematerial.id).set({ expired2: expireddate2 }).fetch();
 
-        await sails.helpers.sendSingleEmail({
-            to: 'leungjay0424@gmail.com',
-            from: sails.config.custom.mailgunFrom,
-            subject: '借用物資通知',
-            text: '你已借用'+thatMaterial.materialname+'(數量: '+borrowamount+') 請於'+new Date(expireddate2).toLocaleDateString()+'前歸還',
-        });
+        // await sails.helpers.sendSingleEmail({
+        //     to: 'leungjay0424@gmail.com',
+        //     from: sails.config.custom.mailgunFrom,
+        //     subject: '借用物資通知',
+        //     text: '你已借用'+thatMaterial.materialname+'(數量: '+borrowamount+') 請於'+new Date(expireddate2).toLocaleDateString()+'前歸還',
+        // });
 
-        if(calculation<5)
-        {
-            await sails.helpers.sendSingleEmail({
-                to: 'leungjay0424@gmail.com',
-                from: sails.config.custom.mailgunFrom,
-                subject: '物資耗盡通知',
-                text: '物資'+thatMaterial.materialname+'(數量只剩下: '+calculation+') 請購買',
-            });
-        }
+        // if(calculation<5)
+        // {
+        //     await sails.helpers.sendSingleEmail({
+        //         to: 'leungjay0424@gmail.com',
+        //         from: sails.config.custom.mailgunFrom,
+        //         subject: '物資耗盡通知',
+        //         text: '物資'+thatMaterial.materialname+'(數量只剩下: '+calculation+') 請購買',
+        //     });
+        // }
 
         //return res.ok('Operation completed.');
         if (req.wantsJSON) {
@@ -651,22 +651,22 @@ module.exports = {
 
         var getedate=new Date();
 
-        await sails.helpers.sendSingleEmail({
-            to: 'leungjay0424@gmail.com',
-            from: sails.config.custom.mailgunFrom,
-            subject: '禮物領取通知',
-            text: '你已在'+new Date(getedate).toLocaleDateString()+'領取禮物'+thatGift.giftname+'(數量: '+borrowamount+')' ,
-        });
+        // await sails.helpers.sendSingleEmail({
+        //     to: 'leungjay0424@gmail.com',
+        //     from: sails.config.custom.mailgunFrom,
+        //     subject: '禮物領取通知',
+        //     text: '你已在'+new Date(getedate).toLocaleDateString()+'領取禮物'+thatGift.giftname+'(數量: '+borrowamount+')' ,
+        // });
 
-        if(calculation<5)
-        {
-            await sails.helpers.sendSingleEmail({
-                to: 'leungjay0424@gmail.com',
-                from: sails.config.custom.mailgunFrom,
-                subject: '禮物耗盡通知',
-                text: '禮物'+thatGift.giftname+'(數量只剩下: '+calculation+') 請購買',
-            });
-        }
+        // if(calculation<5)
+        // {
+        //     await sails.helpers.sendSingleEmail({
+        //         to: 'leungjay0424@gmail.com',
+        //         from: sails.config.custom.mailgunFrom,
+        //         subject: '禮物耗盡通知',
+        //         text: '禮物'+thatGift.giftname+'(數量只剩下: '+calculation+') 請購買',
+        //     });
+        // }
 
         if (req.wantsJSON) {
             return res.json({ message: "已借取該物品", url: '/item/userindex' });    // for ajax request
@@ -718,12 +718,12 @@ module.exports = {
 
         await Game.update(requiregame.id).set({ reserveperson: thatUser.username }).fetch();
 
-        await sails.helpers.sendSingleEmail({
-            to: 'leungjay0424@gmail.com',
-            from: sails.config.custom.mailgunFrom,
-            subject: '預約桌遊通知',
-            text: '你已預約桌遊('+requiregame.gamename+') 請於3天內借取 如不需要 請取消預約',
-        });
+        // await sails.helpers.sendSingleEmail({
+        //     to: 'leungjay0424@gmail.com',
+        //     from: sails.config.custom.mailgunFrom,
+        //     subject: '預約桌遊通知',
+        //     text: '你已預約桌遊('+requiregame.gamename+') 請於3天內借取 如不需要 請取消預約',
+        // });
 
         //return res.ok('Operation completed.');
         if (req.wantsJSON) {
