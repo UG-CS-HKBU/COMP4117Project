@@ -397,6 +397,7 @@ module.exports = {
     removeborrowgame: async function (req, res) {
 
         // if (!await User.findOne(req.session.userid)) return res.notFound();
+        const thatUser = await User.findOne(req.session.userid);
 
         const requiregame = await Game.findOne({ gamename: req.body.qrcode });
 
