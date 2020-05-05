@@ -1,0 +1,119 @@
+<body onload="pageLoaded()">
+
+
+    <div class="container">
+        <div class="row">
+            <div class="card col-xl-6">
+                <img class="responsive" src=<%=material.avatar %>>
+            </div>
+            <div class="card col-xl-6">
+                <table class="table">
+                    <tr>
+                        <th id="detail" scope="row">位置:
+                            <%= material.location%>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th id="detail" scope="row">書名:
+                            <%= material.materialname %>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th id="detail" scope="row">類型:
+                            <%=material.category %>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th id="detail" scope="row">現有數量:
+                            <%= material.amount %>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th id="detail" scope="row">備註:
+                            <%=material.remarks %>
+                        </th>
+                    </tr>
+
+
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class=" col-6 col-sm-6">
+                <form action="/material/return/<%=material.id%>" method="GET">
+                    <button type="submit" class="borrowbutton">歸還</button>
+                </form>
+            </div>
+
+            <div class=" col-6 col-sm-6">
+                <form action="/user/renewborrowmaterial/<%=material.id%>" method="POST">
+                    <button type="submit" class="bookbutton">
+                        續借
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <nav class="bottomnav fixed-bottom">
+        <a href="/item/userindex" class="nav__link">
+            <i class="material-icons">
+                home
+            </i>
+            <span class="nav__text">主頁</span>
+        </a>
+        <a href="/item/usersearch" class="nav__link nav__link--active">
+            <i class="material-icons">
+                search
+            </i>
+            <span class="nav__text">搜尋</span>
+        </a>
+        <a href="/item/usernoti" class="nav__link">
+            <i class="material-icons">
+                email
+            </i>
+            <span class="nav__text">通知</span>
+        </a>
+        <a href="/item/useraccount" class="nav__link">
+            <i class="material-icons">
+                account_circle
+            </i>
+            <span class="nav__text">帳戶</span>
+        </a>
+    </nav>
+    </div>
+</body>
+
+<script>
+
+    async function renew(materialid) {
+
+        var r = confirm("確認續借?");
+
+        if (r) {
+
+            var response = await fetch("/user/renewborrowmaterial/" + materialid, {
+                method: "POST",
+                credentials: 'same-origin',
+            });
+
+            if (response.ok) {
+                var data = await response.json();
+                alert(data.message);
+                window.location = data.url;
+            } else {
+                alert("已經續借");
+            }
+
+        } else {
+            alert("取消");
+        }
+
+    };
+
+</script>

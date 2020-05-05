@@ -1,0 +1,116 @@
+<body onload="pageLoaded()">
+    <div class="container">
+        <br>
+
+        <img src="https://cubc.org.hk/wp-content/uploads/2016/08/logo_retina_x2.png" class="center2">
+
+        <br>
+        <br>
+
+        <a class="btn btn-success" href="/item/adminaddgift" style="float: left">增加禮物</a>
+        <a class="btn btn-danger" href="/gift/export_xlsx" style="float: left">下載Excel</a>
+        <br>
+        <br>
+        <h2 style="color:wheat; background-color: darkred;"> &nbsp;&nbsp;禮物列表</h2>
+
+        <div class="table-responsive">
+            <table class="table " id="admintable" class="row square" style="background-color:rgb(255, 255, 255)">
+
+                <% gift.forEach( function(model) { %>
+                <tr class="tr2">
+                    <th scope="row"></th>
+                    <td>
+                        <a href="/gift/admingiftdetail/<%=model.id%>">
+                            <%=model.giftname%>
+                        </a>
+                    </td>
+                    <!-- <td><img src="https://api.qrserver.com/v1/create-qr-code/?size=50x50&data=<%=model.id%>"></td> -->
+                    <td>
+                        <form action="/gift/uploadphoto/<%=model.id%>" method="GET">
+                            <button type="submit" class="btn btn-Linkcenter">上傳相片</button>
+                        </form>
+                    </td>
+                    <td>
+                        <a href="/gift/admingiftupdate/<%=model.id%>" class="btn btn-Link" id="edit">
+                            修改
+                        </a>
+                    </td>
+                    <td>
+                        <span id="deleteid"><%= model.id %></span>
+                        <form action="/gift/admingiftdelete/<%=model.id%>" method="POST">
+                            <button type="submit" class="btn btn-Link" style="color: tomato;" onclick="deleteGift('<%= model.id %>')">
+                                <Strong> 刪除</Strong></button>
+                        </form>
+                    </td>
+                </tr>
+                <% }); %>
+
+            </table>
+        </div>
+
+        <!-- <form action="/gift/print" method="GET">
+            <button class="center btn btn-secondary" type="submit" class="btn btn-primary">
+                打印QR code</button>
+        </form> -->
+
+
+
+        <nav class="bottomnav fixed-bottom">
+            <a href="/item/adminindex" class="nav__link">
+                <i class="material-icons">
+                    home
+                </i>
+                <span class="nav__text">主頁</span>
+            </a>
+            <a href="/item/adminsearch" class="nav__link nav__link--active">
+                <i class="material-icons">
+                    search
+                </i>
+                <span class="nav__text">搜尋</span>
+            </a>
+            <a href="/item/adminnoti" class="nav__link">
+                <i class="material-icons">
+                    email
+                </i>
+                <span class="nav__text">通知</span>
+            </a>
+            <a href="/item/adminaccount" class="nav__link">
+                <i class="material-icons">
+                    account_circle
+                </i>
+                <span class="nav__text">帳戶</span>
+            </a>
+        </nav>
+    </div>
+
+    </div>
+</body>
+
+<script>
+
+    async function deleteGift(id) {
+
+        var r = confirm("確認刪除?");
+
+        if (r) {
+
+            var response = await fetch("/gift/admingiftdelete/" + id, {
+                method: "POST",
+                credentials: 'same-origin',
+            });
+
+            if (response.ok) {
+                var data = await response.json();
+                alert(data.message);
+                window.location = data.url;
+            } else {
+                alert(response.status + ": " + response.statusText);
+            }
+
+        } else {
+            alert("取消");
+        }
+
+    };
+
+</script>

@@ -2,24 +2,38 @@
     <div class="container">
         <br>
 
-        <img src="https://cubc.org.hk/wp-content/uploads/2016/08/logo_retina_x2.png" class="center">
+        <img src="https://cubc.org.hk/wp-content/uploads/2016/08/logo_retina_x2.png" class="center2">
 
         <br>
         <br>
-        
 
-    
-            <div class="container">
-                <div class="square2 center">
-                    3月1日 你的申請(書籍)曼巴精神已接納
-                </div>
-                <br>
-                <div class="square2 center">
-                    3月11日 你的申請(桌遊)飛行棋已損壞
-                </div>
-                
+
+        <h2 style="color: wheat; background-color: darkred;"> &nbsp;&nbsp;已傳送的通知</h2>
+
+        <% noti.forEach(function(model) { %>
+            <div class="square2 center">
+                <%=new Date(model.createdAt).toLocaleDateString("zh-Hans-CN")%> <%=model.message%>
             </div>
-        
+            <br>
+        <% }); %>
+
+        <!--<div>
+            <div class="square2 center">
+                <strong>3月15日</strong>&nbsp; (書籍)曼巴精神已遺失。
+            </div>
+            <br>
+            <div class="square2 center">
+                <strong>3月07日</strong>&nbsp; (桌遊)飛行棋已損壞。
+            </div>
+            <br>
+
+            <div class="square2 center">
+                <strong>3月7日</strong>&nbsp; (物資)IPAD數量不足。
+            </div>
+
+        </div>-->
+
+
 
         <nav class="bottomnav fixed-bottom">
             <a href="/item/adminindex" class="nav__link">

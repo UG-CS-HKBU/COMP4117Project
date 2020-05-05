@@ -2,24 +2,46 @@
     <div class="container">
         <br>
 
-        <img src="https://cubc.org.hk/wp-content/uploads/2016/08/logo_retina_x2.png" class="center">
+        <img src="https://cubc.org.hk/wp-content/uploads/2016/08/logo_retina_x2.png" class="center2">
 
         <br>
+        <!-- <div class="container btn-group btn-group-justified">
+            <a href="" class="btn btn-warning">增加通知</a>
+            <a href="/item/adminadditem" class="btn btn btn-success">增加物品</a>
+            <a href="/item/adminedititem" class="btn btn-danger">修改物品資料/刪除物品</a> -->
 
-        <form action="/item/adminadditem">
-            <button type="submit" class="btn btn-outline-danger center">增加物品</button>
-        </form>
+        <div class="container">
+            <div class="row">
+                <!-- <div class=" col-12 col-sm-4">
+                    <form action="/item/adminadditem">
+                        <button type="submit" class="btn btn-success center">增加物品</button>
+                    </form>
 
-        <br>
+                    <br>
+                </div> -->
+                <div class=" col-12 col-sm-6">
 
-        <button type="submit" class="btn btn-outline-danger center">增加通知</button>
+                    <form action="/item/adminedititem">
+                        <button type="submit" class="btn btn-danger center">增加/修改/刪減物品</button>
+                    </form>
 
-        <br>
+                    <br>
+                </div>
+                <div class=" col-12 col-sm-6">
+                    <form action="/item/adminaddnoti">
+                        <button type="submit" class="btn btn-warning center">增加通知</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <div>
+    <br>
+
+    <!-- <div>
             <div class="container">
-                <h2 class="display-6 center">通知</h2>
-                <div class="square center">
+                <h2 style="color:wheat; background-color: darkred;"> &nbsp;&nbsp;待通知</h2>
+                <div class="square center" style="background-color:lightgoldenrodyellow">
                     <div class="row">
                         <div class="col center">
                             種類
@@ -28,7 +50,7 @@
                             名稱
                         </div>
                         <div class="col center ">
-                            逾期天數
+                            備注
                         </div>
                     </div>
                 </div>
@@ -41,7 +63,7 @@
                             曼巴精神
                         </div>
                         <div class="col center ">
-                            6天
+                            遺失
                         </div>
                     </div>
                 </div>
@@ -53,12 +75,12 @@
                         <div class="col center">
                             卡坦島
                         </div>
-                        <div class="col center ">
-                            7天
+                        <div class="col center " style="color: black;">
+                            已損壞
                         </div>
                     </div>
                 </div>
-                
+
 
                 <div class="square center">
                     <div class="row">
@@ -69,7 +91,7 @@
                             IPAD
                         </div>
                         <div class="col center ">
-                            8天
+                            數量不足
                         </div>
                     </div>
                 </div>
@@ -80,8 +102,8 @@
 
         <div>
             <div class="container">
-                <h2 class="display-6 center">借用歷史</h2>
-                <div class="square center">
+                <h2 style="color:wheat; background-color: darkred;"> &nbsp;&nbsp;已處理</h2>
+                <div class="square center" style="background-color:lightgoldenrodyellow">
                     <div class="row">
                         <div class="col center">
                             種類
@@ -90,83 +112,20 @@
                             名稱
                         </div>
                         <div class="col center ">
-                            備註
+                            處理狀況
                         </div>
                     </div>
                 </div>
-                <div class="square center">
-                    <div class="row">
-                        <div class="col center">
-                            書籍
-                        </div>
-                        <div class="col center">
-                            想見你(1)
-                        </div>
-                        <div class="col center ">
-                            遺失
-                        </div>
-                    </div>
-                </div>
-                <div class="square center">
-                    <div class="row">
-                        <div class="col center">
-                            桌遊
-                        </div>
-                        <div class="col center">
-                            飛行棋
-                        </div>
-                        <div class="col center ">
-                            損壞
-                        </div>
-                    </div>
-                </div>
-                
-
                 <div class="square center">
                     <div class="row">
                         <div class="col center">
                             物資
                         </div>
                         <div class="col center">
-                            原子筆
+                            氣球
                         </div>
                         <div class="col center ">
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <br>
-
-        <div>
-            <div class="container">
-                <h2 class="display-6 center">我的申請</h2>
-                <div class="square center">
-                    <div class="row">
-                        <div class="col center">
-                            種類
-                        </div>
-                        <div class="col center">
-                            名稱
-                        </div>
-                        <div class="col center ">
-                            申請狀況
-                        </div>
-                    </div>
-                </div>
-                <div class="square center">
-                    <div class="row">
-                        <div class="col center">
-                            書籍
-                        </div>
-                        <div class="col center">
-                            想見你(2)
-                        </div>
-                        <div class="col center ">
-                            接納
+                            已添加
                         </div>
                     </div>
                 </div>
@@ -178,14 +137,14 @@
                         <div class="col center">
                             矮人礦坑
                         </div>
-                        
-                        <div class="col center ">
-                            拒絕
+
+                        <div class="col center " style="color:red">
+                            暫時拒絕
                         </div>
 
                     </div>
                 </div>
-                
+
 
                 <div class="square center">
                     <div class="row">
@@ -193,17 +152,16 @@
                             物資
                         </div>
                         <div class="col center">
-                            IPAD
+                            原子筆
                         </div>
                         <div class="col center ">
-                            拒絕
+                            已添加
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
-        </div>
-
+    <br>
 
     </div>
     <nav class="bottomnav fixed-bottom">

@@ -1,0 +1,109 @@
+<body onload="pageLoaded()">
+    <br>
+
+    <img src="https://cubc.org.hk/wp-content/uploads/2016/08/logo_retina_x2.png" class="center2">
+
+    <br>
+    <br>
+    <div class="container">
+        <h2 class="center">建立新帳戶</h2>
+        <form action="/item/adminaddaccount" method="POST">
+            <div class="form-group row">
+                <div class="col-xl-12 col-form-label">
+                    <label>用戶名稱:</label>
+                    <input type="text" class="form-control" name="username" required>
+                </div>
+
+                <div class="col-xl-12 col-form-label">
+                    <label>密碼:</label>
+                    <input type="password" class="form-control" name="password" required>
+                </div>
+
+                <div class="form-group col-12 col-xl-12">
+                    <label>電郵地址:</label>
+                    <input type="email" col-xl-3 class="form-control" name="email" required>
+                </div>
+
+                <div class="form-group col-12 col-xl-12 ">
+                    <label>身份:</label>
+                    <br>
+                    <select name="role" required class=" col-12 col-xl-12" style="height: 37px;">
+                        <option value="user">使用者</option>
+                        <option value="admin">管理員</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-12 col-xl-12 ">
+                    <label>部門:</label>
+                    <br>
+                    <input type="text" class="form-control" name="department" list="optionlist">
+                    <datalist id="optionlist">
+                        <option value="部門A">部門A</option>
+                        <option value="部門B">部門B</option>
+                        <option value="部門C">部門C</option>
+                    </datalist>
+                    <!-- <select name="department" required class=" col-12 col-xl-12" style="height: 37px;">
+                        <option value="部門A">部門A</option>
+                        <option value="部門B">部門B</option>
+                        <option value="部門C">部門C</option>
+                    </select> -->
+                </div>
+
+                <div class="form-group col-12 col-xl-12 ">
+                    <label>職位:</label>
+                    <br>
+                    <input type="text" class="form-control" name="position" list="optionlist2">
+                    <datalist id="optionlist2">
+                        <option value="職位A">職位A</option>
+                        <option value="職位B">職位B</option>
+                        <option value="職位C">職位C</option>
+                    </datalist>
+                    <!-- <select name="position" required class=" col-12 col-xl-12" style="height: 37px;">
+                        <option value="職位A">職位A</option>
+                        <option value="職位B">職位B</option>
+                        <option value="職位C">職位C</option>
+                    </select> -->
+
+
+                </div>
+
+                <button type="sumbit" class="btn btn-primary center">增加用戶</button>
+
+        </form>
+
+
+        <nav class="bottomnav fixed-bottom">
+            <a href="/item/adminindex" class="nav__link">
+                <i class="material-icons">
+                    home
+                </i>
+                <span class="nav__text">主頁</span>
+            </a>
+            <a href="/item/adminsearch" class="nav__link nav__link--active">
+                <i class="material-icons">
+                    search
+                </i>
+                <span class="nav__text">搜尋</span>
+            </a>
+            <a href="/item/adminnoti" class="nav__link">
+                <i class="material-icons">
+                    email
+                </i>
+                <span class="nav__text">通知</span>
+            </a>
+            <a href="/item/adminaccount" class="nav__link">
+                <i class="material-icons">
+                    account_circle
+                </i>
+                <span class="nav__text">帳戶</span>
+            </a>
+        </nav>
+    </div>
+
+    </div>
+</body>
+
+<script>
+
+
+</script>

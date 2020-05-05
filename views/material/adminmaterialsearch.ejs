@@ -1,23 +1,28 @@
 <body onload="pageLoaded()">
     <div class="container">
-        
+
 
         <h2 class="center">物資搜尋</h2>
         <label>類型:</label>
         <form action="/material/adminmaterialresult" method="GET">
             <div class="form-group">
-                <select name="category" class="form-control" required>
-                    <option value="">選擇物資種類</option>
+                <input type="text" class="form-control" name="category" list="optionlist">
+                <datalist id="optionlist">
                     <option value="文具">文具</option>
                     <option value="電子產品">電子產品</option>
-                </select>
+                </datalist>
+                <!--<select name="category" class="form-control" >
+                    <option value=""></option>
+                    <option value="文具">文具</option>
+                    <option value="電子產品">電子產品</option>
+                </select>-->
             </div>
             <div class="form-group">
                 <label>物資名稱:</label>
                 <input type="string" class="form-control" name="materialname">
             </div>
             <div class="form-group">
-                <label>數量:</label>
+                <label>現有數量:</label>
                 <input type="number" class="form-control" name="amount">
             </div>
 
@@ -27,37 +32,40 @@
 
         <div class="row">
             <% material.forEach(function(model) { %>
-            <div class="card col-xl-6 col-sm-12">
-                <div id="title">
-                    <a href="/material/adminmaterialdetail/<%=model.id%>">詳細資料頁面 </a>
-                </div>
-                <p></p>
-                <div id="info">
-                    <img src=<%=model.photo %> id="photo" width="150" height="150">
-                    <ul class="list-group">
-                        <li class="list-group-item" id="info">
-                            <span id="briefinfo">物資名稱:</span>
-                            <%= model.materialname%>
-                        </li>
-                        <li class="list-group-item" id="info">
-                            <span id="briefinfo">物資類別:</span>
-                            <%= model.category %>
-                        </li>
-                        <li class="list-group-item" id="info">
-                            <span id="briefinfo">數量:</span>
-                            <%= model.amount %>
-                        </li>
-                        <!-- 
+                <div class="card col-xl-6 col-sm-12">
+                    <!-- <div id="title">
+                        <a href="/material/adminmaterialdetail/<%=model.id%>" style="color:darkslategrey">詳細資料頁面 </a>
+                    </div> -->
+                    <a href="/material/adminmaterialdetail/<%=model.id%>" style="color:darkslategrey">
+
+                        <p></p>
+                        <div id="info">
+                            <img src=<%=model.avatar %> id="photo" width="150" height="150">
+                            <ul class="list-group">
+                                <li class="list-group-item" id="info">
+                                    <span id="briefinfo">物資名稱:</span>
+                                    <%= model.materialname%>
+                                </li>
+                                <li class="list-group-item" id="info">
+                                    <span id="briefinfo">物資類別:</span>
+                                    <%= model.category %>
+                                </li>
+                                <li class="list-group-item" id="info">
+                                    <span id="briefinfo">數量:</span>
+                                    <%= model.amount %>
+                                </li>
+                                <!-- 
                         <li class="list-group-item" id="info">
                             <span id="briefinfo">存放位置</span>
                             <%= model.publisher %>
                         </li> -->
 
-                    </ul>
+                            </ul>
+                        </div>
+                    </a>
+                    <p></p>
                 </div>
-                <p></p>
-            </div>
-            <% }); %>
+                <% }); %>
 
         </div>
 

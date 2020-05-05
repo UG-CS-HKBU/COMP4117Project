@@ -1,16 +1,23 @@
 <body onload="pageLoaded()">
     <div class="container">
+        <h4 class="center">增加禮物</h4>
 
         <form action="/item/adminaddgift" method="POST">
             <div class="form-group row">
                 <div class="col-xl-6 col-form-label">
                     <label>禮物種類:</label>
-                    <select name="Gift[category]" class="form-control">
+                    <input type="text" class="form-control" name="Gift[category]" list="optionlist" required>
+                    <datalist id="optionlist">
+                        <option value="小型禮物">小型禮物</option>
+                        <option value="中型禮物">中型禮物</option>
+                        <option value="大型禮物">大型禮物</option>
+                    </datalist>
+                    <!--<select name="Gift[category]" class="form-control">
                         <option value="">選擇禮物種類</option>
                         <option value="小型禮物">小型禮物</option>
                         <option value="中型禮物">中型禮物</option>
                         <option value="大型禮物">大型禮物</option>
-                    </select>
+                    </select>-->
                 </div>
                 <div class="col-xl-6 col-form-label">
                     <label>禮物名稱:</label>
@@ -37,17 +44,14 @@
                     <input type="text" class="form-control" name="Gift[location]]" required>
                 </div>
 
-                <div class="col-xl-6 col-form-label">
-                    <label>相片:</label>
-                    <input type="url" class="form-control" name="Gift[photo]" required>
-                </div>
-
                 <button type="submit" class="btn btn-primary center">增加</button>
             </div>
 
         </form>
 
-        <button type="submit" class="btn btn-outline-dark center">上傳Excel</button>
+        <form action="/gift/import_xlsx" method="GET">
+            <button class="btn btn-dark center">上傳Excel</button>
+        </form>
 
         <nav class="bottomnav fixed-bottom">
             <a href="/item/adminindex" class="nav__link">

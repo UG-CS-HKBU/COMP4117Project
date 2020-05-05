@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<link rel="stylesheet" media="print"  href="print.css">
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Persons</title>
+	<style>
+	html, body {
+		width: 248mm;
+	}
+	</style>
+</head>
+
+<body>
+	<% book.forEach(model => { %>
+		<div style="margin-bottom:1em">
+			<h5> <%=model.itemtype%> <%= model.id %></h5>
+			<div><h5><%= model.bookname %></h5></div>
+			<img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=<%=model.bookname%>">
+		</div>
+	<% }); %>
+	<script>
+		window.print();
+		window.onfocus = () => window.close();
+	</script>
+</body>
+</html>

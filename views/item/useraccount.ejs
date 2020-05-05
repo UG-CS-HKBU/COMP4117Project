@@ -6,10 +6,19 @@
 
         <br>
         <br>
-        <div style="position: relative;" class="form-group col-12 col-xl-12">
-            <label style="position: relative;bottom: -5px;">用戶名稱: <%=req.session.username%></label>
+        <h2 style="color: wheat; background-color: darkred;" class="center">用戶資料</h2>
+        <div style="position: relative;" class="mycard col-12 col-xl-12">
+            <label style="position: relative;bottom: -5px;">用戶名稱: <%=model.username%></label>
+            <br>
+            <label style="position: relative;bottom: -5px;">電郵: <%=model.email%></label>
+            <br>
+            <label style="position: relative;bottom: -5px;">部門: <%=model.department%></label>
+            <br>
+            <label style="position: relative;bottom: -5px;">職位: <%=model.position%></label>
         </div>
-
+        <br>
+        <br>
+        <br>
         <div>
             <form action="/user/logout" method="POST">
                 <button type="submit" class="btn btn-primary center">登出</a>
@@ -17,11 +26,15 @@
         </div>
 
         <br>
-        <button type="submit" class="btn btn-outline-dark center">更改密碼</button>
-
+        <form action="/item/userpasswordupdate">
+            <button type="submit" class="btn btn-secondary center">更改密碼</button>
+        </form>
+        <br>
+        <form action="/item/useraccountupdate">
+            <button type="submit" class="btn btn-secondary center">更改資料</button>
+        </form>
         <br>
 
-        <button type="submit" class="btn btn-outline-dark center">更改資料</button>
 
 
 

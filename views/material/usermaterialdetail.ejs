@@ -1,25 +1,39 @@
 <body onload="pageLoaded()">
-    
+
 
     <div class="container">
         <div class="row">
             <div class="card col-xl-6">
-                <img class="responsive" src=<%=material.photo %>>
+                <img class="responsive" src=<%=material.avatar %>>
             </div>
             <div class="card col-xl-6">
                 <table class="table">
                     <tr>
-                        <th id="detail" scope="row">位置: <%= material.location%></th>
+                        <th id="detail" scope="row">位置:
+                            <%= material.location%>
+                        </th>
                     </tr>
                     <tr>
-                        <th id="detail" scope="row">書名: <%= material.materialname %></th>
+                        <th id="detail" scope="row">名稱:
+                            <%= material.materialname %>
+                        </th>
                     </tr>
                     <tr>
-                        <th id="detail" scope="row">類型: <%=material.category %></th>
+                        <th id="detail" scope="row">類型:
+                            <%=material.category %>
+                        </th>
                     </tr>
                     <tr>
-                        <th id="detail" scope="row">數量: <%= material.amount %></th>
+                        <th id="detail" scope="row">現有數量:
+                            <%= material.amount %>
+                        </th>
                     </tr>
+                    <tr>
+                        <th id="detail" scope="row">備註:
+                            <%=material.remarks %>
+                        </th>
+                    </tr>
+                    
 
                 </table>
 
@@ -27,10 +41,24 @@
         </div>
     </div>
 
-    
-    <button type="submit" class="btn btn-primary center">即時借取</button>
     <br>
-    <button type="submit" class="btn btn-primary center">預訂</button>
+    <div class="container">
+        <div class="row">
+            <div class=" col-6 col-sm-6">
+                <form action="/material/borrow/<%=material.id%>" method="GET">
+                    <button type="submit" class="borrowbutton">借取</button>
+                </form>
+            </div>
+
+            <div class=" col-6 col-sm-6">
+                <form action="/material/useraddremark/<%=material.id%>" method="GET">
+                    <button type="submit" class="bookbutton">
+                        備註
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <nav class="bottomnav fixed-bottom">
         <a href="/item/userindex" class="nav__link">

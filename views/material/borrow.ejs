@@ -1,0 +1,86 @@
+<body onload="pageLoaded()">
+    <div class="container">
+        <h4 class="center">借用物資</h4>
+
+
+        <div class="container">
+            <div class="row">
+                <div class="card col-xl-6">
+                    <img class="responsive" src=<%=material.avatar %>>
+                </div>
+                <div class="card col-xl-6">
+                    <table class="table">
+                        <tr>
+                            <th id="detail" scope="row">位置:
+                                <%= material.location%>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th id="detail" scope="row">名稱:
+                                <%= material.materialname %>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th id="detail" scope="row">類型:
+                                <%=material.category %>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th id="detail" scope="row">數量:
+                                <%= material.amount %>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th id="detail" scope="row">備註:
+                                <%=material.remark %>
+                            </th>
+                        </tr>
+
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+        <form action="/user/borrowmaterial/<%=material.id%>" method="POST">
+            <div class="form-group row">
+                <div class="col-xl-12 col-form-label">
+                    <label>數量:</label>
+                    <input type="number" class="form-control" name="amount" min=1 max=<%=material.amount%> required>
+                </div>
+            </div>
+            <button type="submit" class="center btn btn-primary">確認</button>
+        </form>
+
+        <br>
+        
+
+        <nav class="bottomnav fixed-bottom">
+            <a href="/item/userindex" class="nav__link">
+                <i class="material-icons">
+                    home
+                </i>
+                <span class="nav__text">主頁</span>
+            </a>
+            <a href="/item/usersearch" class="nav__link nav__link--active">
+                <i class="material-icons">
+                    search
+                </i>
+                <span class="nav__text">搜尋</span>
+            </a>
+            <a href="/item/usernoti" class="nav__link">
+                <i class="material-icons">
+                    email
+                </i>
+                <span class="nav__text">通知</span>
+            </a>
+            <a href="/item/useraccount" class="nav__link">
+                <i class="material-icons">
+                    account_circle
+                </i>
+                <span class="nav__text">帳戶</span>
+            </a>
+        </nav>
+    </div>
+</body>

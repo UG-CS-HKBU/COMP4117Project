@@ -27,6 +27,11 @@ module.exports = {
       type:"string"
     },
 
+    itemtype:{
+      type:"string",
+      defaultsTo:"禮物"
+    },
+
     category:
     {
       type:"string"
@@ -55,7 +60,29 @@ module.exports = {
     amount:
     {
       type:"number"
-    }
+    },
+
+    expired:{
+      type:"string",
+      defaultsTo:"30"
+    },
+
+    remarks:{
+      type:'string',
+    },
+
+    giftborrowBy:{
+      collection:"User",
+      via:"giftborrow"
+    },
+
+    borrowdate:{
+      type:"string",
+    },
+
+    avatar:{
+      type:'string'
+    },
 
   },
 

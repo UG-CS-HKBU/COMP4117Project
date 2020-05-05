@@ -1,38 +1,41 @@
 <body onload="pageLoaded()">
     <div class="container">
-        
+        <h2 class="center">桌遊搜尋結果</h2>
+
         <div class="row">
             <% game.forEach(function(model) { %>
-            <div class="card col-xl-6 col-sm-12">
-                <div id="title">
+                <div class="card col-xl-6 col-sm-12">
+                    <!-- <div id="title">
                     <a href="/game/usergamedetail/<%=model.id%>">詳細資料頁面 </a>
+                </div> -->
+                    <a href="/game/usergamedetail/<%=model.id%>" style="color:darkslategrey">
+
+                        <p></p>
+                        <div id="info">
+                            <img src=<%=model.avatar %> id="photo" width="150" height="150">
+                            <ul class="list-group">
+                                <li class="list-group-item" id="info">
+                                    <span id="briefinfo">名稱:</span>
+                                    <%= model.gamename %>
+                                </li>
+
+                                <li class="list-group-item" id="info">
+                                    <span id="briefinfo">類別:</span>
+                                    <%= model.category %>
+                                </li>
+
+                                <li class="list-group-item" id="info">
+                                    <span id="briefinfo">出版社:</span>
+                                    <%= model.publisher %>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </a>
+                    <p></p>
+
                 </div>
-                <p></p>
-                <div id="info">
-                    <img src=<%=model.photo %> id="photo" width="150" height="150">
-                    <ul class="list-group">
-                        <li class="list-group-item" id="info">
-                            <span id="briefinfo">名稱:</span>
-                            <%= model.gamename %>
-                        </li>
-
-                        <li class="list-group-item" id="info">
-                            <span id="briefinfo">類別:</span>
-                            <%= model.category %>
-                        </li>
-
-                        <li class="list-group-item" id="info">
-                            <span id="briefinfo">出版社:</span>
-                            <%= model.publisher %>
-                        </li>
-
-                    </ul>
-                </div>
-
-                <p></p>
-
-            </div>
-            <% }); %>
+                <% }); %>
 
         </div>
 

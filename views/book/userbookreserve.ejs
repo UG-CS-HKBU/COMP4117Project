@@ -1,0 +1,157 @@
+<body onload="pageLoaded()">
+
+
+    <div class="container">
+        <div class="row">
+            <div class="card col-xl-6">
+                <img class="responsive" src=<%=book.avatar %>>
+            </div>
+            <div class="card col-xl-6">
+                <table class="table">
+                    <tr>
+                        <th id="detail" scope="row">編號:
+                            <%= book.no%>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th id="detail" scope="row">書名:
+                            <%= book.bookname %>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th id="detail" scope="row">類型:
+                            <%=book.category %>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th id="detail" scope="row">作者/機構:
+                            <%= book.author %>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th id="detail" scope="row">出版年份:
+                            <%=book.year %>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th id="detail" scope="row">位置:
+                            <%= book.location%>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th id="detail" scope="row">被借用次數:
+                            <%=book.times %>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th id="detail" scope="row">狀態:
+                            <%=book.status %>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th id="detail" scope="row">借用者及日期(最新):
+                            <%=book.borrowinfo %>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th id="detail" scope="row">歸還者及日期(最新):
+                            <%=book.returninfo %>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th id="detail" scope="row">備註:
+                            <%=book.remarks %>
+                        </th>
+                    </tr>
+
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+    <br>
+    
+    <div class="container">
+        <div class="row">
+            <div class=" col-6 col-sm-6">
+                
+                    <!-- <button type="submit" class="borrowbutton" onclick="borrow('<%=req.session.userid%>','<%=book.id%>')">借取</button> -->
+                    <form action="/book/borrow" method="GET">
+                        <button type="submit" class="borrowbutton">借取</button>
+                    </form>
+                
+            </div>
+
+            <div class=" col-6 col-sm-6">
+                
+                <form action="/user/removereservebook/<%=book.id%>" method="POST">
+                    <button type="submit" class="bookbutton">
+                        取消預定
+                    </button>
+                <form>
+               
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <nav class="bottomnav fixed-bottom">
+        <a href="/item/userindex" class="nav__link">
+            <i class="material-icons">
+                home
+            </i>
+            <span class="nav__text">主頁</span>
+        </a>
+        <a href="/item/usersearch" class="nav__link nav__link--active">
+            <i class="material-icons">
+                search
+            </i>
+            <span class="nav__text">搜尋</span>
+        </a>
+        <a href="/item/usernoti" class="nav__link">
+            <i class="material-icons">
+                email
+            </i>
+            <span class="nav__text">通知</span>
+        </a>
+        <a href="/item/useraccount" class="nav__link">
+            <i class="material-icons">
+                account_circle
+            </i>
+            <span class="nav__text">帳戶</span>
+        </a>
+    </nav>
+    </div>
+</body>
+
+<script>
+
+    async function removereserve(bookid) {
+
+        var r = confirm("確認取消預定?");
+
+        if (r) {
+
+            var response = await fetch("/user/removereservebook/"+ bookid, {
+                method: "POST",
+                credentials: 'same-origin',
+            });
+
+            if (response.ok) {
+                var data = await response.json();
+                alert(data.message);
+                window.location = data.url;
+            } else {
+                alert("已經取消預定");
+            }
+
+        } else {
+            alert("取消");
+        }
+
+    };
+
+</script>

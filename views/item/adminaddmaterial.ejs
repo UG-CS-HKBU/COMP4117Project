@@ -1,14 +1,20 @@
 <body onload="pageLoaded()">
     <div class="container">
+        <h4 class="center">增加物資</h4>
 
         <form action="/item/adminaddmaterial" method="POST">
             <div class="form-group row">
                 <div class="col-xl-6 col-form-label">
                     <label>物資種類:</label>
-                    <select name="Material[category]" class="form-control">
+                    <input type="text" class="form-control" name="Material[category]"  list="optionlist" required>
+                    <datalist id="optionlist">
                         <option value="文具">文具</option>
                         <option value="電子產品">電子產品</option>
-                    </select>
+                    </datalist>
+                    <!--<select name="Material[category]" class="form-control">
+                        <option value="文具">文具</option>
+                        <option value="電子產品">電子產品</option>
+                    </select>-->
                 </div>
                 <div class="col-xl-6 col-form-label">
                     <label>物資名稱:</label>
@@ -17,18 +23,13 @@
 
                 <div class="col-xl-6 col-form-label">
                     <label>數量:</label>
-                    <input type="number" class="form-control" name="Material[amount]]" required>
+                    <input type="number" class="form-control" name="Material[amount]" required>
                 </div>
 
                 
                 <div class="col-xl-6 col-form-label">
                     <label>位置:</label>
-                    <input type="text" class="form-control" name="Material[location]]" required>
-                </div>
-
-                <div class="col-xl-6 col-form-label">
-                    <label>相片:</label>
-                    <input type="url" class="form-control" name="Material[photo]" required>
+                    <input type="text" class="form-control" name="Material[location]">
                 </div>
 
                 <button type="submit" class="btn btn-primary center">增加</button>
@@ -36,7 +37,9 @@
 
         </form>
 
-        <button type="submit" class="btn btn-outline-dark center">上傳Excel</button>
+        <form action="/material/import_xlsx" method="GET">
+            <button class="btn btn-dark center">上傳Excel</button>
+        </form>
 
         <nav class="bottomnav fixed-bottom">
             <a href="/item/adminindex" class="nav__link">

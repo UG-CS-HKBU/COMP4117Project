@@ -1,19 +1,26 @@
 <body onload="pageLoaded()">
     <div class="container">
-        
+
 
         <h2 class="center">桌上遊戲搜尋</h2>
         <label>種類:</label>
 
         <form action="/game/usergameresult" method="GET">
             <div class="form-group">
-                <select name="category" class="form-control" required>
-                    <option value="">選擇桌遊種類</option>
+                <input type="text" class="form-control" name="category" list="optionlist">
+                <datalist id="optionlist">
                     <option value="棋類遊戲">棋類遊戲</option>
                     <option value="卡牌遊戲">卡牌遊戲</option>
                     <option value="骰子遊戲">骰子遊戲</option>
                     <option value="紙筆遊戲">紙筆遊戲</option>
-                </select>
+                </datalist>
+                <!-- <select name="category" class="form-control">
+                    <option value=""></option>
+                    <option value="棋類遊戲">棋類遊戲</option>
+                    <option value="卡牌遊戲">卡牌遊戲</option>
+                    <option value="骰子遊戲">骰子遊戲</option>
+                    <option value="紙筆遊戲">紙筆遊戲</option>
+                </select> -->
             </div>
             <div class="form-group">
                 <label>名稱:</label>
@@ -33,36 +40,38 @@
 
         <div class="row">
             <% game.forEach(function(model) { %>
-            <div class="card col-xl-6 col-sm-12">
-                <div id="title">
+                <div class="card col-xl-6 col-sm-12">
+                    <!-- <div id="title">
                     <a href="/game/usergamedetail/<%=model.id%>">詳細資料頁面 </a>
+                </div> -->
+                    <a href="/game/usergamedetail/<%=model.id%>" style="color:darkslategrey">
+
+                        <p></p>
+                        <div id="info">
+                            <img src=<%=model.avatar %> id="photo" width="150" height="150">
+                            <ul class="list-group">
+                                <li class="list-group-item" id="info">
+                                    <span id="briefinfo">名稱:</span>
+                                    <%= model.gamename %>
+                                </li>
+
+                                <li class="list-group-item" id="info">
+                                    <span id="briefinfo">類別:</span>
+                                    <%= model.category %>
+                                </li>
+
+                                <li class="list-group-item" id="info">
+                                    <span id="briefinfo">出版社:</span>
+                                    <%= model.publisher %>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </a>
+                    <p></p>
+
                 </div>
-                <p></p>
-                <div id="info">
-                    <img src=<%=model.photo %> id="photo" width="150" height="150">
-                    <ul class="list-group">
-                        <li class="list-group-item" id="info">
-                            <span id="briefinfo">名稱:</span>
-                            <%= model.gamename %>
-                        </li>
-
-                        <li class="list-group-item" id="info">
-                            <span id="briefinfo">類別:</span>
-                            <%= model.category %>
-                        </li>
-
-                        <li class="list-group-item" id="info">
-                            <span id="briefinfo">出版社:</span>
-                            <%= model.publisher %>
-                        </li>
-
-                    </ul>
-                </div>
-
-                <p></p>
-
-            </div>
-            <% }); %>
+                <% }); %>
 
         </div>
         <nav class="bottomnav fixed-bottom">

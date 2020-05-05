@@ -1,0 +1,121 @@
+<body onload="pageLoaded()">
+    <div class="container">
+        <h4 class="center">申報損壞/增加備註</h4>
+
+        <div class="container">
+            <div class="row">
+                <div class="card col-xl-6">
+                    <img class="responsive" src=<%=gift.avatar %>>
+                </div>
+                <div class="card col-xl-6">
+                    <table class="table">
+                        <tr>
+                            <th id="detail" scope="row">位置:
+                                <%= gift.location%>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th id="detail" scope="row">名稱:
+                                <%= gift.giftname %>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th id="detail" scope="row">類型:
+                                <%=gift.category %>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th id="detail" scope="row">現有數量:
+                                <%= gift.amount%>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th id="detail" scope="row">單價價值(HKD): $
+                                <%= gift.value%>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th id="detail" scope="row">捐贈者:
+                                <%=gift.donator%>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th id="detail" scope="row">備註:
+                                <%=gift.remarks %>
+                            </th>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+        <form action="/gift/useraddremark/<%=gift.id%>" method="POST">
+            <div class="form-group row">
+                <div class="col-xl-12 col-form-label">
+                    <label>備註:</label>
+                    <input type="string" class="form-control" name="remarks" required>
+                </div>
+            </div>
+            <button type="submit" class="center btn btn-primary">提交</button>
+        </form>
+
+        <nav class="bottomnav fixed-bottom">
+            <a href="/item/userindex" class="nav__link">
+                <i class="material-icons">
+                    home
+                </i>
+                <span class="nav__text">主頁</span>
+            </a>
+            <a href="/item/usersearch" class="nav__link nav__link--active">
+                <i class="material-icons">
+                    search
+                </i>
+                <span class="nav__text">搜尋</span>
+            </a>
+            <a href="/item/usernoti" class="nav__link">
+                <i class="material-icons">
+                    email
+                </i>
+                <span class="nav__text">通知</span>
+            </a>
+            <a href="/item/useraccount" class="nav__link">
+                <i class="material-icons">
+                    account_circle
+                </i>
+                <span class="nav__text">帳戶</span>
+            </a>
+        </nav>
+    </div>
+</body>
+
+<script>
+
+    async function borrow(userid, bookid) {
+
+        var r = confirm("確認借取?");
+
+        if (r) {
+
+            var response = await fetch("/user/" + userid + "/borrowbook/add/" + bookid, {
+                method: "POST",
+                credentials: 'same-origin',
+            });
+
+            if (response.ok) {
+                var data = await response.json();
+                alert(data.message);
+                window.location = data.url;
+            } else {
+                alert("已經借取");
+            }
+
+        } else {
+            alert("取消");
+        }
+
+    };
+
+</script>

@@ -1,24 +1,37 @@
 <body onload="pageLoaded()">
-    
+
 
     <div class="container">
         <div class="row">
             <div class="card col-xl-6">
-                <img class="responsive" src=<%=material.photo %>>
+                <img class="responsive" src=<%=material.avatar %>>
             </div>
             <div class="card col-xl-6">
                 <table class="table">
                     <tr>
-                        <th id="detail" scope="row">位置: <%= material.location%></th>
+                        <th id="detail" scope="row">位置:
+                            <%= material.location%>
+                        </th>
                     </tr>
                     <tr>
-                        <th id="detail" scope="row">書名: <%= material.materialname %></th>
+                        <th id="detail" scope="row">書名:
+                            <%= material.materialname %>
+                        </th>
                     </tr>
                     <tr>
-                        <th id="detail" scope="row">類型: <%=material.category %></th>
+                        <th id="detail" scope="row">類型:
+                            <%=material.category %>
+                        </th>
                     </tr>
                     <tr>
-                        <th id="detail" scope="row">數量: <%= material.amount %></th>
+                        <th id="detail" scope="row">現有數量:
+                            <%= material.amount %>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th id="detail" scope="row">備註:
+                            <%=material.remarks %>
+                        </th>
                     </tr>
 
                 </table>
@@ -27,10 +40,28 @@
         </div>
     </div>
 
-    
-    <button type="submit" class="btn btn-primary center">即時借取</button>
+
     <br>
-    <button type="submit" class="btn btn-primary center">預訂</button>
+    <div class="container">
+        <div class="row">
+            <div class=" col-6 col-sm-6">
+                <a href="/material/adminmaterialupdate/<%=material.id%>">
+                    <button type="submit" class="changebutton">修改</button>
+                </a>
+            </div>
+
+            <div class=" col-6 col-sm-6">
+                <!-- <form action="/material/adminmaterialdelete/<%=material.id%>" method="POST"> -->
+                    <button type="submit" class="deletebutton" onclick="deleteMaterial('<%= material.id %>')">
+                        刪除
+                    </button>
+
+                <!-- </form> -->
+            </div>
+        </div>
+    </div>
+    <br>
+
 
     <nav class="bottomnav fixed-bottom">
         <a href="/item/adminindex" class="nav__link">
@@ -60,3 +91,32 @@
     </nav>
     </div>
 </body>
+
+<script>
+
+    async function deleteMaterial(id) {
+
+        var r = confirm("確認刪除?");
+
+        if (r) {
+
+            var response = await fetch("/material/adminmaterialdelete/" + id, {
+                method: "POST",
+                credentials: 'same-origin',
+            });
+
+            if (response.ok) {
+                var data = await response.json();
+                alert(data.message);
+                window.location = data.url;
+            } else {
+                alert(response.status + ": " + response.statusText);
+            }
+
+        } else {
+            alert("取消");
+        }
+
+    };
+
+</script>

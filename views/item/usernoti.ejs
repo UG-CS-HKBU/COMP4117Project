@@ -6,14 +6,33 @@
 
         <br>
         <br>
-        
 
-        <div>
-            <div class="container">
-                <p class="lead">3月3日 你的書籍(XXXX)借取已被接納</p>
-                <p class="lead">3月4日 你的桌遊(XXXX)借取已被接納</p>
+        <h2 style="color: wheat; background-color: darkred;"> &nbsp;&nbsp;收到的通知</h2>
+
+        <% noti.forEach(function(model) { %>
+            <div class="square2 center">
+                <%=new Date(model.createdAt).toLocaleDateString()%> <%=model.message%>
             </div>
-        </div>
+            <br>
+        <% }); %>
+
+        
+        <!-- <div>
+            <div class="square2 center">
+                <strong>3月21日</strong>&nbsp; 你的申請(書籍)曼巴精神已接納。
+            </div>
+            <br>
+            <div class="square2 center">
+                <strong>3月11日</strong>&nbsp; 你的申請(桌遊)飛行棋已損壞。
+            </div>
+            <br>
+
+            <div class="square2 center">
+                <strong>3月10日</strong>&nbsp; 你的申請(物資)IPAD已被拒絕。
+            </div>
+
+        </div> -->
+
 
         <nav class="bottomnav fixed-bottom">
             <a href="/item/userindex" class="nav__link">

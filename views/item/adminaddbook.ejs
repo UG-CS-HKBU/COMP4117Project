@@ -1,18 +1,30 @@
 <body onload="pageLoaded()">
     <div class="container">
-        
+        <h4 class="center">增加書本</h4>
+
         <form action="/item/adminaddbook" method="POST">
             <div class="form-group row">
                 <div class="col-xl-6 col-form-label">
                     <label>書本種類:</label>
-                    <select name="Book[category]" class="form-control">
-                        <option value="小說">小說</option>
-                        <option value="自傳">自傳</option>
-                        <option value="心理勵志">心理勵志</option>
-                        <option value="圖書">圖書</option>
-
-                    </select>
+                    <input type="text" class="form-control" name="Book[category]" list="optionlist" required>
+                    <datalist id="optionlist">
+                        <option value="成長系列">成長系列</option>
+                        <option value="哀傷">哀傷</option>
+                        <option value="家庭關係">家庭關係</option>
+                        <option value="情緒教育">情緒教育</option>
+                    </datalist>
+                    <!--<select name="Book[category]" class="form-control">
+                        <option value="成長系列">成長系列</option>
+                        <option value="哀傷">哀傷</option>
+                        <option value="家庭關係">家庭關係</option>
+                        <option value="情緒教育">情緒教育</option>
+                    </select>-->
                 </div>
+                <div class="col-xl-6 col-form-label">
+                    <label>編號:</label>
+                    <input type="text" class="form-control" name="Book[no]" required>
+                </div>
+
                 <div class="col-xl-6 col-form-label">
                     <label>書名:</label>
                     <input type="text" class="form-control" name="Book[bookname]" required>
@@ -43,17 +55,17 @@
                     <input type="text" class="form-control" name="Book[location]]" required>
                 </div>
 
-                <div class="col-xl-6 col-form-label">
-                    <label>相片:</label>
-                    <input type="url" class="form-control" name="Book[photo]" required>
-                </div>
 
                 <button type="submit" class="btn btn-primary center">增加</button>
             </div>
 
         </form>
 
-        <button type="submit" class="btn btn-outline-dark center">上傳Excel</button>
+
+
+        <form action="/book/import_xlsx" method="GET">
+            <button class="btn btn-dark center">上傳Excel</button>
+        </form>
 
         <nav class="bottomnav fixed-bottom">
             <a href="/item/adminindex" class="nav__link">

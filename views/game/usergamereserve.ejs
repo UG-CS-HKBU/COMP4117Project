@@ -1,0 +1,150 @@
+<body onload="pageLoaded()">
+
+
+    <div class="container">
+        <div class="row">
+            <div class="card col-xl-6">
+                <img class="responsive" src=<%=game.avatar %> >
+            </div>
+            <div class="card col-xl-6">
+                <table class="table">
+                    <tr>
+                        <th id="detail" scope="row">位置:
+                            <%= game.location%>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th id="detail" scope="row">名稱:
+                            <%= game.gamename %>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th id="detail" scope="row">類型:
+                            <%=game.category %>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th id="detail" scope="row">桌遊編號:
+                            <%= game.serialno%>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th id="detail" scope="row">出版社:
+                            <%=game.publisher %>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th id="detail" scope="row">被借用次數:
+                            <%=game.times %>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th id="detail" scope="row">狀態:
+                            <%=game.status %>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th id="detail" scope="row">借用者及日期(最新):
+                            <%=game.borrowinfo %>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th id="detail" scope="row">歸還者及日期(最新):
+                            <%=game.returninfo %>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th id="detail" scope="row">備註:
+                            <%=game.remarks %>
+                        </th>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+    <br>
+    
+    <div class="container">
+        <div class="row">
+            <div class=" col-6 col-sm-6">
+                
+                    <!-- <button type="submit" class="borrowbutton" onclick="borrow('<%=req.session.userid%>','<%=game.id%>')">借取</button> -->
+                    <form action="/game/borrow" method="GET">
+                        <button type="submit" class="borrowbutton">借取</button>
+                    </form>
+                
+            </div>
+
+            <div class=" col-6 col-sm-6">
+                <form action="/user/removereservegame/<%=game.id%>" method="POST">
+                    <button type="submit" class="bookbutton">
+                        取消預定
+                    </button>
+                <form>
+               
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <nav class="bottomnav fixed-bottom">
+        <a href="/item/userindex" class="nav__link">
+            <i class="material-icons">
+                home
+            </i>
+            <span class="nav__text">主頁</span>
+        </a>
+        <a href="/item/usersearch" class="nav__link nav__link--active">
+            <i class="material-icons">
+                search
+            </i>
+            <span class="nav__text">搜尋</span>
+        </a>
+        <a href="/item/usernoti" class="nav__link">
+            <i class="material-icons">
+                email
+            </i>
+            <span class="nav__text">通知</span>
+        </a>
+        <a href="/item/useraccount" class="nav__link">
+            <i class="material-icons">
+                account_circle
+            </i>
+            <span class="nav__text">帳戶</span>
+        </a>
+    </nav>
+    </div>
+</body>
+
+<script>
+
+    async function removereserve(gameid) {
+
+        var r = confirm("確認取消預定?");
+
+        if (r) {
+
+            var response = await fetch("/user/removereservegame/"+ gameid, {
+                method: "POST",
+                credentials: 'same-origin',
+            });
+
+            if (response.ok) {
+                var data = await response.json();
+                alert(data.message);
+                window.location = data.url;
+            } else {
+                alert("已經取消預定");
+            }
+
+        } else {
+            alert("取消");
+        }
+
+    };
+
+</script>

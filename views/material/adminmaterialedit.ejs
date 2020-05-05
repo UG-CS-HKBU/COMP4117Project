@@ -1,0 +1,116 @@
+<body onload="pageLoaded()">
+    <div class="container">
+        <br>
+
+        <img src="https://cubc.org.hk/wp-content/uploads/2016/08/logo_retina_x2.png" class="center2">
+
+        <br>
+        <br>
+
+        <a class="btn btn-success" href="/item/adminaddmaterial" style="float: left">增加物資</a>
+        <a class="btn btn-danger" href="/material/export_xlsx" style="float: left">下載Excel</a>
+        <br>
+        <br>
+        <h2 style="color:wheat; background-color: darkred;"> &nbsp;&nbsp;物資列表</h4>
+        <!-- <h4 class="center"><b>物資列表</b></h4> -->
+
+        <div class="table-responsive">
+            <table class="table " id="admintable" class="row square" style="background-color:rgb(255, 255, 255)">
+
+                <% material.forEach( function(model) { %>
+                    <tr class="tr2">
+                        <th scope="row"></th>
+                        <td>
+                            <a href="/material/adminmaterialdetail/<%=model.id%>">
+                                <%=model.materialname%>
+                            </a>
+                        </td>
+                        <td>
+                            <form action="/material/uploadphoto/<%=model.id%>" method="GET">
+                                <button type="submit" class="btn btn-Link center">上傳相片</button>
+                            </form>
+                        </td>
+                        <td>
+                            <a href="/material/adminmaterialupdate/<%=model.id%>" class="btn btn-Link" id="edit">
+                        修改
+                    </a>
+                        </td>
+                        <td>
+                            <!-- <span id="deleteid"><%= model.id %></span> -->
+                            <!-- <form action="/material/adminmaterialdelete/<%=model.id%>" method="POST"> -->
+                                <button type="submit" class="btn btn-Link " Style="color:tomato" onclick="deleteMaterial('<%= model.id %>')">
+                            <strong>刪除</strong></button>
+                            <!-- </form> -->
+                        </td>
+                    </tr>
+                    <% }); %>
+
+            </table>
+        </div>
+
+        <!--<form action="/material/print" method="GET">
+            <button class="center btn btn-secondary" type="submit">
+                打印QR code</button>
+        </form>-->
+
+
+
+        <nav class="bottomnav fixed-bottom">
+            <a href="/item/adminindex" class="nav__link">
+                <i class="material-icons">
+                    home
+                </i>
+                <span class="nav__text">主頁</span>
+            </a>
+            <a href="/item/adminsearch" class="nav__link nav__link--active">
+                <i class="material-icons">
+                    search
+                </i>
+                <span class="nav__text">搜尋</span>
+            </a>
+            <a href="/item/adminnoti" class="nav__link">
+                <i class="material-icons">
+                    email
+                </i>
+                <span class="nav__text">通知</span>
+            </a>
+            <a href="/item/adminaccount" class="nav__link">
+                <i class="material-icons">
+                    account_circle
+                </i>
+                <span class="nav__text">帳戶</span>
+            </a>
+        </nav>
+    </div>
+
+    </div>
+</body>
+
+<script>
+
+    async function deleteMaterial(id) {
+
+        var r = confirm("確認刪除?");
+
+        if (r) {
+
+            var response = await fetch("/material/adminmaterialdelete/" + id, {
+                method: "POST",
+                credentials: 'same-origin',
+            });
+
+            if (response.ok) {
+                var data = await response.json();
+                alert(data.message);
+                window.location = data.url;
+            } else {
+                alert(response.status + ": " + response.statusText);
+            }
+
+        } else {
+            alert("取消");
+        }
+
+    };
+
+</script>

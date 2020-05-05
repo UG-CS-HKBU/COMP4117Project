@@ -1,0 +1,85 @@
+<body onload="pageLoaded()">
+    <div class="container">
+
+        <form action="/gift/admingiftupdate/<%=gift.id%>" method="POST">
+            <div class="form-group row">
+                <div class="col-xl-6 col-form-label">
+                    <label>禮物種類:</label>
+                    <input type="text" class="form-control" name="Gift[category]" value="<%= gift.category %>" list="optionlist" required>
+                    <datalist id="optionlist">
+                        <option value="小型禮物">小型禮物</option>
+                        <option value="中型禮物">中型禮物</option>
+                        <option value="大型禮物">大型禮物</option>
+                    </datalist>
+                    <!-- <select name="Gift[category]" class="form-control">
+                        <option value="小型禮物">小型禮物</option>
+                        <option value="中型禮物">中型禮物</option>
+                        <option value="大型禮物">大型禮物</option>
+                    </select> -->
+                </div>
+                <div class="col-xl-6 col-form-label">
+                    <label>禮物名稱:</label>
+                    <input type="text" class="form-control" name="Gift[giftname]" value="<%= gift.giftname %>" required>
+                </div>
+
+                <div class="col-xl-6 col-form-label">
+                    <label>數量:</label>
+                    <input type="number" class="form-control" name="Gift[amount]]" value="<%= gift.amount %>" required>
+                </div>
+
+                <div class="col-xl-6 col-form-label">
+                    <label>單價價值(HKD):</label>
+                    <input type="number" class="form-control" name="Gift[value]" value="<%= gift.value %>" required>
+                </div>
+
+                <div class="col-xl-6 col-form-label">
+                    <label>捐贈者:</label>
+                    <input type="text" class="form-control" name="Gift[donator]" value="<%= gift.donator %>">
+                </div>
+
+                <div class="col-xl-6 col-form-label">
+                    <label>位置:</label>
+                    <input type="text" class="form-control" name="Gift[location]]" value="<%= gift.location %>">
+                </div>
+
+                <button type="submit" class="btn btn-primary center">修改</button>
+            </div>
+
+        </form>
+
+
+        <nav class="bottomnav fixed-bottom">
+            <a href="/item/adminindex" class="nav__link">
+                <i class="material-icons">
+                    home
+                </i>
+                <span class="nav__text">主頁</span>
+            </a>
+            <a href="/item/adminsearch" class="nav__link nav__link--active">
+                <i class="material-icons">
+                    search
+                </i>
+                <span class="nav__text">搜尋</span>
+            </a>
+            <a href="/item/adminnoti" class="nav__link">
+                <i class="material-icons">
+                    email
+                </i>
+                <span class="nav__text">通知</span>
+            </a>
+            <a href="/item/adminaccount" class="nav__link">
+                <i class="material-icons">
+                    account_circle
+                </i>
+                <span class="nav__text">帳戶</span>
+            </a>
+        </nav>
+    </div>
+
+    </div>
+</body>
+
+<script>
+    var a = document.querySelector('option[value="<%=gift.category%>"]');
+    a.selected = "selected";
+</script>

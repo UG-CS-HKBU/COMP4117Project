@@ -1,0 +1,83 @@
+<script src="https://cdn.jsdelivr.net/npm/jsqr@1.1.1/dist/jsQR.js"></script>
+
+<body onload="pageLoaded()">
+    <div class="container">
+        <br>
+
+        <img src="https://cubc.org.hk/wp-content/uploads/2016/08/logo_retina_x2.png" class="center">
+
+        <h5 class="center">請用相機掃瞄物品中的QRcode</h5>
+        <h5 class="center">核對物品名稱後按提交</h5>
+        <form action="/user/borrowbook" method="POST">
+            <input class="center"id="qrinput" name="qrcode" />
+            <input class="center"type="submit" />
+        </form>
+        <canvas id="canvas"></canvas>
+        <nav class="bottomnav fixed-bottom">
+            <a href="/item/userindex" class="nav__link">
+                <i class="material-icons">
+                    home
+                </i>
+                <span class="nav__text">主頁</span>
+            </a>
+            <a href="/item/usersearch" class="nav__link nav__link--active">
+                <i class="material-icons">
+                    search
+                </i>
+                <span class="nav__text">搜尋</span>
+            </a>
+            <a href="/item/usernoti" class="nav__link">
+                <i class="material-icons">
+                    email
+                </i>
+                <span class="nav__text">通知</span>
+            </a>
+            <a href="/item/useraccount" class="nav__link">
+                <i class="material-icons">
+                    account_circle
+                </i>
+                <span class="nav__text">帳戶</span>
+            </a>
+        </nav>
+    </div>
+</body>
+
+
+<script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
+<script>
+    var video = document.createElement("video");
+    var canvasElement = document.getElementById("canvas");
+    var canvas = canvasElement.getContext("2d");
+    var qrinput = document.getElementById('qrinput');
+    function drawLine(begin, end, color) {
+        canvas.beginPath();
+        canvas.moveTo(begin.x, begin.y);
+        canvas.lineTo(end.x, end.y);
+        canvas.lineWidth = 4;
+        canvas.strokeStyle = color;
+        canvas.stroke();
+    }
+    function onVideoFrame() {
+        if (video.readyState === video.HAVE_ENOUGH_DATA) {
+            canvasElement.height = video.videoHeight;
+            canvasElement.width = video.videoWidth;
+            canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
+            var imageData = canvas.getImageData(0, 0, canvasElement.width, canvasElement.height);
+            var code = jsQR(imageData.data, imageData.width, imageData.height, { inversionAttempts: "dontInvert" });
+            if (code) {
+                drawLine(code.location.topLeftCorner, code.location.topRightCorner, "#FF3B58");
+                drawLine(code.location.topRightCorner, code.location.bottomRightCorner, "#FF3B58");
+                drawLine(code.location.bottomRightCorner, code.location.bottomLeftCorner, "#FF3B58");
+                drawLine(code.location.bottomLeftCorner, code.location.topLeftCorner, "#FF3B58");
+                qrinput.value = code.data;
+            }
+        }
+        requestAnimationFrame(onVideoFrame);
+    }
+    (async function () {
+        video.srcObject = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
+        video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
+        video.play();
+        requestAnimationFrame(onVideoFrame);
+    })();
+</script>

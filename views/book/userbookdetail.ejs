@@ -1,33 +1,67 @@
 <body onload="pageLoaded()">
-    
+
 
     <div class="container">
         <div class="row">
             <div class="card col-xl-6">
-                <img class="responsive" src=<%=book.photo %>>
+                <img class="responsive" src=<%=book.avatar %>>
             </div>
             <div class="card col-xl-6">
                 <table class="table">
                     <tr>
-                        <th id="detail" scope="row">位置: <%= book.location%></th>
+                        <th id="detail" scope="row">編號:
+                            <%= book.no%>
+                        </th>
                     </tr>
                     <tr>
-                        <th id="detail" scope="row">書名: <%= book.bookname %></th>
+                        <th id="detail" scope="row">書名:
+                            <%= book.bookname %>
+                        </th>
                     </tr>
                     <tr>
-                        <th id="detail" scope="row">類型: <%=book.category %></th>
+                        <th id="detail" scope="row">類型:
+                            <%=book.category %>
+                        </th>
                     </tr>
                     <tr>
-                        <th id="detail" scope="row">作者: <%= book.author %></th>
+                        <th id="detail" scope="row">作者/機構:
+                            <%= book.author %>
+                        </th>
                     </tr>
                     <tr>
-                        <th id="detail" scope="row">出版社: <%=book.publisher %></th>
+                        <th id="detail" scope="row">出版年份:
+                            <%=book.year %>
+                        </th>
                     </tr>
                     <tr>
-                        <th id="detail" scope="row">出版年份: <%=book.year %></th>
+                        <th id="detail" scope="row">位置:
+                            <%= book.location%>
+                        </th>
                     </tr>
                     <tr>
-                        <th id="detail" scope="row">ISBN: <%=book.ISBN %></th>
+                        <th id="detail" scope="row">被借用次數:
+                            <%=book.times %>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th id="detail" scope="row">狀態:
+                            <%=book.status %>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th id="detail" scope="row">借用者及日期(最新):
+                            <%=book.borrowinfo %>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th id="detail" scope="row">歸還者及日期(最新):
+                            <%=book.returninfo %>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th id="detail" scope="row">備註:
+                            <%=book.remarks %>
+                        </th>
                     </tr>
 
                 </table>
@@ -36,10 +70,32 @@
         </div>
     </div>
 
-    
-    <button type="submit" class="btn btn-primary center">即時借取</button>
     <br>
-    <button type="submit" class="btn btn-primary center">預訂</button>
+    
+    <div class="container">
+        <div class="row">
+            <div class=" col-6 col-sm-6">
+                
+                    <!-- <button type="submit" class="borrowbutton" onclick="borrow('<%=req.session.userid%>','<%=book.id%>')">借取</button> -->
+                    <form action="/book/borrow" method="GET">
+                        <button type="submit" class="borrowbutton">借取</button>
+                    </form>
+                
+            </div>
+
+            <div class=" col-6 col-sm-6">
+                <form action="/user/addreservebook/<%=book.id%>" method="POST">
+                    <button type="submit" class="bookbutton">
+                        預定
+                    </button>
+                <form>
+               
+            </div>
+        </div>
+    </div>
+
+
+
 
     <nav class="bottomnav fixed-bottom">
         <a href="/item/userindex" class="nav__link">
@@ -69,3 +125,32 @@
     </nav>
     </div>
 </body>
+
+<script>
+
+    async function reserve(bookid) {
+
+        var r = confirm("確認預定?");
+
+        if (r) {
+
+            var response = await fetch("/user/addreservebook/"+ bookid, {
+                method: "POST",
+                credentials: 'same-origin',
+            });
+
+            if (response.ok) {
+                var data = await response.json();
+                alert(data.message);
+                window.location = data.url;
+            } else {
+                alert("已經預定");
+            }
+
+        } else {
+            alert("取消");
+        }
+
+    };
+
+</script>

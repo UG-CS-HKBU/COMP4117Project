@@ -6,12 +6,260 @@
 
         <br>
 
-        
 
-        <div>
+        <h2 style="color:wheat; background-color: darkred;"> &nbsp;&nbsp;借用通知</h2>
+        <div class="container">
+            <div>
+                <div class="row squareyellow" style="background-color:lightgoldenrodyellow">
+                    <div class="col center">
+                        種類
+                    </div>
+                    <div class="col center">
+                        名稱
+                    </div>
+                    <div class="col center">
+                        逾期天數
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <% book.forEach(function(model) { %>
+            <a href="/book/userbookreturn/<%=model.id%>">
+                <div>
+                    <div class="row square" style="background-color:rgb(255, 255, 255)">
+                        <div class="col center">
+                            <%= model.itemtype %>
+                        </div>
+                        <div class="col center">
+                            <%= model.bookname %>
+                        </div>
+                        <div class="col center">
+                            <% var day=((model.expired-new Date().getTime())/(1000 * 3600 * 24))%>
+                            <%=parseInt(day)%>天<br>
+                            (<%=new Date(model.expired2).toLocaleDateString()%>)                      
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <% }); %>
+        </div>
+        
+        <div class="container">
+            <% game.forEach(function(model) { %>
+            <a href="/game/usergamereturn/<%=model.id%>">
+                <div>
+                    <div class="row square" style="background-color:rgb(255, 255, 255)">
+                        <div class="col center">
+                            <%= model.itemtype %>
+                        </div>
+                        <div class="col center">
+                            <%= model.gamename %>
+                        </div>
+                        <div class="col center">
+                            <% var day=((model.expired-new Date().getTime())/(1000 * 3600 * 24))%>
+                            <%=parseInt(day)%>天<br>
+                            (<%=new Date(model.expired2).toLocaleDateString()%>) 
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <% }); %>
+        </div>
+        
+        <div class="container">
+            <% material.forEach(function(model) { %>
+            <a href="/material/usermaterialreturn/<%=model.id%>">
+                <div>
+                    <div class="row square" width=100 style="background-color:rgb(255, 255, 255)">
+                        <div class="col center">
+                            <%= model.itemtype %>
+                        </div>
+                        <div class="col center">
+                            <%= model.materialname %>
+                        </div>
+                        <div class="col center">
+                            <% var day=((model.expired-new Date().getTime())/(1000 * 3600 * 24))%>
+                            <%=parseInt(day)%>天<br>
+                            (<%=new Date(model.expired2).toLocaleDateString()%>)                             
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <% }); %>
+        </div>
+        <h2 style="color:wheat; background-color: darkred;"> &nbsp;&nbsp;已預約物品</h2>
+        <div class="container">
+            <div>
+                <div class="row squareyellow" style="background-color:lightgoldenrodyellow">
+                    <div class="col center">
+                        種類
+                    </div>
+                    <div class="col center">
+                        名稱
+                    </div>
+                    <div class="col center">
+                        逾期天數
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <% book3.forEach(function(model) { %>
+            <a href="/book/userbookreserve/<%=model.id%>">
+                <div>
+                    <div class="row square" style="background-color:rgb(255, 255, 255)">
+                        <div class="col center">
+                            <%= model.itemtype %>
+                        </div>
+                        <div class="col center">
+                            <%= model.bookname %>
+                        </div>
+                        <div class="col center">
+                            <% var day=((model.reserveto-new Date().getTime())/(1000 * 3600 * 24))%>
+                            <%=parseInt(day)%>天
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <% }); %>
+        </div>
+        <div class="container">
+            <% game3.forEach(function(model) { %>
+            <a href="/game/usergamereserve/<%=model.id%>">
+                <div>
+                    <div class="row square" style="background-color:rgb(255, 255, 255)">
+                        <div class="col center">
+                            <%= model.itemtype %>
+                        </div>
+                        <div class="col center">
+                            <%= model.gamename %>
+                        </div>
+                        <div class="col center">
+                            <% var day=((model.reserveto-new Date().getTime())/(1000 * 3600 * 24))%>
+                            <%=parseInt(day)%>天
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <% }); %>
+        </div>
+        
+        <h2 style="color:wheat; background-color: darkred;"> &nbsp;&nbsp;借用歷史</h2>
+        <div class="container">
+            <div>
+                <div class="row squareyellow" style="background-color:lightgoldenrodyellow">
+                    <div class="col center">
+                        種類
+                    </div>
+                    <div class="col center">
+                        名稱
+                    </div>
+                    <div class="col center">
+                        借用日期
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <% book2.forEach(function(model) { %>
+            <a href="/book/userbookdetail2/<%=model.id%>">
+                <div>
+                    <div class="row square" style="background-color:rgb(255, 255, 255)">
+                        <div class="col center">
+                            <%= model.itemtype %>
+                        </div>
+                        <div class="col center">
+                            <%= model.bookname %>
+                        </div>
+                        <div class="col center">
+                            <%=new Date(model.borrowdate).toLocaleDateString()%>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <% }); %>
+        </div>
+        <div class="container">
+            <% game2.forEach(function(model) { %>
+            <a href="/game/usergamedetail2/<%=model.id%>">
+                <div>
+                    <div class="row square" style="background-color:rgb(255, 255, 255)">
+                        <div class="col center">
+                            <%= model.itemtype %>
+                        </div>
+                        <div class="col center">
+                            <%= model.gamename %>
+                        </div>
+                        <div class="col center">
+                            <%=new Date(model.borrowdate).toLocaleDateString()%>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <% }); %>
+        </div>
+        <div class="container">
+            <% material2.forEach(function(model) { %>
+            <a href="/material/usermaterialdetail2/<%=model.id%>">
+                <div>
+                    <div class="row square" style="background-color:rgb(255, 255, 255)">
+                        <div class="col center">
+                            <%= model.itemtype %>
+                        </div>
+                        <div class="col center">
+                            <%= model.materialname %>
+                        </div>
+                        <div class="col center">
+                            <%=new Date(model.borrowdate).toLocaleDateString()%>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <% }); %>
+        </div>
+        <h2 style="color:wheat; background-color: darkred;"> &nbsp;&nbsp;禮物領取歷史</h2>
+        <div class="container">
+            <div>
+                <div class="row squareyellow" style="background-color:lightgoldenrodyellow">
+                    <div class="col center">
+                        種類
+                    </div>
+                    <div class="col center">
+                        名稱
+                    </div>
+                    <div class="col center">
+                        領取日期
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <% gift.forEach(function(model) { %>
+            <a href="/gift/usergiftdetail2/<%=model.id%>">
+                <div>
+                    <div class="row square" style="background-color:rgb(255, 255, 255)">
+                        <div class="col center">
+                            <%= model.category %>
+                        </div>
+                        <div class="col center">
+                            <%= model.giftname %>
+                        </div>
+                        <div class="col center">
+                            <%=new Date(model.borrowdate).toLocaleDateString()%>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <% }); %>
+        </div>
+    </div>
+
+
+    <!-- <div>
             <div class="container">
-                <h2 class="display-6 center">通知</h2>
-                <div class="square center">
+                <h2 style="color:wheat; background-color: darkred;"> &nbsp;&nbsp;借用通知</h2>
+                <div class="square center" style="background-color:lightgoldenrodyellow">
                     <div class="row">
                         <div class="col center">
                             種類
@@ -24,19 +272,23 @@
                         </div>
                     </div>
                 </div>
-                <div class="square center">
-                    <div class="row">
-                        <div class="col center">
-                            書籍
-                        </div>
-                        <div class="col center">
-                            曼巴精神
-                        </div>
-                        <div class="col center ">
-                            6天
+                <% book.forEach(function(model) { %>
+                <a href="/book/userbookreturn/<%=model.id%>" style="color:darkslategrey">
+                    <div class="square center">
+                        <div class="row">
+                            <div class="col center">
+                                <%=model.itemtype%>
+                            </div>
+                            <div class="col center">
+                                <%=model.bookname%>
+                            </div>
+                            <div class="col center " style="color:red">
+                                <%=model.expired%>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
+                <% }); %>
                 <div class="square center">
                     <div class="row">
                         <div class="col center">
@@ -45,13 +297,11 @@
                         <div class="col center">
                             卡坦島
                         </div>
-                        <div class="col center ">
-                            7天
+                        <div class="col center " style="color: black;">
+                            9天
                         </div>
                     </div>
                 </div>
-                
-
                 <div class="square center">
                     <div class="row">
                         <div class="col center">
@@ -61,82 +311,20 @@
                             IPAD
                         </div>
                         <div class="col center ">
-                            8天
+                            28天
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
-        <br>
+        <br> -->
 
+    <!-- <ul id="result">
+        </ul>
         <div>
             <div class="container">
-                <h2 class="display-6 center">借用歷史</h2>
-                <div class="square center">
-                    <div class="row">
-                        <div class="col center">
-                            種類
-                        </div>
-                        <div class="col center">
-                            名稱
-                        </div>
-                        <div class="col center ">
-                            備註
-                        </div>
-                    </div>
-                </div>
-                <div class="square center">
-                    <div class="row">
-                        <div class="col center">
-                            書籍
-                        </div>
-                        <div class="col center">
-                            想見你(1)
-                        </div>
-                        <div class="col center ">
-                            遺失
-                        </div>
-                    </div>
-                </div>
-                <div class="square center">
-                    <div class="row">
-                        <div class="col center">
-                            桌遊
-                        </div>
-                        <div class="col center">
-                            飛行棋
-                        </div>
-                        <div class="col center ">
-                            損壞
-                        </div>
-                    </div>
-                </div>
-                
-
-                <div class="square center">
-                    <div class="row">
-                        <div class="col center">
-                            物資
-                        </div>
-                        <div class="col center">
-                            原子筆
-                        </div>
-                        <div class="col center ">
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <br>
-
-        <div>
-            <div class="container">
-                <h2 class="display-6 center">我的申請</h2>
-                <div class="square center">
+                <h2 style="color:wheat; background-color: darkred;"> &nbsp;&nbsp;我的申請</h2>
+                <div class="square center" style="background-color:lightgoldenrodyellow">
                     <div class="row">
                         <div class="col center">
                             種類
@@ -157,7 +345,7 @@
                         <div class="col center">
                             想見你(2)
                         </div>
-                        <div class="col center ">
+                        <div class="col center " style="color:blue">
                             接納
                         </div>
                     </div>
@@ -170,15 +358,11 @@
                         <div class="col center">
                             矮人礦坑
                         </div>
-                        
-                        <div class="col center ">
+                        <div class="col center " style="color:red">
                             拒絕
                         </div>
-
                     </div>
                 </div>
-                
-
                 <div class="square center">
                     <div class="row">
                         <div class="col center">
@@ -187,14 +371,72 @@
                         <div class="col center">
                             IPAD
                         </div>
-                        <div class="col center ">
+                        <div class="col center " style="color:red">
                             拒絕
                         </div>
                     </div>
                 </div>
             </div>
-
-        </div>
+            <br>
+            <div>
+                <div class="container">
+                    <h2 style="color:wheat; background-color: darkred;"> &nbsp;&nbsp;借用歷史</h2>
+                    <div class="square center" style="background-color:lightgoldenrodyellow">
+                        <div class="row">
+                            <div class="col center">
+                                種類
+                            </div>
+                            <div class="col center">
+                                名稱
+                            </div>
+                            <div class="col center ">
+                                備註
+                            </div>
+                        </div>
+                    </div>
+                    <div class="square center">
+                        <div class="row">
+                            <div class="col center">
+                                書籍
+                            </div>
+                            <div class="col center">
+                                想見你(1)
+                            </div>
+                            <div class="col center " style="color:green">
+                                已歸還
+                            </div>
+                        </div>
+                    </div>
+                    <div class="square center">
+                        <div class="row">
+                            <div class="col center">
+                                桌遊
+                            </div>
+                            <div class="col center">
+                                飛行棋
+                            </div>
+                            <div class="col center " style="color:indigo">
+                                遺失
+                            </div>
+                        </div>
+                    </div>
+                    <div class="square center">
+                        <div class="row">
+                            <div class="col center">
+                                物資
+                            </div>
+                            <div class="col center">
+                                原子筆
+                            </div>
+                            <div class="col center " style="color:red">
+                                損壞
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div> -->
 
 
     </div>
@@ -228,3 +470,19 @@
 
 
 </body>
+
+<!-- <script>
+   function sendreminder(day)
+   {
+       if(day<=7)
+       {
+        await sails.helpers.sendSingleEmail({
+            to: 'leungjay0424@gmail.com',
+            from: sails.config.custom.mailgunFrom,
+            subject: '借用物資通知',
+            // text: '你已借用'+thatMaterial.materialname+'(數量: '+borrowamount+') 請於'+new Date(expireddate2).toLocaleDateString()+'前歸還',
+            text:'你有物資將於7天後到期 請準時歸還'
+        });
+       }
+   }
+</script> -->
